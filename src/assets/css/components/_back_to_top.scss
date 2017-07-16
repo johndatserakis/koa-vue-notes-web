@@ -1,0 +1,23 @@
+/* Back To Top Button  ------------------------------------------------------------------*/
+
+    .backToTopButton {
+        visibility: hidden;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99;
+        border: none;
+        outline: none;
+        background-color: rgba($green, 0.9);
+        color: white;
+        cursor: pointer;
+        padding: 8px 15px 6px 15px;
+        border-radius: 10px;
+        box-shadow: -1px 2px 4px 0 rgba($black, 0.3);
+        opacity: 0;
+        transition: opacity 0.3s;
+
+        &:hover {
+            background-color: rgba($dark-green, 0.9);
+        }
+    }

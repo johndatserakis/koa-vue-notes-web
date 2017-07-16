@@ -1,0 +1,98 @@
+<template>
+    <section class="user-action">
+        <div class="row">
+            <div class="container">
+
+                <div class="user-block">
+
+                    <h1 class="user-block__header">Forgot Password</h1>
+
+                    <div class="user-block__content">
+                        <form v-on:submit.prevent autocomplete="off">
+                            <div
+                                class="form-group"
+                                v-bind:class="{ 'form-group--error': $v.credentials.email.$error, 'form-group--success': !$v.credentials.email.$invalid && $v.credentials.email.$dirty }" >
+                                <label>Email</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    name="signup-form-email"
+                                    aria-describedby="Email"
+                                    v-model.trim="credentials.email"
+                                    @input="$v.credentials.email.$touch()"
+                                >
+                                <div class="form-group__message" v-if="$v.credentials.email.$error">Please enter your email.</div>
+                            </div>
+
+                            <button
+                                class="btn btn-green btn-lg mt-4 btn-block"
+                                @click="submit()"
+                            >
+                            <span v-if="pending"><i class="fa fa-circle-o-notch fa-spin fa-fw"></i></span>
+                            <span v-else><i class="fa fa-paper-plane"></i> Send</span>
+                            </button>
+
+                            <div class="mt-4 small">
+                                <p>Not signed up yet? <router-link to="/user/signup">Signup here.</router-link></p>
+                                <p><router-link to="/user/login">Login</router-link></p>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+</template>
+
+<script>
+    import { required, minLength, between, sameAs, email } from 'vuelidate/lib/validators'
+
+    export default {
+        name: 'forgot',
+        data () {
+            return {
+                credentials: {
+                    email: 'johndatserakis@gmail.com'
+                },
+                pending: false,
+            }
+        },
+        methods: {
+            submit () {
+                if (this.$v.$invalid) { this.$v.$touch(); return }
+
+                this.pending = true
+
+                const credentials = {
+                    email: this.credentials.email
+                }
+
+                this.$store.dispatch('userForgot', credentials)
+                .then(() => {
+                    this.credentials.email = ''
+                    this.$v.$reset()
+                    this.$router.push('/')
+                })
+                .catch(() => {
+                })
+                .then(() => {
+                    this.pending = false
+                })
+            }
+        },
+        computed: {
+        },
+        validations: {
+            credentials: {
+                email: {
+                  required
+                },
+            }
+        }
+    }
+</script>
+
+<style lang="scss" scoped>
+</style>

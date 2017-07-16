@@ -1,0 +1,51 @@
+//Panels
+
+    .panel {
+        min-height: 20px;
+        padding: 19px;
+        margin-bottom: 20px;
+        background-color: #f5f5f5;
+        border: 1px solid darken(#f5f5f5, 10%);
+        border-radius: 4px;
+        box-shadow: -1px 1px 3px 0 rgba(0, 0, 0, 0.08);
+
+        &--red {
+            background-color: $red;
+            border: 1px solid darken($red, 5%);
+        }
+
+        &--green {
+            background-color: $green;
+            border: 1px solid darken($green, 5%);
+        }
+
+        &--yellow {
+            background-color: $yellow;
+            border: 1px solid darken($yellow, 5%);
+        }
+
+        &--blue {
+            background-color: $blue;
+            border: 1px solid darken($blue, 5%);
+        }
+
+        &--orange {
+            background-color: $orange;
+            border: 1px solid darken($orange, 5%);
+        }
+
+        &--grey {
+            background-color: $off-white;
+            border: 1px solid darken($off-white, 15%);
+        }
+
+        &--white {
+            background-color: $white;
+            border: 1px solid darken($off-white, 10%);
+        }
+
+        //White text modifier
+        &--white-text {
+            color: $white;
+        }
+    }

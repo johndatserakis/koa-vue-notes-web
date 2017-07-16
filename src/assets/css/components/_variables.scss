@@ -1,0 +1,35 @@
+//Change global fonts in bootstrap_override
+
+//Primary colors
+$white: #ffffff;
+$off-white: darken($white, 2%);
+$black: #222;
+
+$light-grey: #eee;
+$grey: darken($light-grey, 15%);
+$dark-grey: darken($grey, 15%);
+
+//Main
+$blue: #408ADE;
+$dark-blue: darken($blue, 15%);
+
+$red: #E63A45;
+$dark-red: darken($red, 15%);
+
+$yellow: yellow;
+$dark-yellow: darken($yellow, 15%);
+
+$green: #45CB85;
+$dark-green: darken($green, 15%);
+
+$orange: orange;
+$dark-orange: darken($orange, 15%);
+
+$purple: purple;
+$dark-purple: darken($purple, 15%);
+
+//Color specs
+$font-color: $black;
+
+//Animations
+$transition: all 0.2s ease;

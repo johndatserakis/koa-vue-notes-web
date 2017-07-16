@@ -1,0 +1,28 @@
+/* Entry ------------------------------------------------------------------*/
+
+    .input-group input, .input-group select, .input-group textarea, .form-group input, .form-group select, .form-group textarea {
+        border: 1px solid rgba($black, 0.5);
+    }
+
+    .form-group {
+        &--error {
+            input, input:focus {
+                border-color: $red;
+            }
+        }
+
+        &--success {
+            input:focus {
+                border-color: green;
+            }
+        }
+
+        &__message {
+            color: $white;
+            background-color: $red;
+            margin-top: 10px;
+            padding: 2px 2px 2px 8px;
+            border-radius: 4px;
+        }
+    }
+
