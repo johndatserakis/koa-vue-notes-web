@@ -10,3 +10,6 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+* linguist-vendored
+*.js linguist-vendored=false
