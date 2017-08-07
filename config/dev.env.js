@@ -3,5 +3,5 @@ var prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_URL: '"http://laravel-vue-notes-api.app"',
+  API_URL: '"localhost:4000"',
 })
