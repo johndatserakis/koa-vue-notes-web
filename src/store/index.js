@@ -11,12 +11,6 @@ axios.defaults.baseURL = process.env.API_URL;
 
 import jwtDecode from 'jwt-decode';
 
-//Mutations
-// const LOGOUT_USER = 'LOGOUT_USER'
-// const STORE_ACCESS_TOKEN = 'STORE_ACCESS_TOKEN'
-// const SET_AUTHENTICATED = 'SET_AUTHENTICATED'
-// const SET_AUTHENTICATED_USER = 'SET_AUTHENTICATED_USER'
-
 const SET_USER = 'SET_USER'
 const STORE_ACCESS_TOKEN = 'STORE_ACCESS_TOKEN'
 const STORE_REFRESH_TOKEN = 'STORE_REFRESH_TOKEN'
