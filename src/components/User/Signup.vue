@@ -11,34 +11,34 @@
                         <form v-on:submit.prevent autocomplete="off">
                             <div
                                 class="form-group"
-                                v-bind:class="{ 'form-group--error': $v.credentials.first_name.$error, 'form-group--success': !$v.credentials.first_name.$invalid && $v.credentials.first_name.$dirty }" >
+                                v-bind:class="{ 'form-group--error': $v.credentials.firstName.$error, 'form-group--success': !$v.credentials.firstName.$invalid && $v.credentials.firstName.$dirty }" >
                                 <label>First Name</label>
                                 <input
                                     autofocus
                                     autocomplete=""
                                     type="text"
                                     class="form-control"
-                                    name="signup-form-first_name"
+                                    name="signup-form-firstName"
                                     aria-describedby="First Name"
-                                    v-model.trim="credentials.first_name"
-                                    @input="$v.credentials.first_name.$touch()"
+                                    v-model.trim="credentials.firstName"
+                                    @input="$v.credentials.firstName.$touch()"
                                 >
-                                <div class="form-group__message" v-if="$v.credentials.first_name.$error">Please enter your first name.</div>
+                                <div class="form-group__message" v-if="$v.credentials.firstName.$error">Please enter your first name.</div>
                             </div>
 
                             <div
                                 class="form-group"
-                                v-bind:class="{ 'form-group--error': $v.credentials.last_name.$error, 'form-group--success': !$v.credentials.last_name.$invalid && $v.credentials.last_name.$dirty }" >
+                                v-bind:class="{ 'form-group--error': $v.credentials.lastName.$error, 'form-group--success': !$v.credentials.lastName.$invalid && $v.credentials.lastName.$dirty }" >
                                 <label>Last Name</label>
                                 <input
                                     type="text"
                                     class="form-control"
-                                    name="signup-form-last_name"
+                                    name="signup-form-lastName"
                                     aria-describedby="Last Name"
-                                    v-model.trim="credentials.last_name"
-                                    @input="$v.credentials.last_name.$touch()"
+                                    v-model.trim="credentials.lastName"
+                                    @input="$v.credentials.lastName.$touch()"
                                 >
-                                <div class="form-group__message" v-if="$v.credentials.last_name.$error">Please enter your last name.</div>
+                                <div class="form-group__message" v-if="$v.credentials.lastName.$error">Please enter your last name.</div>
                             </div>
 
                             <div
@@ -90,17 +90,17 @@
 
                             <div
                                 class="form-group"
-                                v-bind:class="{ 'form-group--error': $v.credentials.password_confirm.$error, 'form-group--success': !$v.credentials.password_confirm.$invalid && $v.credentials.password_confirm.$dirty }" >
+                                v-bind:class="{ 'form-group--error': $v.credentials.passwordConfirm.$error, 'form-group--success': !$v.credentials.passwordConfirm.$invalid && $v.credentials.passwordConfirm.$dirty }" >
                                 <label>Confirm Password</label>
                                 <input
                                     type="password"
                                     class="form-control"
-                                    name="signup-form-password_confirm"
+                                    name="signup-form-passwordConfirm"
                                     aria-describedby="Confirm Password"
-                                    v-model.trim="credentials.password_confirm"
-                                    @input="$v.credentials.password_confirm.$touch()"
+                                    v-model.trim="credentials.passwordConfirm"
+                                    @input="$v.credentials.passwordConfirm.$touch()"
                                 >
-                                <div class="form-group__message" v-if="$v.credentials.password_confirm.$error">Entry doesn't match.</div>
+                                <div class="form-group__message" v-if="$v.credentials.passwordConfirm.$error">Entry doesn't match.</div>
                             </div>
 
                             <button
@@ -112,8 +112,8 @@
                             </button>
 
                             <div class="mt-4 small">
-                                <p>Already have an account? <router-link to="/user/login">Login here.</router-link></p>
-                                <p><router-link to="/user/forgot">Forgot your password?</router-link></p>
+                                <p>Already have an account? <router-link :to="{name: 'login'}">Login here.</router-link></p>
+                                <p><router-link :to="{name: 'forgot'}">Forgot your password?</router-link></p>
                             </div>
                         </form>
                     </div>
@@ -134,12 +134,12 @@
         data () {
             return {
                 credentials: {
-                    first_name: '',
-                    last_name: '',
+                    firstName: '',
+                    lastName: '',
                     username: '',
                     email: '',
                     password: '',
-                    password_confirm: '',
+                    passwordConfirm: '',
                 },
                 pending: false,
             }
@@ -151,41 +151,39 @@
                 this.pending = true
 
                 const credentials = {
-                    first_name: this.credentials.first_name,
-                    last_name: this.credentials.last_name,
+                    firstName: this.credentials.firstName,
+                    lastName: this.credentials.lastName,
                     username: this.credentials.username,
                     email: this.credentials.email,
                     password: this.credentials.password,
-                    password_confirm: this.credentials.password_confirm,
+                    passwordConfirm: this.credentials.passwordConfirm,
                 }
 
                 this.$store.dispatch('userSignup', credentials)
                 .then(() => {
-                    this.credentials.first_name = ''
-                    this.credentials.last_name = ''
+                    this.credentials.firstName = ''
+                    this.credentials.lastName = ''
                     this.credentials.username = ''
                     this.credentials.email = ''
                     this.credentials.password = ''
-                    this.credentials.password_confirm = ''
+                    this.credentials.passwordConfirm = ''
                     this.$v.$reset()
-                    this.$router.push('/user/login')
+                    this.$router.push({name: 'login'})
                 })
-                .catch(() => {
-                })
+                .catch(() => {})
                 .then(() => {
                     this.pending = false
                 })
             }
         },
         computed: {
-            ...mapState(['user'])
         },
         validations: {
             credentials: {
-                first_name: {
+                firstName: {
                   required
                 },
-                last_name: {
+                lastName: {
                   required
                 },
                 username: {
@@ -200,7 +198,7 @@
                   required,
                   minLength: minLength(8)
                 },
-                password_confirm: {
+                passwordConfirm: {
                   sameAs: sameAs('password'),
                 },
             }

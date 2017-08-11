@@ -33,8 +33,8 @@
                             </button>
 
                             <div class="mt-4 small">
-                                <p>Not signed up yet? <router-link to="/user/signup">Signup here.</router-link></p>
-                                <p><router-link to="/user/login">Login</router-link></p>
+                                <p>Not signed up yet? <router-link :to="{name: 'signup'}">Signup here.</router-link></p>
+                                <p>Need to login? <router-link :to="{name: 'login'}">Login here</router-link></p>
                             </div>
                         </form>
                     </div>
@@ -54,7 +54,7 @@
         data () {
             return {
                 credentials: {
-                    email: 'johndatserakis@gmail.com'
+                    email: ''
                 },
                 pending: false,
             }
@@ -73,10 +73,9 @@
                 .then(() => {
                     this.credentials.email = ''
                     this.$v.$reset()
-                    this.$router.push('/')
+                    this.$router.push({name: 'home'})
                 })
-                .catch(() => {
-                })
+                .catch(() => {})
                 .then(() => {
                     this.pending = false
                 })

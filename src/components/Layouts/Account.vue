@@ -5,6 +5,7 @@
             <h1>Account</h1>
 
             <p>If you see this you should be logged in. Your notes are shown below.</p>
+            <p v-if="user">{{user}}</p>
 
             <div v-if="loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>
 
@@ -33,8 +34,7 @@
         methods: {
             loadNotes() {
                 this.loading = true
-                this.$store.dispatch('getUsersNotes')
-                .then((response) => {
+                this.$store.dispatch('getUsersNotes').then((response) => {
                     this.notes = response.notes
                     this.loading = false
                 }).catch(() => {})
@@ -44,7 +44,7 @@
             ...mapState(['user'])
         },
         mounted () {
-            this.loadNotes()
+            // this.loadNotes()
         },
     }
 </script>

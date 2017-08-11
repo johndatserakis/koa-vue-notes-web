@@ -48,8 +48,8 @@
                             </button>
 
                             <div class="mt-4 small">
-                                <p>Not signed up yet? <router-link to="/user/signup">Signup here.</router-link></p>
-                                <p><router-link to="/user/forgot">Forgot your password?</router-link></p>
+                                <p>Not signed up yet? <router-link :to="{name: 'signup'}">Signup here.</router-link></p>
+                                <p><router-link :to="{name: 'forgot'}">Forgot your password?</router-link></p>
                             </div>
                         </form>
                     </div>
@@ -91,7 +91,7 @@
                     this.credentials.username = ''
                     this.credentials.password = ''
                     this.$v.$reset()
-                    this.$router.push('/account')
+                    this.$router.push({name: 'account'})
                 })
                 .catch(() => {})
                 .then(() => {

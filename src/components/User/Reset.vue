@@ -27,17 +27,17 @@
 
                             <div
                                 class="form-group"
-                                v-bind:class="{ 'form-group--error': $v.credentials.password_confirm.$error, 'form-group--success': !$v.credentials.password_confirm.$invalid && $v.credentials.password_confirm.$dirty }" >
+                                v-bind:class="{ 'form-group--error': $v.credentials.passwordConfirm.$error, 'form-group--success': !$v.credentials.passwordConfirm.$invalid && $v.credentials.passwordConfirm.$dirty }" >
                                 <label>Confirm Password</label>
                                 <input
                                     type="password"
                                     class="form-control"
-                                    name="reset-form-password_confirm"
+                                    name="reset-form-passwordConfirm"
                                     aria-describedby="Confirm Password"
-                                    v-model.trim="credentials.password_confirm"
-                                    @input="$v.credentials.password_confirm.$touch()"
+                                    v-model.trim="credentials.passwordConfirm"
+                                    @input="$v.credentials.passwordConfirm.$touch()"
                                 >
-                                <div class="form-group__message" v-if="$v.credentials.password_confirm.$error">Entry doesn't match.</div>
+                                <div class="form-group__message" v-if="$v.credentials.passwordConfirm.$error">Entry doesn't match.</div>
                             </div>
 
                             <button
@@ -71,8 +71,8 @@
             return {
                 credentials: {
                     password: '',
-                    password_confirm: '',
-                    token: '',
+                    passwordConfirm: '',
+                    passwordResetToken: '',
                     email: '',
                 },
                 pending: false,
@@ -86,22 +86,18 @@
 
                 const credentials = {
                     password: this.credentials.password,
-                    token: this.credentials.token,
+                    passwordResetToken: this.credentials.passwordResetToken,
                     email: this.credentials.email
                 }
 
                 this.$store.dispatch('userReset', credentials)
                 .then(() => {
                     this.credentials.password = ''
-                    this.credentials.password_confirm = ''
+                    this.credentials.passwordConfirm = ''
                     this.$v.$reset()
-                    this.$router.push('/user/login')
+                    this.$router.push({name: 'login'})
                 })
-                .catch(() => {
-                    this.credentials.password = ''
-                    this.credentials.password_confirm = ''
-                    this.$v.$reset()
-                })
+                .catch(() => {})
                 .then(() => {
                     this.pending = false
                 })
@@ -115,13 +111,13 @@
                   required,
                   minLength: minLength(8)
                 },
-                password_confirm: {
+                passwordConfirm: {
                   sameAs: sameAs('password'),
                 },
             }
         },
         mounted () {
-            this.credentials.token = this.$route.query.token
+            this.credentials.passwordResetToken = this.$route.query.passwordResetToken
             this.credentials.email = this.$route.query.email
         }
     }

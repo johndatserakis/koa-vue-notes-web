@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
 Vue.use(Router)
 
 // Main Route
@@ -24,7 +23,6 @@ Vue.component('navbar', require('@/components/Partials/Navbar.vue'));
 
 const router = new Router({
   mode: 'history',
-  // base: __dirname,
   routes: [
     { path: '*', component: NotFound, name: 'notFound' },
     { path: '/', component: Home, name: 'home' },
@@ -45,31 +43,17 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-    // // First we'll check if they're logged in. If not, we'll
-    // // check an accessToken they may have to log them back in
-    // if (!router.app.$options.store.state.authenticated) {
-    //     router.app.$options.store.dispatch('getAuthenticatedUser')
-    //     .then(() => {
-    //         // They're logged in alright - so send them on their way -
-    //         // even if they're going to an authorized page
-    //         next()
-    //     })
-    //     .catch((error) => {
-    //         // The user is not logged in, so do not allow them
-    //         // access to authorized pages. Send them to the homepage.
-    //         if (to.meta.requiresAuth) {
-    //             next('/')
-    //         } else {
-    //             next()
-    //         }
+    //Here we check if there is a present access token. What we're accounting for is the instance of a reload,
+    //because up until then the user object will be present if they've already logged in. So if an accessToken is present
+    //let's set the user object and their access tokens.
+    if (router.app.$options.store.getters.accessToken) {
+        router.app.$options.store.dispatch('setUserAndTokens', {accessToken: router.app.$options.store.getters.accessToken, refreshToken: router.app.$options.store.getters.refreshToken})
+    }
 
-    //     })
-    // } else {
-    //     // Just like in the flow above, if the user is logged in
-    //     // successfully, go ahead and send them on their way - even
-    //     // if they're going to an authenticated page
-    //     next()
-    // }
+    //If the user's not logged in do not allow into protected pages.
+    if (to.meta.requiresAuth && !router.app.$options.store.state.user) {
+        next({name: 'home'})
+    }
 
     next()
 })
