@@ -69,7 +69,7 @@
                     email: this.credentials.email
                 }
 
-                this.$store.dispatch('userForgot', credentials)
+                this.$store.dispatch('user/userForgot', credentials)
                 .then(() => {
                     this.credentials.email = ''
                     this.$v.$reset()

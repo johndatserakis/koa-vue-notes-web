@@ -6,7 +6,7 @@
 
             <p>Here will be a check to see if you are currently logged in and your user info.</p>
 
-            <p v-if="user">{{user}}</p>
+            <p v-if="user">You: {{user}}</p>
             <p v-else>Hmm, you are not logged in.</p>
 
         </div>
@@ -19,7 +19,11 @@
     export default {
         name: 'home',
         computed: {
-            ...mapState(['user'])
+            ...mapState({
+                user: state => state.user.user
+            })
+        },
+        mounted() {
         }
     }
 </script>

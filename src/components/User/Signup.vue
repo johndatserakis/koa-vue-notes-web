@@ -159,7 +159,7 @@
                     passwordConfirm: this.credentials.passwordConfirm,
                 }
 
-                this.$store.dispatch('userSignup', credentials)
+                this.$store.dispatch('user/userSignup', credentials)
                 .then(() => {
                     this.credentials.firstName = ''
                     this.credentials.lastName = ''

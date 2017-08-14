@@ -90,7 +90,7 @@
                     email: this.credentials.email
                 }
 
-                this.$store.dispatch('userReset', credentials)
+                this.$store.dispatch('user/userReset', credentials)
                 .then(() => {
                     this.credentials.password = ''
                     this.credentials.passwordConfirm = ''

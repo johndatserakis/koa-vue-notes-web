@@ -86,7 +86,7 @@
                     password: this.credentials.password,
                 }
 
-                this.$store.dispatch('userLogin', credentials)
+                this.$store.dispatch('user/userLogin', credentials)
                 .then(() => {
                     this.credentials.username = ''
                     this.credentials.password = ''

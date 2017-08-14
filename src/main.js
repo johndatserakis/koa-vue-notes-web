@@ -18,7 +18,7 @@ Vue.use(Toasted, {
      duration : 2300
 })
 
-import { addAuthorizationHeader } from '@/common/utilities'
+// import { addAuthorizationHeader } from '@/common/utilities'
 
 // Importing jQuery in ES6 style
 // We need to expose jQuery as global variable
@@ -41,30 +41,9 @@ new Vue({
   router,
   template: '<App/>',
   components: { App },
-  // mixins: [mixins],
   computed: {
-      ...mapGetters(['user'])
   },
   mounted () {
-
-    // console.log(this.addAuthorizationHeader(234))
   },
-  // methods: {
-  //   addAuthorizationHeader (accessToken) {
-  //       // axios.defaults.headers.common['Authorization'] = "Bearer " +  accessToken
-  //       return 'yo tho';
-  //   }
-  // }
-  // created: function() {
-  //   setTimeout(function() {
-  //     console.log('wow')
-  //   }, 3000)
-  // }
 })
-
-// Vue.mixin({
-//   methods: {
-//     capitalizeFirstLetter: str => str.charAt(0).toUpperCase() + str.slice(1)
-//   }
-// })
 
