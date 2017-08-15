@@ -2,28 +2,37 @@
     <section class="main-content">
         <div class="container">
 
-            <button v-on:click="goBack()" class="btn btn-primary btn-sm mb-3">
-                <i class="fa fa-arrow-left fa-fw"></i> Back
-            </button>
+            <div class="row">
+                <div class="col-md-12">
 
-            <h1>Create</h1>
+                    <button v-on:click="goBack()" class="btn btn-primary btn-sm mb-3">
+                        <i class="fa fa-arrow-left fa-fw"></i> Back
+                    </button>
 
-            <p>Use the form below to create a note.</p>
+                    <h1>Create</h1>
 
-            <hr>
+                    <p>Use the form below to create a note.</p>
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" class="form-control" v-model="note.title">
+                    <hr>
+
                 </div>
-
-                <div class="form-group">
-                    <label>Content</label>
-                    <textarea class="form-control" v-model="note.content"></textarea>
-                </div>
-                <button v-on:click="createNote()" class="btn btn-primary mb-3">Create</button>
             </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" v-model="note.title">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Content</label>
+                        <textarea class="form-control" v-model="note.content"></textarea>
+                    </div>
+                    <button v-on:click="createNote()" class="btn btn-primary mb-3">Create</button>
+                </div>
+            </div>
+
 
         </div>
     </section>
@@ -79,7 +88,5 @@
 </script>
 
 <style lang="scss" scoped>
-
     @import '~@/assets/css/app.scss';
-
 </style>

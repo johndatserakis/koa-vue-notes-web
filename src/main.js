@@ -2,23 +2,17 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-
 import router from './router'
-
 import store from './store'
 import { mapState, mapGetters, mapActions } from 'vuex'
-
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
-
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, {
      theme: "bubble",
      position: "top-right",
      duration : 2300
 })
-
-// import { addAuthorizationHeader } from '@/common/utilities'
 
 // Importing jQuery in ES6 style
 // We need to expose jQuery as global variable

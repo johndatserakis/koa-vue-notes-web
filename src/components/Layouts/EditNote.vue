@@ -2,18 +2,24 @@
     <section class="main-content">
         <div class="container">
 
-            <button v-on:click="goBack()" class="btn btn-primary btn-sm mb-3">
-                <i class="fa fa-arrow-left fa-fw"></i> Back
-            </button>
+            <div class="row">
+                <div class="col-md-12">
 
-            <h1>Edit</h1>
+                    <button v-on:click="goBack()" class="btn btn-primary btn-sm mb-3">
+                        <i class="fa fa-arrow-left fa-fw"></i> Back
+                    </button>
 
-            <p>Here's the note you selected.</p>
-            <p v-if="user">{{note}}</p>
+                    <h1>Edit</h1>
 
-            <hr>
+                    <p>Here's the note you selected.</p>
+                    <p v-if="user">{{note}}</p>
 
-            <div v-if="loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+                    <hr>
+
+                    <div v-if="loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+
+                </div>
+            </div>
 
             <div v-if="note" class="row">
                 <div class="col-md-12">
@@ -108,7 +114,5 @@
 </script>
 
 <style lang="scss" scoped>
-
     @import '~@/assets/css/app.scss';
-
 </style>

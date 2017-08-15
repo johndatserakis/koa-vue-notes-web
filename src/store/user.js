@@ -2,60 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 import jwtDecode from 'jwt-decode';
-
 import store from './index'
 import router from '@/router'
-
 import { setAuthorizationHeader} from '@/common/utilities'
-
 import axios from 'axios'
 axios.defaults.baseURL = process.env.API_URL;
-// axios.interceptors.response.use(function (response) {
-//     return response;
-// }, function (error) {
-
-//     // console.log('interceptor error')
-//     // console.log(error)
-
-//     //We're going to listen for a 401
-//     //response from our api. We'll also check to make sure the error message reads TOKEN_EXPIRED
-//     if (error.response.status === 401 && error.response.data.message === 'TOKEN_EXPIRED') {
-//         let originalRequest = error.config
-//         let user = store.getters['user/user']
-
-//         setAuthorizationHeader(store.getters['user/accessToken'])
-//         axios.post('/api/v1/user/refreshAccessToken', {username: user.username, refreshToken: store.getters['user/refreshToken']})
-//         .then(response => {
-//             //Now we basically treat this like a user login
-//             store.dispatch('user/setUserAndTokens', {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken})
-//             return Promise.reject('TOKEN_REFRESHED')
-
-//             //when that's done - try the request again. Saw this here
-//             //https://github.com/mzabriskie/axios/issues/690#issuecomment-278372400
-
-//             //What this is going to do is rerun the request. Each component will be responsible
-//             //for commiting store data when needed. For instance, the Account component could try and get
-//             //a user's notes. If the accessToken is expired that's when this interceptor gets involved.
-//             //It will refresh the access token and then rerun the request. The Account component will be none
-//             //the wiser that anything has happened on the backend - that is - until the refreshToken has expired.
-//             // originalRequest._retry = true
-//             // originalRequest.headers['Authorization'] = 'Bearer ' + store.getters['user/accessToken']
-//             // return axios(originalRequest)
-//         })
-//         .catch(error => {
-//             // store.dispatch('user/userLogout')
-//             // router.replace({name: 'login'})
-//             // Vue.toasted.error('To verify your session, please login.')
-//             // return Promise.reject(error)
-//         })
-
-//     } else {
-//         // store.dispatch('user/userLogout')
-//         // router.replace({name: 'login'})
-//         // Vue.toasted.error('To verify your session, please login.')
-//         // return Promise.reject(error)
-//     }
-// });
 
 const SET_USER = 'SET_USER'
 const STORE_ACCESS_TOKEN = 'STORE_ACCESS_TOKEN'
@@ -134,11 +85,9 @@ const user = {
                     refreshToken: getters.refreshToken
                 })
                 .then(response => {
-                    // dispatch('setUserAndTokens', {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken})
                     return resolve(response)
                 })
                 .catch(error => {
-                    // Vue.toasted.error('Hmm, those details don\'t seem right.')
                     return reject(error)
                 })
             })
