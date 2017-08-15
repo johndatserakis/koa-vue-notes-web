@@ -96,7 +96,7 @@
     .note-block {
         margin-top: 40px;
         &__note {
-            background: $light-grey;
+            background: lighten($light-grey, 2%);
             padding: 10px;
             border-radius: 6px;
             margin-bottom: 20px;

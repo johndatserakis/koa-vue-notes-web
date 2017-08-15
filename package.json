@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A Vue.js project",
   "author": "John Datserakis <johndatserakis@gmail.com>",
   "private": true,
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "bootstrap": "4.0.0-alpha.6",
+    "bootstrap": "^4.0.0-beta",
     "jquery": "^3.1.1",
     "jwt-decode": "^2.2.0",
     "vue": "^2.3.3",

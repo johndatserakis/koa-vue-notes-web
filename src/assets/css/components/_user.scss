@@ -1,15 +1,19 @@
 /* User ------------------------------------------------------------------*/
 
     section.user-action {
-        padding: 75px;
+        padding: 25px 0;
     }
 
     .user-block {
         padding: 25px;
         background: $blue;
-        max-width: 500px;
+        max-width: 100%;
         margin: 0 auto;
         border-radius: 8px;
+
+        @include media-breakpoint-up(md) {
+            max-width: 500px;
+        }
 
         &__header {
             color: $white;

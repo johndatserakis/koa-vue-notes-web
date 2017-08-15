@@ -18,9 +18,10 @@ Vue.use(Toasted, {
 // We need to expose jQuery as global variable
 // ES6 import does not work it throws error: Missing jQuery
 // using Node.js style import works without problems
+// Also we're silencing the Popper Bootstrap error message
 import $ from "jquery";
 window.jQuery = window.$ = $;
-window.Tether = {};
+window.Popper = {};
 require('bootstrap');
 
 /* App Styles */

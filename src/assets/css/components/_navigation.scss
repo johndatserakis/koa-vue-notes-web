@@ -1,57 +1,21 @@
 /* Navigation ------------------------------------------------------------------*/
 
-    //When using fixed-top navbar, add this.
-    .sticky-nav-spacer {
-        margin-top: 78px;
+    //This is for the full bleed background
+    //when using a container
+    .navbar-section {
+        background-color: $blue;
     }
 
     .navbar {
-        background-color: $white;
-        border-bottom: 1px solid rgba($black, 0.15);
+        margin-bottom: 20px;
     }
 
-    .navbar .btn {
-        margin-bottom: 0;
-    }
+    // //When using fixed-top navbar, add this.
+    // .sticky-nav-spacer {
+    //     margin-top: 78px;
+    // }
 
-    .navbar-brand img {
-        max-height: 53px;
-    }
-
-    .navbar-toggler {
-        border-color: transparent !important;
-        margin-top: 10px;
-    }
-
-    .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(49, 87, 179, 1.0)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
-    }
-
-    .nav-button-spacing {
-        height: 100%;
-    }
-
-    .navbar-light .navbar-nav .nav-link {
-        color: $black;
-    }
-
-    li.nav-item.active {
-        background-color: darken($light-grey, 4%);
-        border-radius: 6px;
-        padding-left: 5px;
-    }
-
-    @include media-breakpoint-up(md) {
-        li.nav-item.active {
-            padding-left: 0;
-        }
-    }
-
-    //Container for navbar
-    @media (max-width: 992px) {
-        .container-fixed-nav {
-            margin-left: 0;
-            margin-right: 0;
-            width: 100%;
-        }
+    .router-link-exact-active {
+        font-weight: bold;
+        text-decoration: none;
     }

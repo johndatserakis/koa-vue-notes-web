@@ -15,36 +15,79 @@ $display5-size: 2.5rem !default;
   }
 }
 
+//Button mixin - have to hold this here because bootstrap has
+//changed the way to set the button text color of your choice. It's been changed
+//to automatically detect button text color by contrast - but it is actually getting in the way
+//https://github.com/twbs/bootstrap/blame/v4-dev/scss/mixins/_buttons.scss
+@mixin button-variant-custom($color, $background, $border, $active-background: darken($background, 7.5%), $active-border: darken($border, 10%)) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+  @include box-shadow($btn-box-shadow);
+
+  &:hover {
+    color: $color;
+    background-color: $active-background;
+    border-color: $active-border;
+  }
+
+  &:focus,
+  &.focus {
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $enable-shadows {
+      box-shadow: $btn-box-shadow, 0 0 0 3px rgba($border, .5);
+    } @else {
+      box-shadow: 0 0 0 3px rgba($border, .5);
+    }
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    background-color: $background;
+    border-color: $border;
+  }
+
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    background-color: $active-background;
+    background-image: none; // Remove the gradient for the pressed/active state
+    border-color: $active-border;
+    @include box-shadow($btn-active-box-shadow);
+  }
+}
+
 .btn-white {
-  @include button-variant($font-color, $white, $white);
+  @include button-variant-custom($font-color, $white, $white);
 }
 
 .btn-grey {
-  @include button-variant($font-color, $light-grey, darken($light-grey, 15%));
+  @include button-variant-custom($font-color, $light-grey, darken($light-grey, 15%));
 }
 
 .btn-white-brand-text {
-  @include button-variant($green, $white, $white);
+  @include button-variant-custom($green, $white, $white);
 }
 
 .btn-red {
-  @include button-variant($white, $red, $red);
+  @include button-variant-custom($white, $red, $red);
 }
 
 .btn-orange {
-  @include button-variant($white, $orange, $orange);
+  @include button-variant-custom($white, $orange, $orange);
 }
 
 .btn-purple {
-  @include button-variant($white, $purple, $purple);
+  @include button-variant-custom($white, $purple, $purple);
 }
 
 .btn-green {
-  @include button-variant($white, $green, $green);
+  @include button-variant-custom($white, $green, $green);
 }
 
 .btn-blue {
-  @include button-variant($white, $blue, $blue);
+  @include button-variant-custom($white, $blue, $blue);
 }
 
 .btn-outline-white {

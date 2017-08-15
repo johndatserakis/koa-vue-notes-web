@@ -25,15 +25,15 @@ Vue.component('navbar', require('@/components/Partials/Navbar.vue'));
 const router = new Router({
   mode: 'history',
   routes: [
-    { path: '*', component: NotFound, name: 'notFound' },
-    { path: '/', component: Home, name: 'home' },
-    { path: '/user/login', component: Login, name: 'login' },
-    { path: '/user/signup', component: Signup, name: 'signup' },
-    { path: '/user/forgot', component: Forgot, name: 'forgot' },
-    { path: '/user/reset', component: Reset, name: 'reset' },
-    { path: '/account', component: Account, name: 'account', meta: {requiresAuth: true} },
-    { path: '/createNote', component: CreateNote, name: 'createNote', meta: {requiresAuth: true} },
-    { path: '/editNote', component: EditNote, name: 'editNote', meta: {requiresAuth: true} }
+    { path: '*', component: NotFound, name: 'notFound', meta: {title: 'Not Found'} },
+    { path: '/', component: Home, name: 'home', meta: {title: 'Home'} },
+    { path: '/user/login', component: Login, name: 'login', meta: {title: 'Login'} },
+    { path: '/user/signup', component: Signup, name: 'signup', meta: {title: 'Signup'} },
+    { path: '/user/forgot', component: Forgot, name: 'forgot', meta: {title: 'Forgot'} },
+    { path: '/user/reset', component: Reset, name: 'reset', meta: {title: 'Reset'} },
+    { path: '/account', component: Account, name: 'account', meta: {title: 'Account', requiresAuth: true} },
+    { path: '/createNote', component: CreateNote, name: 'createNote', meta: {title: 'Create Note', requiresAuth: true} },
+    { path: '/editNote', component: EditNote, name: 'editNote', meta: {title: 'Edit Note', requiresAuth: true} }
   ],
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
@@ -45,6 +45,9 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+    //To set the title of each route
+    document.title = to.meta.title
+
     //Grab the accessToken and refreshToken. Dealing with the localStorage and Vuex has been tricky,
     //so we'll just set everything here at the top of the waterfall.
     let accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : null
