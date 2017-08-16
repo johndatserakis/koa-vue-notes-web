@@ -1,21 +1,28 @@
-# Koa-Vue-Notes-Web Project
+<p align="center"><a href="https://vuejs.org" target="_blank"><img width="200" src="./static/koa-vue-notes-icon.png"></a></p>
 
-This is a SPA using Koa (2.3) as the backend and Vue (2.3) as the frontend. There's more to this, but it is currently still in progress. You're welcome to take a look around as I get things set up.
+# Koa-Vue-Notes-Web
+
+This is a simple SPA built using [Koa](http://koajs.com/) (2.3) as the backend and [Vue](https://vuejs.org/) (2.3) as the frontend. Click [here](https://github.com/johndatserakis/koa-vue-notes-api) to see the backend Koa code.
 
 Work In Progress.
 
-## Build Setup
+## Installing / Getting started
 
 ``` bash
 # install dependencies
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run watch
 
 # build for production with minification
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
+
+## Work In Progress
+
+Will update with more info shortly.
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)

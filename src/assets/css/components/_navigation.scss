@@ -4,10 +4,15 @@
     //when using a container
     .navbar-section {
         background-color: $blue;
-    }
 
-    .navbar {
-        margin-bottom: 20px;
+        .container-nav {
+            padding-left: 0;
+            padding-right: 90;
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+        }
     }
 
     // //When using fixed-top navbar, add this.
@@ -18,4 +23,5 @@
     .router-link-exact-active {
         font-weight: bold;
         text-decoration: none;
+        color: $navbar-dark-color !important;
     }

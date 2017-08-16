@@ -19,7 +19,7 @@
                 <div v-for="note in notes" class="row">
                     <div class="col-md-12">
                         <div class="note-block__note" v-on:click="editNote(note)">
-                            <p class="lead">{{note.title}}</p>
+                            <p class="lead"><strong>{{note.title}}</strong></p>
                             <p>{{note.content}} <span class="pull-right"><i class="fa fa-long-arrow-right"></i></span></p>
                         </div>
                     </div>

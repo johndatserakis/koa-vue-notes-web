@@ -29,7 +29,7 @@
                         <label>Content</label>
                         <textarea class="form-control" v-model="note.content"></textarea>
                     </div>
-                    <button v-on:click="createNote()" class="btn btn-primary mb-3">Create</button>
+                    <button v-on:click="createNote()" class="btn btn-primary mb-3"><i class="fa fa-plus fa-fw"></i> Create</button>
                 </div>
             </div>
 

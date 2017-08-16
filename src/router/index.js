@@ -21,6 +21,7 @@ const NotFound = (resolve) => require(['@/components/Layouts/NotFound.vue'], res
 
 //Non route compoinent registering
 Vue.component('navbar', require('@/components/Partials/Navbar.vue'));
+Vue.component('footer-main', require('@/components/Partials/Footer.vue'));
 
 const router = new Router({
   mode: 'history',

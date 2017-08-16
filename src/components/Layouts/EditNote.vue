@@ -32,9 +32,8 @@
                         <label>Content</label>
                         <textarea class="form-control" v-model="note.content"></textarea>
                     </div>
-                    <button v-on:click="saveNote()" class="btn btn-primary mb-3">Save</button>
-                    <br>
-                    <button v-on:click="deleteNote()" class="btn btn-danger">Delete</button>
+                    <button v-on:click="saveNote()" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Save</button>
+                    <button v-on:click="deleteNote()" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Delete</button>
                 </div>
             </div>
 

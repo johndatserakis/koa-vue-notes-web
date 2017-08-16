@@ -6,6 +6,8 @@
             <router-view></router-view>
         </keep-alive>
 
+        <div class="sticky-footer-spacing"></div>
+        <footer-main></footer-main>
     </div>
 </template>
 

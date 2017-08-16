@@ -11,10 +11,9 @@
         font-weight: 400;
         background: $white;
         font-family: $font-family-base;
-        margin-bottom: 200px; //tied to footer height
+        margin-bottom: 100px; //tied to footer height
 
         @include media-breakpoint-up(md) {
-            margin-bottom: 100px; //tied to footer height
         }
     }
 
@@ -23,10 +22,6 @@
         color: $black;
         text-transform: none;
         font-family: $font-family-base;
-    }
-
-    .header-inline {
-        display: inline-block;
     }
 
     @media(max-width:992px) {

@@ -1,6 +1,6 @@
 <template>
     <div class="navbar-section">
-        <div class="container">
+        <div class="container container-nav">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <router-link class="navbar-brand" :to="{name: 'home'}" exact>Koa-Vue-Notes</router-link>
 
@@ -33,10 +33,13 @@
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="https://github.com/johndatserakis/koa-vue-notes-web" class="nav-link" target="_blank"><i class="fa fa-github fa-fw"></i> Web on GitHub</a>
+                            <a href="https://github.com/johndatserakis/koa-vue-notes-web" class="nav-link" target="_blank"><i class="fa fa-github fa-fw"></i> Web Code on GitHub</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://github.com/johndatserakis/koa-vue-notes-api" class="nav-link" target="_blank"><i class="fa fa-github fa-fw"></i> API on GitHub</a>
+                            <a href="https://github.com/johndatserakis/koa-vue-notes-api" class="nav-link" target="_blank"><i class="fa fa-github fa-fw"></i> API Code on GitHub</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://github.com/johndatserakis/" class="nav-link" target="_blank"><i class="fa fa-info-circle fa-fw"></i></a>
                         </li>
                     </ul>
                 </div>
