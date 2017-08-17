@@ -7,7 +7,7 @@
                     <h1>Account</h1>
 
                     <p>If you see this you should be logged in. Your notes are shown below.</p>
-                    <p v-if="user">You: {{user}}</p>
+                    <p v-if="user"><i class="fa fa-user fa-fw"></i> You: {{user}}</p>
 
                     <hr>
 

@@ -6,8 +6,10 @@
 
             <p>Here will be a check to see if you are currently logged in and your user info.</p>
 
-            <p v-if="user">You: {{user}}</p>
+            <p v-if="user"><i class="fa fa-user fa-fw"></i>  You: {{user}}</p>
             <p v-else>Hmm, you are not logged in.</p>
+
+            <p><i class="fa fa-info-circle fa-fw"></i> This is a simple SPA built using Koa (2.3) as the backend and Vue (2.3) as the frontend.</p>
 
         </div>
     </section>
