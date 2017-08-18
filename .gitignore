@@ -13,3 +13,5 @@ yarn-error.log*
 
 * linguist-vendored
 *.js linguist-vendored=false
+
+dist/
