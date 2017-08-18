@@ -18,7 +18,7 @@ $display5-size: 2.5rem !default;
 //Button mixin - have to hold this here because bootstrap has
 //changed the way to set the button text color of your choice. It's been changed
 //to automatically detect button text color by contrast - but it is actually getting in the way
-//https://github.com/twbs/bootstrap/blame/v4-dev/scss/mixins/_buttons.scss
+//https://github.com/twbs/bootstrap/blame/v4-dev/scss/mixins/_buttons.scss.
 @mixin button-variant-custom($color, $background, $border, $active-background: darken($background, 7.5%), $active-border: darken($border, 10%)) {
   color: $color;
   background-color: $background;
