@@ -2,7 +2,7 @@
 
 # Koa-Vue-Notes-Web
 
-This is a simple SPA built using [Koa](http://koajs.com/) (2.3) as the backend and [Vue](https://vuejs.org/) (2.3) as the frontend. Click [here](https://github.com/johndatserakis/koa-vue-notes-api) to see the backend Koa code.
+This is a simple SPA built using [Koa](http://koajs.com/) (2.3) as the backend and [Vue](https://vuejs.org/) (2.3) as the frontend. Click [here](https://github.com/johndatserakis/koa-vue-notes-api) to see the backend Koa code. Click [here](https://koa-vue-notes-web.innermonkdesign.com/) to view the app live.
 
 ## Features
 - Vue 2.3 (Initialized by Vue-CLI with Webpack)
@@ -16,7 +16,6 @@ This is a simple SPA built using [Koa](http://koajs.com/) (2.3) as the backend a
 - Axios
 - Font-Awesome
 - And more...
-
 
 ## Installing / Getting started
 
@@ -39,7 +38,7 @@ For the base of the project make sure to check out the [Vue-CLI](https://github.
 
 I've liberally commented the code and tried to balance the project in a way  that it was complex enough to learn from but not so complex that it's impossible to follow. It can be tough to learn from a boilerplate that has too much or too little.
 
-Having used mainly PHP for the backend in the past - I am very glad I checked out Koa as I think it is absolutly awesome in the way it handles the server code. Same thing with Vue - I've used mainly jQuery in the past - albeit with the really structured Revealing-Module-Pattern - and using Vue was such a pleasure. You can really tell right away what kind of power a well-structed library can give you.
+Having used mainly PHP for the backend in the past - I am very glad I checked out Koa as I think it is absolutely awesome in the way it handles the server code. Same thing with Vue - I've used mainly jQuery in the past - albeit with the really structured Revealing-Module-Pattern - and using Vue was such a pleasure. You can really tell right away what kind of power a well-structured library can give you.
 
 The `src` folder is laid out in the following fashion:
 
@@ -67,10 +66,10 @@ As mentioned in the backend code, the user authentication process is this:
 - User logs in
 - The server sends and `accessToken` and a `refreshToken` back
 - We take the `accessToken` and decoded it using `jwt-decode`. This gets us the logged in user's information. We stick this in the Vuex variable `user`. Then we store the `refreshToken`.
-- Each protected endpoint will be expecting you to attach the `accessToken` you have to the call (using Authentication: Bearer). After a short amount of time, the server will respond with `401 TOKEN EXPIRED`. When you see this - that means you need to send your `refreshToken` and `user.email` to the endpoint that deals with `accessToken` refreshing. Once you do that, you'll recieved a brand new `accessToken` and `refreshToken`.
-- Repeate the process as needed.
+- Each protected endpoint will be expecting you to attach the `accessToken` you have to the call (using Authentication: Bearer). After a short amount of time, the server will respond with `401 TOKEN EXPIRED`. When you see this - that means you need to send your `refreshToken` and `user.email` to the endpoint that deals with `accessToken` refreshing. Once you do that, you'll received a brand new `accessToken` and `refreshToken`.
+- Repeat the process as needed.
 
-This gets a little tricky when dealing with automatically resending api calls that have failed. At first I tried to utilize Axios interceptors - which worked great - but then I couldn't rerun the api call from the component in it's natural state. This had the side effect of loading-spinners not being stopped and information not being synced. What I settled on was each Vuex action call from a component having a `checkRefreshTokensAndResend()` function that is set to go off if a `401 TOKEN EXPIRED` message is recieved from the backend. This works really well and provides a seemless experience to the user. Feels a bit hacky though so I'll be studying the material and measuring this solution.
+This gets a little tricky when dealing with automatically resending api calls that have failed. At first I tried to utilize Axios interceptors - which worked great - but then I couldn't rerun the api call from the component in it's natural state. This had the side effect of loading-spinners not being stopped and information not being synced. What I settled on was each Vuex action call from a component having a `checkRefreshTokensAndResend()` function that is set to go off if a `401 TOKEN EXPIRED` message is received from the backend. This works really well and provides a seamless experience to the user. Feels a bit hacky though so I'll be studying the material and measuring this solution.
 
 ### store
 
