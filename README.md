@@ -2,10 +2,10 @@
 
 # Koa-Vue-Notes-Web
 
-This is a simple SPA built using [Koa](http://koajs.com/) (2.3) as the backend and [Vue](https://vuejs.org/) (2.3) as the frontend. Click [here](https://github.com/johndatserakis/koa-vue-notes-api) to see the backend Koa code. Click [here](https://koa-vue-notes-web.innermonkdesign.com/) to view the app live.
+This is a simple SPA built using [Koa](http://koajs.com/) (2.3) as the backend and [Vue](https://vuejs.org/) (2.4) as the frontend. Click [here](https://github.com/johndatserakis/koa-vue-notes-api) to see the backend Koa code. Click [here](https://koa-vue-notes-web.innermonkdesign.com/) to view the app live.
 
 ## Features
-- Vue 2.3 (Initialized by Vue-CLI with Webpack)
+- Vue 2.4 (Initialized by Vue-CLI with Webpack)
 - Vue-Router
 - Vuex
 - Bootstrap 4 Beta
@@ -32,11 +32,11 @@ npm run build
 
 ## General Information
 
-This frontend is part of a pair of projects that serve a simple notes app. I chose a notes app because it give you a good look at a lot of the different actions you can make on an element in both the frontend and backend world. What's really cool is these projects feature a fully fleshed-out user login/signup/forgot/reset authentication system using JWT.
+This frontend is part of a pair of projects that serve a simple notes app. I chose a notes app because it gives you a good look at the different techniques used in both the frontend and backend world. What's really cool is these projects feature a fully fleshed-out user login/signup/forgot/reset authentication system using JWT.
 
-For the base of the project make sure to check out the [Vue-CLI](https://github.com/vuejs/vue-cli) docs if you haven't already because the base of this project is laid out in the *Vue-CLI* way. I chose this path because Evan did a really great job thinking through the different aspects of laying out an application. `NODE_ENV`, `API_URL`, and `APP_URL` are some `.env` variables I've added in `config` and use throughout the code - so keep an eye out for those and replace them with your relevant information.
+For the base of the project make sure to check out the [Vue-CLI](https://github.com/vuejs/vue-cli) docs if you haven't already. The base of this project is laid out in the *Vue-CLI* way. I chose this path because Evan did a really great job thinking through the different aspects of laying out an application. `NODE_ENV`, `API_URL`, and `APP_URL` are some `.env` variables I've added in `config` and use throughout the code - so keep an eye out for those and replace them with your relevant information.
 
-I've liberally commented the code and tried to balance the project in a way  that it was complex enough to learn from but not so complex that it's impossible to follow. It can be tough to learn from a boilerplate that has too much or too little.
+I've liberally commented the code and tried to balance the project in a way that it's complex enough to learn from but not so complex that it's impossible to follow. It can be tough to learn from a boilerplate that has too much or too little.
 
 Having used mainly PHP for the backend in the past - I am very glad I checked out Koa as I think it is absolutely awesome in the way it handles the server code. Same thing with Vue - I've used mainly jQuery in the past - albeit with the really structured Revealing-Module-Pattern - and using Vue was such a pleasure. You can really tell right away what kind of power a well-structured library can give you.
 
@@ -75,10 +75,14 @@ This gets a little tricky when dealing with automatically resending api calls th
 
 The store folder is where all the Vuex files are. We are using the modules feature of Vuex which allows us to have different stores for each module. In this app there are two modules - `user` and `note`. Vuex turned out to be really cool. One of the main things I'll point out is that each action should return a promise. If you follow this methodology you'll find it makes it really easy to keep in sync with a API call a component might make.
 
+### Todo
+
+- Add tests
+- Use async/await on frontend
+
 ## Hit Me Up
 
 Go ahead and fork the project! Message me here if you have questions or submit an issue if needed. I'll be making touch-ups as time goes on. Have fun with this!
-
 
 ## License
 
