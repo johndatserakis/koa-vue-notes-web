@@ -2,7 +2,8 @@
 
 <p align="center">
   <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="Issues"></a>
-  <a href="https://twitter.com/intent/tweet?text=Check%20this%20out:%20&url=%5Bobject%20Object%5D"><img src="https://img.shields.io/twitter/url/https/github.com/johndatserakis/koa-vue-notes-web.svg?style=social" alt="Tweet"></a>
+  <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fjohndatserakis%2Fkoa-vue-notes-web&text=Check%20out%20koa-vue-notes-web%20on%20GitHub&via=innermonkdesign">
+  <img src="https://img.shields.io/twitter/url/https/github.com/johndatserakis/koa-vue-notes-web.svg?style=social" alt="Tweet"></a>
 </p>
 
 # Koa-Vue-Notes-Web
