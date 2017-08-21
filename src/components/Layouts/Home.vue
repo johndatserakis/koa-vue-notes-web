@@ -1,16 +1,25 @@
 <template>
     <section class="main-content">
-        <div class="container">
+        <div class="container-fluid">
+            <div class="row">
 
-            <h1>Home</h1>
+                <!-- Sidebar -->
+                <div class="col-md-3">
+                    <sidebar v-bind:links="[{name: 'Create Note', to: 'createNote', icon: 'fa fa-plus fa-fw'}, {name: 'Home', to: 'home', icon: 'fa fa-home fa-fw'}]"></sidebar>
+                </div>
 
-            <p>Here will be a check to see if you are currently logged in and your user info.</p>
+                <div class="col-md-9">
+                    <h1>Home</h1>
 
-            <p v-if="user"><i class="fa fa-user fa-fw"></i>  You: {{user}}</p>
-            <p v-else>Hmm, you are not logged in.</p>
+                    <p>Here will be a check to see if you are currently logged in and your user info.</p>
 
-            <p><i class="fa fa-info-circle fa-fw"></i> This is a simple SPA built using Koa (2.3) as the backend and Vue (2.4) as the frontend.</p>
+                    <p v-if="user"><i class="fa fa-user fa-fw"></i>  You: {{user}}</p>
+                    <p v-else>Hmm, you are not logged in.</p>
 
+                    <p><i class="fa fa-info-circle fa-fw"></i> This is a simple SPA built using Koa (2.3) as the backend and Vue (2.4) as the frontend.</p>
+                </div>
+
+            </div>
         </div>
     </section>
 </template>

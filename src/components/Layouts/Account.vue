@@ -3,11 +3,14 @@
         <div class="container-fluid">
             <div class="row">
 
-                <sidebar-collapse-button></sidebar-collapse-button>
-                <sidebar v-bind:links="[{name: 'Create Note', to: 'createNote', icon: 'fa fa-plus fa-fw'}, {name: 'Home', to: 'home', icon: 'fa fa-home fa-fw'}]"></sidebar>
+                <!-- Sidebar -->
+                <div class="col-md-3">
+                    <sidebar v-bind:links="[{name: 'Create Note', to: 'createNote', icon: 'fa fa-plus fa-fw'}, {name: 'Home', to: 'home', icon: 'fa fa-home fa-fw'}]"></sidebar>
+                </div>
 
                 <!-- This is where the main content goes when using the sidebar. -->
                 <div class="col-md-9">
+                    <div v-if="loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>
 
                     <div class="note-block">
                         <div v-for="note in notes" class="row">
