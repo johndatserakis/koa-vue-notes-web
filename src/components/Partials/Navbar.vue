@@ -1,6 +1,6 @@
 <template>
     <div class="navbar-section">
-        <div class="container container-nav">
+        <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <router-link class="navbar-brand" :to="{name: 'home'}" exact>Koa-Vue-Notes</router-link>
 
@@ -22,9 +22,6 @@
 
                         <li v-if="user" class="nav-item">
                             <router-link :to="{name: 'account'}" class="nav-link">Account</router-link>
-                        </li>
-                        <li v-if="user" class="nav-item">
-                            <router-link :to="{name: 'createNote'}" class="nav-link">Create Note</router-link>
                         </li>
                         <li v-if="user" class="nav-item">
                             <a href="javascript:void(0)" v-if="user" v-on:click="logout()" class="nav-link">Logout</a>

@@ -13,6 +13,8 @@ Vue.use(Toasted, {
      position: "top-right",
      duration : 2300
 })
+import VModal from 'vue-js-modal'
+Vue.use(VModal, { dialog: true })
 
 // Importing jQuery in ES6 style
 // We need to expose jQuery as global variable

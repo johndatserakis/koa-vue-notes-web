@@ -9,6 +9,12 @@
                         <i class="fa fa-arrow-left fa-fw"></i> Back
                     </button>
 
+                </div>
+            </div>
+
+            <div v-if="note" class="row">
+
+                <div class="col-md-12">
                     <h1>Edit</h1>
 
                     <p>Here's the note you selected.</p>
@@ -18,11 +24,6 @@
 
                     <div v-if="loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>
 
-                </div>
-            </div>
-
-            <div v-if="note" class="row">
-                <div class="col-md-12">
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" class="form-control" v-model="note.title">
@@ -33,7 +34,7 @@
                         <textarea class="form-control" v-model="note.content"></textarea>
                     </div>
                     <button v-on:click="saveNote()" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Save</button>
-                    <button v-on:click="deleteNote()" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Delete</button>
+                    <button v-on:click="confirmDeleteNote()" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Delete</button>
                 </div>
             </div>
 
@@ -83,9 +84,20 @@
                     checkRefreshTokensAndResend(error).then((response) => { if (response) { this.saveNote() } })
                 })
             },
+            confirmDeleteNote() {
+                this.$modal.show('dialog', {
+                    title: 'Confirm',
+                    text: 'Are you sure you want to delete this note?',
+                    buttons: [
+                        { title: 'Close' },
+                        { title: 'Delete', handler: () => { this.deleteNote() }},
+                    ]
+                })
+            },
             deleteNote() {
                 this.$store.dispatch('note/deleteNote', this.note)
                 .then((response) => {
+                    this.$modal.hide('dialog')
                     this.$toasted.success('Deleted.')
 
                     if (this.notes.length) {

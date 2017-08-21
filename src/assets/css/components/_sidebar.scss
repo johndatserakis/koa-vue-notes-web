@@ -1,0 +1,37 @@
+.sidebar-items {
+	margin-bottom: 40px;
+
+	&__sidebar-item {
+		display: block;
+		margin-bottom: -1px; //to clean up border double-ups
+		padding: 8px 4px 8px 10px;
+		border: 1px solid $grey;
+		background: $white;
+		transition: all ease 0.2s;
+		color: $black;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+
+		&:first-child {
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
+		}
+
+		&:last-child {
+			border-bottom-left-radius: 6px;
+			border-bottom-right-radius: 6px;
+		}
+
+		&:hover:not(&--header) {
+			background: $light-grey;
+			text-decoration: none;
+			color: $black;
+		}
+
+		&--header {
+			background: $blue;
+			color: $white;
+		}
+	}
+}

@@ -1,37 +1,31 @@
 <template>
     <section class="main-content">
-        <div class="container">
-
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    <h1>Account</h1>
 
-                    <p>If you see this you should be logged in. Your notes are shown below.</p>
-                    <p v-if="user"><i class="fa fa-user fa-fw"></i> You: {{user}}</p>
+                <sidebar-collapse-button></sidebar-collapse-button>
+                <sidebar v-bind:links="[{name: 'Create Note', to: 'createNote', icon: 'fa fa-plus fa-fw'}, {name: 'Home', to: 'home', icon: 'fa fa-home fa-fw'}]"></sidebar>
 
-                    <hr>
+                <!-- This is where the main content goes when using the sidebar. -->
+                <div class="col-md-9">
 
-                    <div v-if="loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>
-                </div>
-            </div>
-
-            <div class="note-block">
-                <div v-for="note in notes" class="row">
-                    <div class="col-md-12">
-                        <div class="note-block__note" v-on:click="editNote(note)">
-                            <p class="lead"><strong>{{note.title}}</strong></p>
-                            <p>{{note.content}} <span class="pull-right"><i class="fa fa-long-arrow-right"></i></span></p>
+                    <div class="note-block">
+                        <div v-for="note in notes" class="row">
+                            <div class="col-12">
+                                <div class="note-block__note" v-on:click="editNote(note)">
+                                    <p class="lead"><strong>{{note.title}}</strong></p>
+                                    <p>{{note.content}} <span class="pull-right"><i class="fa fa-long-arrow-right"></i></span></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <button v-if="okToLoadMore" v-on:click="loadNotes()" class="btn btn-primary"><i class="fa fa-chevron-down fa-fw"></i>
+                        Load More
+                    </button>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <button v-if="okToLoadMore" v-on:click="loadNotes()" class="btn btn-primary"><i class="fa fa-chevron-down fa-fw"></i> Load More</button>
                 </div>
-            </div>
 
+            </div>
         </div>
     </section>
 </template>
@@ -94,12 +88,12 @@
     @import '~@/assets/css/app.scss';
 
     .note-block {
-        margin-top: 40px;
         &__note {
             background: lighten($light-grey, 2%);
             padding: 10px;
             border-radius: 6px;
             margin-bottom: 20px;
+            border: 1px solid $grey;
 
             &:hover {
                 cursor: pointer;
