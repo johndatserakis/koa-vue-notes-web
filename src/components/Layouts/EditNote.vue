@@ -102,7 +102,7 @@
                     this.$router.go(-1)
                 })
                 .catch((error) => {
-                    checkRefreshTokensAndResend(error).then((response) => { if (response) { this.saveNote() } })
+                    this.$toasted.error('There was an error connecting to the server.')
                 })
             }
         },

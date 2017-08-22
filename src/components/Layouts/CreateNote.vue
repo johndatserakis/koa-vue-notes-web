@@ -62,7 +62,7 @@
                     })
                 })
                 .catch((error) => {
-                    checkRefreshTokensAndResend(error).then((response) => { if (response) { this.createNote() } })
+                    this.$toasted.error('There was an error connecting to the server.')
                 })
             },
         },

@@ -66,7 +66,7 @@
                         this.okToLoadMore = false
                     }
                 }).catch((error) => {
-                    checkRefreshTokensAndResend(error).then((response) => { if (response) { this.loadNotes() } })
+                    this.$toasted.error('There was an error connecting to the server.')
                 })
             },
             editNote(note) {

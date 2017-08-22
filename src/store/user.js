@@ -8,6 +8,33 @@ import { setAuthorizationHeader} from '@/common/utilities'
 import axios from 'axios'
 axios.defaults.baseURL = process.env.API_URL;
 
+//Axios interceptor that handles automatically refreshing tokens
+axios.interceptors.response.use((response) => {
+    return response
+}, function (error) {
+    let originalRequest = error.config
+    if (error.response.status === 401 && error.response.data.message === 'TOKEN_EXPIRED' && !originalRequest._retry) {
+        originalRequest._retry = true
+        return new Promise((resolve, reject) => {
+            store.dispatch('user/refreshUserTokens')
+            .then((response) => {
+                store.dispatch('user/setUserAndTokens', {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken})
+                .then((response) => {
+                    originalRequest.headers['Authorization'] = 'Bearer ' + store.getters['user/accessToken']
+                    return resolve(axios(originalRequest))
+                })
+            })
+            .catch((error) => {
+                store.dispatch('user/userLogout')
+                router.replace({name: 'login'})
+                Vue.toasted.error('To verify your session, please login.')
+                return reject()
+            })
+        })
+        return Promise.reject(error)
+    }
+})
+
 const SET_USER = 'SET_USER'
 const STORE_ACCESS_TOKEN = 'STORE_ACCESS_TOKEN'
 const STORE_REFRESH_TOKEN = 'STORE_REFRESH_TOKEN'

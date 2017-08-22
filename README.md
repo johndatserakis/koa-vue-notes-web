@@ -66,6 +66,8 @@ This is the vue-router code. Here you'll find the creation and connection of eac
 
 On each router action we grab the `accessToken` and `refreshToken` from our `localStorage`. If the `accessToken` is present we set the user in our Vuex store and continue on our way.
 
+### User Authentication Process
+
 As mentioned in the backend code, the user authentication process is this:
 
 - User create an account
@@ -75,7 +77,7 @@ As mentioned in the backend code, the user authentication process is this:
 - Each protected endpoint will be expecting you to attach the `accessToken` you have to the call (using Authentication: Bearer). After a short amount of time, the server will respond with `401 TOKEN EXPIRED`. When you see this - that means you need to send your `refreshToken` and `user.email` to the endpoint that deals with `accessToken` refreshing. Once you do that, you'll received a brand new `accessToken` and `refreshToken`.
 - Repeat the process as needed.
 
-This gets a little tricky when dealing with automatically resending api calls that have failed. At first I tried to utilize Axios interceptors - which worked great - but then I couldn't rerun the api call from the component in it's natural state. This had the side effect of loading-spinners not being stopped and information not being synced. What I settled on was each Vuex action call from a component having a `checkRefreshTokensAndResend()` function that is set to go off if a `401 TOKEN EXPIRED` message is received from the backend. This works really well and provides a seamless experience to the user. Feels a bit hacky though so I'll be studying the material and measuring this solution.
+I've utilized the great Axios `axios.interceptors.response` utility to capture the case of an expired `accessToken` and refresh it - all without the user being made aware of the process. The key is to keep the promise-chain alive - this is so the component caller can update it's local state - things like page count, sort - stuff that's important but really doesn't belong in our Vuex store because it's only relevant to the calling component. Take a look at the user.js store - that's where the interceptor is set up. If it recognizes this is a refresh situation it calls two Vuex actions and then resolves with the resent request.
 
 ### store
 
