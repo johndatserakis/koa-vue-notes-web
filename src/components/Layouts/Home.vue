@@ -3,12 +3,7 @@
         <div class="container-fluid">
             <div class="row">
 
-                <!-- Sidebar -->
-                <div class="col-md-3">
-                    <sidebar v-bind:links="[{name: 'Create Note', to: 'createNote', icon: 'fa fa-plus fa-fw'}, {name: 'Home', to: 'home', icon: 'fa fa-home fa-fw'}]"></sidebar>
-                </div>
-
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <h1>Home</h1>
 
                     <p>Here will be a check to see if you are currently logged in and your user info.</p>

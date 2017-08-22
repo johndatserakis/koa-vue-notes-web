@@ -73,11 +73,14 @@
 
                 this.$store.dispatch('user/userForgot', credentials)
                 .then(() => {
+                    this.$toasted.success('Please check your email.')
                     this.credentials.email = ''
                     this.$v.$reset()
                     this.$router.push({name: 'home'})
                 })
-                .catch(() => {})
+                .catch(() => {
+                    this.$toasted.success('Please check your email.')
+                })
                 .then(() => {
                     this.pending = false
                 })

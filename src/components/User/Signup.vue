@@ -163,6 +163,7 @@
 
                 this.$store.dispatch('user/userSignup', credentials)
                 .then(() => {
+                    this.$toasted.success('Successfully signed up. Please login.')
                     this.credentials.firstName = ''
                     this.credentials.lastName = ''
                     this.credentials.username = ''
@@ -172,7 +173,9 @@
                     this.$v.$reset()
                     this.$router.push({name: 'login'})
                 })
-                .catch(() => {})
+                .catch(() => {
+                    this.$toasted.error('Hmm, something you entered doesn\'t seem right.')
+                })
                 .then(() => {
                     this.pending = false
                 })

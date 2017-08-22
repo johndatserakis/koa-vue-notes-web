@@ -5,7 +5,9 @@
 
                 <!-- Sidebar -->
                 <div class="col-md-3">
-                    <sidebar v-bind:links="[{name: 'Create Note', to: 'createNote', icon: 'fa fa-plus fa-fw'}, {name: 'Home', to: 'home', icon: 'fa fa-home fa-fw'}]"></sidebar>
+                    <sidebar v-bind:items="[
+                        {name: 'Create Note', to: 'createNote', type: 'link', icon: 'fa fa-plus fa-fw'},
+                    ]"></sidebar>
                 </div>
 
                 <!-- This is where the main content goes when using the sidebar. -->

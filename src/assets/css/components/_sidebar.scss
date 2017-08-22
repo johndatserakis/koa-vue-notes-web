@@ -1,27 +1,18 @@
 .sidebar-items {
 	margin-bottom: 40px;
+	overflow: hidden;
 
 	&__sidebar-item {
 		display: block;
-		margin-bottom: -1px; //to clean up border double-ups
 		padding: 8px 4px 8px 10px;
 		border: 1px solid $grey;
+		border-top: 0;
 		background: $white;
 		transition: all ease 0.2s;
 		color: $black;
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
-
-		&:first-child {
-			border-top-left-radius: 6px;
-			border-top-right-radius: 6px;
-		}
-
-		&:last-child {
-			border-bottom-left-radius: 6px;
-			border-bottom-right-radius: 6px;
-		}
 
 		&:hover:not(&--header) {
 			background: $light-grey;
@@ -30,8 +21,11 @@
 		}
 
 		&--header {
+			border: 0;
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
 			background: $blue;
-			color: $white;
+			color: darken($white, 6%);
 		}
 	}
 }

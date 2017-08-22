@@ -1,20 +1,16 @@
 <template>
     <section class="main-content">
-        <div class="container">
-
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
 
-                    <button v-on:click="goBack()" class="btn btn-primary btn-sm mb-3">
-                        <i class="fa fa-arrow-left fa-fw"></i> Back
-                    </button>
-
+                <div class="col-md-3">
+                    <sidebar v-bind:items="[
+                        {name: 'Back', type: 'back', icon: 'fa fa-long-arrow-left fa-fw'},
+                        {name: 'Delete Note', functionName: 'confirmDeleteNote', type: 'function', icon: 'fa fa-trash fa-fw'},
+                    ]"></sidebar>
                 </div>
-            </div>
 
-            <div v-if="note" class="row">
-
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <h1>Edit</h1>
 
                     <p>Here's the note you selected.</p>
@@ -24,27 +20,28 @@
 
                     <div v-if="loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>
 
-                    <div class="form-group">
-                        <label>Title</label>
-                        <input type="text" class="form-control" v-model="note.title">
-                    </div>
+                    <div v-if="note">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" class="form-control" v-model="note.title">
+                        </div>
 
-                    <div class="form-group">
-                        <label>Content</label>
-                        <textarea class="form-control" v-model="note.content"></textarea>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea class="form-control" v-model="note.content"></textarea>
+                        </div>
+                        <button v-on:click="saveNote()" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Save</button>
                     </div>
-                    <button v-on:click="saveNote()" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Save</button>
-                    <button v-on:click="confirmDeleteNote()" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Delete</button>
                 </div>
-            </div>
 
+            </div>
         </div>
     </section>
 </template>
 
 <script>
     import { mapState, mapGetters, mapActions } from 'vuex'
-    import { setAuthorizationHeader, checkRefreshTokensAndResend} from '@/common/utilities'
+    import { checkRefreshTokensAndResend} from '@/common/utilities'
 
     export default {
         name: 'editNote',
@@ -55,9 +52,6 @@
             }
         },
         methods: {
-            goBack() {
-                this.$router.go(-1)
-            },
             loadNote() {
                 this.loading = true
                 this.$store.dispatch('note/getNote', this.$route.query.id)
@@ -86,7 +80,7 @@
             },
             confirmDeleteNote() {
                 this.$modal.show('dialog', {
-                    title: 'Confirm',
+                    title: 'Delete ' + this.note.title,
                     text: 'Are you sure you want to delete this note?',
                     buttons: [
                         { title: 'Close' },
@@ -121,9 +115,16 @@
         created () {
             this.loadNote()
         },
+        mounted () {
+            this.$router.app.$on('confirmDeleteNote', () => { this.confirmDeleteNote(); })
+        },
+        beforeDestroy () {
+            this.$router.app.$off('confirmDeleteNote')
+        },
+
     }
 </script>
 
 <style lang="scss" scoped>
-    @import '~@/assets/css/app.scss';
+    @import '~@/assets/css/app.scss'
 </style>
