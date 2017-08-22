@@ -95,7 +95,9 @@
                     this.$v.$reset()
                     this.$router.push({name: 'account'})
                 })
-                .catch(() => {})
+                .catch(() => {
+                    this.$toasted.error('Hmm, those details don\'t seem right.')
+                })
                 .then(() => {
                     this.pending = false
                 })

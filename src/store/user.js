@@ -72,7 +72,6 @@ const user = {
                     return resolve()
                 })
                 .catch(error => {
-                    Vue.toasted.error('Hmm, those details don\'t seem right.')
                     return reject()
                 })
             })
@@ -111,11 +110,9 @@ const user = {
                     password: credentials.password
                 })
                 .then(response => {
-                    Vue.toasted.success('Successfully signed up. Please login.')
                     return resolve()
                 })
                 .catch(error => {
-                    Vue.toasted.error('Hmm, something you entered doesn\'t seem right.')
                     return reject()
                 })
             })
@@ -128,13 +125,11 @@ const user = {
                     type: 'web'
                 })
                 .then(response => {
-                    Vue.toasted.success('Please check your email.')
                     resolve()
                 })
                 .catch(error => {
                     //We really don't want to let spammers know
                     //they've partially matched a user.
-                    Vue.toasted.success('Please check your email.')
                     resolve()
                 })
             })
@@ -148,12 +143,9 @@ const user = {
                     email: credentials.email,
                 })
                 .then(response => {
-                    Vue.toasted.success('Successfully reset password. Please login.')
                     return resolve()
                 })
                 .catch(error => {
-                    console.log(error)
-                    Vue.toasted.error('Your reset link has expired or is incorrect. Please reset your password again.');
                     return reject()
                 })
             })

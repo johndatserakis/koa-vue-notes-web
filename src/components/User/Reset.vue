@@ -94,12 +94,15 @@
 
                 this.$store.dispatch('user/userReset', credentials)
                 .then(() => {
+                    this.$toasted.success('Successfully reset password. Please login.')
                     this.credentials.password = ''
                     this.credentials.passwordConfirm = ''
                     this.$v.$reset()
                     this.$router.push({name: 'login'})
                 })
-                .catch(() => {})
+                .catch(() => {
+                    this.$toasted.error('Your reset link has expired or is incorrect. Please reset your password again.');
+                })
                 .then(() => {
                     this.pending = false
                 })

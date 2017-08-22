@@ -1,25 +1,18 @@
 <template>
     <section class="main-content">
-        <div class="container">
+        <div class="container-fluid">
 
             <div class="row">
-                <div class="col-md-12">
 
-                    <button v-on:click="goBack()" class="btn btn-primary btn-sm mb-3">
-                        <i class="fa fa-arrow-left fa-fw"></i> Back
-                    </button>
-
-                    <h1>Create</h1>
-
-                    <p>Use the form below to create a note.</p>
-
-                    <hr>
-
+                <div class="col-md-3">
+                    <sidebar v-bind:items="[
+                        {name: 'Back', type: 'back', icon: 'fa fa-long-arrow-left fa-fw'},
+                    ]"></sidebar>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-9">
+                    <h1>Create Note</h1>
+
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" class="form-control" v-model="note.title">
@@ -31,8 +24,8 @@
                     </div>
                     <button v-on:click="createNote()" class="btn btn-primary mb-3"><i class="fa fa-plus fa-fw"></i> Create</button>
                 </div>
-            </div>
 
+            </div>
 
         </div>
     </section>
@@ -54,9 +47,6 @@
             }
         },
         methods: {
-            goBack() {
-                this.$router.go(-1)
-            },
             createNote() {
                 this.$store.dispatch('note/createNote', this.note)
                 .then((response) => {

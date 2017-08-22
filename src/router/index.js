@@ -23,7 +23,6 @@ const NotFound = (resolve) => require(['@/components/Layouts/NotFound.vue'], res
 Vue.component('navbar', require('@/components/Partials/Navbar.vue'));
 Vue.component('footer-main', require('@/components/Partials/Footer.vue'));
 Vue.component('sidebar', require('@/components/Partials/Sidebar.vue'));
-Vue.component('sidebar-collapse-button', require('@/components/Partials/Sidebar-Collapse-Button.vue'));
 
 const router = new Router({
   mode: 'history',
