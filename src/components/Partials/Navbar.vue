@@ -62,7 +62,8 @@
                 //this is because some of our components initialize on their
                 //created methods - and when a user logs out they need to be
                 //fully cleared.
-                location.reload()
+                // location.reload()
+                document.location.href = '/';
             }
         },
         computed: {
