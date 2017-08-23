@@ -48,6 +48,11 @@
         },
         methods: {
             createNote() {
+                if (!this.note.title || !this.note.content) {
+                    this.$toasted.error('Title and Content need to be filled out.')
+                    return
+                }
+
                 this.$store.dispatch('note/createNote', this.note)
                 .then((response) => {
                     this.$toasted.success('Note created.')
@@ -59,6 +64,7 @@
                         this.$router.push({name: 'account'})
                     })
                     .catch((error) => {
+                        this.$toasted.error('There was an error connecting to the server.')
                     })
                 })
                 .catch((error) => {

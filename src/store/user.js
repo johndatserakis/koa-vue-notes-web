@@ -51,6 +51,7 @@ axios.interceptors.response.use((response) => {
         })
         return Promise.reject(error)
     }
+    return Promise.reject(error)
 })
 
 const SET_USER = 'SET_USER'
