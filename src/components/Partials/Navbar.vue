@@ -51,8 +51,18 @@
     export default {
         name: 'navbar',
         methods: {
-            logout() {
-                this.$store.dispatch('user/userLogout', this.$router)
+            async logout() {
+                //As you can see, with Vuex we we need to fire logout methods
+                //for each of our modules.
+                await this.$store.dispatch('user/userLogout')
+                await this.$store.dispatch('note/userLogout')
+                this.$router.push({name: 'home'})
+
+                //After logging the user out we need to refresh the page
+                //this is because some of our components initialize on their
+                //created methods - and when a user logs out they need to be
+                //fully cleared.
+                location.reload()
             }
         },
         computed: {

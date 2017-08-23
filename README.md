@@ -21,6 +21,8 @@ This is a simple SPA built using [Koa](http://koajs.com/) (2.3) as the backend a
 - JWT for authentication
 - Axios
 - Font-Awesome
+- Vue-Progressbar
+- Vue-Js-Modal
 - And more...
 
 ## Installing / Getting started
@@ -83,10 +85,18 @@ I've utilized the great Axios `axios.interceptors.response` utility to capture t
 
 The store folder is where all the Vuex files are. We are using the modules feature of Vuex which allows us to have different stores for each module. In this app there are two modules - `user` and `note`. Vuex turned out to be really cool. One of the main things I'll point out is that each action should return a promise. If you follow this methodology you'll find it makes it really easy to keep in sync with a API call a component might make.
 
+### App.vue file
+
+This is our main app component. Things like the navbar, footer, v-dialog (modals), and vue-progress-bar are placed here.
+
+### main.js file
+
+Our main entrance to our JavaScript code - all the main modules like our Vuex store and router are loaded here. This is also where our main Vue instance is implemented.
+
 ### Todo
 
 - Add tests
-- Use async/await on frontend
+- Use async/await on entire frontend
 
 ## Hit Me Up
 

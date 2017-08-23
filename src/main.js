@@ -9,12 +9,26 @@ import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, {
-     theme: "bubble",
-     position: "top-right",
-     duration : 2300
+   theme: "bubble",
+   position: "top-right",
+   duration : 2300
 })
 import VModal from 'vue-js-modal'
 Vue.use(VModal, { dialog: true })
+import VueProgressBar from 'vue-progressbar'
+Vue.use(VueProgressBar, {
+    color: '#ADE027',
+    failedColor: '#F43D41',
+    thickness: '5px',
+    transition: {
+        speed: '0.2s',
+        opacity: '0.6s',
+        termination: 300
+    },
+    autoRevert: true,
+    location: 'top',
+    inverse: false
+})
 
 // Importing jQuery in ES6 style
 // We need to expose jQuery as global variable

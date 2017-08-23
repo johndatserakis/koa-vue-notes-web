@@ -8,6 +8,24 @@ import { setAuthorizationHeader} from '@/common/utilities'
 import axios from 'axios'
 axios.defaults.baseURL = process.env.API_URL;
 
+//The following two interceptor blocks are strickly for
+//attaching the top-loading bar to all axios requests and
+//stoping the bar on all responses.
+axios.interceptors.request.use(function (config) {
+    router.app.$Progress.start()
+    return config;
+}, function (error) {
+    router.app.$Progress.fail()
+    return Promise.reject(error);
+});
+axios.interceptors.response.use(function (response) {
+    router.app.$Progress.finish()
+    return response;
+}, function (error) {
+    router.app.$Progress.fail()
+    return Promise.reject(error);
+});
+
 //Axios interceptor that handles automatically refreshing tokens
 axios.interceptors.response.use((response) => {
     return response
@@ -118,12 +136,9 @@ const user = {
                 })
             })
         },
-        userLogout({ dispatch, commit, getters, rootGetters }, router) {
+        userLogout({ dispatch, commit, getters, rootGetters }) {
             return new Promise((resolve, reject) => {
                 commit(LOGOUT_USER)
-                if (router) {
-                    router.push({name: 'home'})
-                }
                 return resolve()
             })
         },

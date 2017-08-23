@@ -9,6 +9,7 @@ import jwtDecode from 'jwt-decode';
 import { setAuthorizationHeader, refreshTokensAndResend} from '@/common/utilities'
 
 const ADD_NOTES = 'ADD_NOTES'
+const LOGOUT_USER = 'LOGOUT_USER'
 
 const note = {
     namespaced: true,
@@ -19,6 +20,9 @@ const note = {
         ADD_NOTES(state, data) {
             state.notes = state.notes.concat(data)
         },
+        LOGOUT_USER(state) {
+            state.notes = []
+        },
     },
     getters: {
         notes (state) {
@@ -26,6 +30,12 @@ const note = {
         },
     },
     actions: {
+        userLogout({ dispatch, commit, getters, rootGetters }) {
+            return new Promise((resolve, reject) => {
+                commit(LOGOUT_USER)
+                return resolve()
+            })
+        },
         getUsersNotes({ dispatch, commit, getters, rootGetters}, data){
             return new Promise((resolve, reject) => {
                 setAuthorizationHeader(rootGetters['user/accessToken'])

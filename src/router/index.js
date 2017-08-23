@@ -47,6 +47,9 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+    //Start our loading strip
+    router.app.$Progress.start()
+
     //To set the title of each route
     document.title = to.meta.title
 
@@ -68,6 +71,11 @@ router.beforeEach((to, from, next) => {
     }
 
     next()
+})
+
+router.afterEach((to, from) => {
+    //End our loading strip
+    router.app.$Progress.finish()
 })
 
 export default router

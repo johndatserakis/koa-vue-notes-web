@@ -1,5 +1,7 @@
 <template>
     <div id="app">
+        <vue-progress-bar></vue-progress-bar>
+
         <navbar></navbar>
 
         <keep-alive include="account">
@@ -15,7 +17,7 @@
 
 <script>
     export default {
-        name: 'app'
+        name: 'app',
     }
 </script>
 
