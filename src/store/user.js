@@ -101,7 +101,7 @@ const user = {
         setUserAndTokens({ dispatch, commit, getters, rootGetters }, data) {
             return new Promise((resolve, reject) => {
                 let decoded = jwtDecode(data.accessToken)
-                commit(SET_USER, decoded.data[0])
+                commit(SET_USER, decoded.data)
                 commit(STORE_ACCESS_TOKEN, data.accessToken)
                 commit(STORE_REFRESH_TOKEN, data.refreshToken)
                 return resolve(true)
