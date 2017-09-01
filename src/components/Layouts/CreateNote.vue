@@ -60,7 +60,7 @@
                     let insertId = response.data.id
                     this.$store.dispatch('note/getNote', insertId)
                     .then((response) => {
-                        this.notes.unshift(response)
+                        this.$store.dispatch('note/addNoteToStack', response)
                         this.$router.push({name: 'account'})
                     })
                     .catch((error) => {

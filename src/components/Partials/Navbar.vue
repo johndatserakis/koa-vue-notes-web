@@ -2,7 +2,7 @@
     <div class="navbar-section">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-dark">
-                <router-link class="navbar-brand" :to="{name: 'home'}" exact>Koa-Vue-Notes</router-link>
+                <router-link class="navbar-brand" :to="{name: 'home'}" exact data-target=".show" data-toggle="collapse">Koa-Vue-Notes</router-link>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -11,20 +11,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li v-if="!user" class="nav-item">
-                            <router-link :to="{name: 'signup'}" data-target="#navbarSupportedContent" data-toggle="collapse" class="nav-link">Signup</router-link>
+                            <router-link :to="{name: 'signup'}" data-target=".show" data-toggle="collapse" class="nav-link">Signup</router-link>
                         </li>
                         <li v-if="!user" class="nav-item">
-                            <router-link :to="{name: 'login'}" data-target="#navbarSupportedContent" data-toggle="collapse" class="nav-link">Login</router-link>
+                            <router-link :to="{name: 'login'}" data-target=".show" data-toggle="collapse" class="nav-link">Login</router-link>
                         </li>
                         <li v-if="!user" class="nav-item">
-                            <router-link :to="{name: 'forgot'}" data-target="#navbarSupportedContent" data-toggle="collapse" class="nav-link">Forgot</router-link>
+                            <router-link :to="{name: 'forgot'}" data-target=".show" data-toggle="collapse" class="nav-link">Forgot</router-link>
                         </li>
 
                         <li v-if="user" class="nav-item">
-                            <router-link :to="{name: 'account'}" data-target="#navbarSupportedContent" data-toggle="collapse" class="nav-link">Account</router-link>
+                            <router-link :to="{name: 'account'}" data-target=".show" data-toggle="collapse" class="nav-link">Account</router-link>
                         </li>
                         <li v-if="user" class="nav-item">
-                            <a href="javascript:void(0)" v-if="user" v-on:click="logout()" data-target="#navbarSupportedContent" data-toggle="collapse" class="nav-link">Logout</a>
+                            <a href="javascript:void(0)" v-if="user" v-on:click="logout()" class="nav-link">Logout</a>
                         </li>
                     </ul>
 
@@ -74,5 +74,5 @@
     }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 </style>

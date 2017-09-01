@@ -11,14 +11,13 @@
                 </div>
 
                 <div class="col-md-9">
+
+                    <h3 v-if="user">{{note.title}}</h3>
+                    <p v-if="user">{{note.content}}</p>
+
+                    <hr class="mt-4 mb-4">
+
                     <h1>Edit</h1>
-
-                    <p>Here's the note you selected.</p>
-                    <p v-if="user">{{note}}</p>
-
-                    <hr>
-
-                    <div v-if="loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>
 
                     <div v-if="note">
                         <div class="form-group">
@@ -47,16 +46,13 @@
         name: 'editNote',
         data () {
             return {
-                loading: false,
                 note: null
             }
         },
         methods: {
             loadNote() {
-                this.loading = true
                 this.$store.dispatch('note/getNote', this.$route.query.id)
                 .then((response) => {
-                    this.loading = false
                     this.note = response
                 }).catch((error) => {
                     checkRefreshTokensAndResend(error).then((response) => { if (response) { this.loadNote() } })
@@ -93,12 +89,7 @@
                 .then((response) => {
                     this.$modal.hide('dialog')
                     this.$toasted.success('Deleted.')
-
-                    if (this.notes.length) {
-                        let i = this.notes.map(note => note.id).indexOf(this.note.id)
-                        this.$delete(this.notes, i)
-                    }
-
+                    this.$store.dispatch('note/deleteNoteFromStack', this.note)
                     this.$router.go(-1)
                 })
                 .catch((error) => {

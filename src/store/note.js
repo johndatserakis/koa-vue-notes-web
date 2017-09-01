@@ -9,6 +9,8 @@ import jwtDecode from 'jwt-decode';
 import { setAuthorizationHeader, refreshTokensAndResend} from '@/common/utilities'
 
 const ADD_NOTES = 'ADD_NOTES'
+const ADD_NOTE_TO_STACK = 'ADD_NOTE_TO_STACK'
+const DELETE_NOTE_FROM_STACK = 'DELETE_NOTE_FROM_STACK'
 const LOGOUT_USER = 'LOGOUT_USER'
 
 const note = {
@@ -20,6 +22,15 @@ const note = {
         ADD_NOTES(state, data) {
             state.notes = state.notes.concat(data)
         },
+        ADD_NOTE_TO_STACK(state, note) {
+            state.notes.unshift(note)
+        },
+        DELETE_NOTE_FROM_STACK(state, note) {
+            if (state.notes.length) {
+                let i = state.notes.map(note => note.id).indexOf(note.id)
+                state.notes.splice(i, 1)
+            }
+        },
         LOGOUT_USER(state) {
             state.notes = []
         },
@@ -30,12 +41,7 @@ const note = {
         },
     },
     actions: {
-        userLogout({ dispatch, commit, getters, rootGetters }) {
-            return new Promise((resolve, reject) => {
-                commit(LOGOUT_USER)
-                return resolve()
-            })
-        },
+        //API Calls
         getUsersNotes({ dispatch, commit, getters, rootGetters}, data){
             return new Promise((resolve, reject) => {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
@@ -95,6 +101,26 @@ const note = {
                 .catch(error => {
                     reject(error)
                 })
+            })
+        },
+
+        //Only Mutations
+        userLogout({ dispatch, commit, getters, rootGetters }) {
+            return new Promise((resolve, reject) => {
+                commit(LOGOUT_USER)
+                return resolve()
+            })
+        },
+        addNoteToStack({ dispatch, commit, getters, rootGetters }, note) {
+            return new Promise((resolve, reject) => {
+                commit(ADD_NOTE_TO_STACK, note)
+                return resolve()
+            })
+        },
+        deleteNoteFromStack({ dispatch, commit, getters, rootGetters }, note) {
+            return new Promise((resolve, reject) => {
+                commit(DELETE_NOTE_FROM_STACK, note)
+                return resolve()
             })
         },
     }
