@@ -16,7 +16,7 @@
         "bootstrap": "^4.0.0-beta",
         "es6-promise": "^4.1.1",
         "jest": "^20.0.4",
-        "jest-vue": "^0.1.1",
+        "jest-vue": "^0.2.0",
         "jquery": "^3.1.1",
         "jwt-decode": "^2.2.0",
         "vue": "2.4.2",
