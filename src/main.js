@@ -6,19 +6,25 @@ import 'es6-promise/auto'
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+
 import router from './router'
+
 import store from './store'
 import { mapState, mapGetters, mapActions } from 'vuex'
+
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
+
 import Toasted from 'vue-toasted';
 Vue.use(Toasted, {
    theme: "bubble",
    position: "top-right",
    duration : 2300
 })
+
 import VModal from 'vue-js-modal'
 Vue.use(VModal, { dialog: true })
+
 import VueProgressBar from 'vue-progressbar'
 Vue.use(VueProgressBar, {
     color: '#ADE027',
@@ -56,9 +62,4 @@ new Vue({
   router,
   template: '<App/>',
   components: { App },
-  computed: {
-  },
-  mounted () {
-  },
 })
-

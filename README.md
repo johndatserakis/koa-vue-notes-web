@@ -1,7 +1,7 @@
 <p align="center"><a href="https://koa-vue-notes-web.innermonkdesign.com/" target="_blank"><img width="200" src="./static/koa-vue-notes-icon.png"></a></p>
 
 <p align="center">
-  <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="Issues"></a>
+  <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fjohndatserakis%2Fkoa-vue-notes-web&text=Check%20out%20koa-vue-notes-web%20on%20GitHub&via=innermonkdesign">
   <img src="https://img.shields.io/twitter/url/https/github.com/johndatserakis/koa-vue-notes-web.svg?style=social" alt="Tweet"></a>
 </p>
@@ -54,6 +54,8 @@ The `src` folder is laid out in the following fashion:
 
 Here you'll find the program's SASS files. There's a bunch of component files as you drill down. I do use some of the .vue style concepts on certain components - but there is most definitely a case to be made for having all your base style code in one place. We're also importing Font-Awesome icons in `src/App.js`.
 
+Honestly, I really like Bootstrap, and v4 is very nice - but I'm not a huge fan of using its components because they still use jQuery. Also, I really wish it was written using the BEM syntax - something I use for my own components. With that being said - this project only makes use of Bootstrap's grid, buttons, form-groups, and navbar - although you may want to go in a different direction with that.
+
 ### common
 
 For utlity functions.
@@ -95,8 +97,12 @@ Our main entrance to our JavaScript code - all the main modules like our Vuex st
 
 ### Todo
 
-- Add tests
 - Use async/await on entire frontend
+- Add full tests
+
+## Testing
+
+Testing is put on hold at the moment until `vue-test-utils` matures - I've had issues getting simple unit/integration tests to run because of multiple issues - babel doesn't seem to load correctly, elements that work fine in app usage don't seem to work when loaded in tests, and more. Will revist soon. The [backend code](https://github.com/johndatserakis/koa-vue-notes-api) has tests fully set up using Jest which will do for now.
 
 ## Hit Me Up
 

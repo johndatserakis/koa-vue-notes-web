@@ -13,10 +13,9 @@
                 <!-- This is where the main content goes when using the sidebar. -->
                 <div class="col-md-9">
                     <div v-if="!notes.length">Hmm, you don't have any notes.</div>
-                    <!-- <div v-if="loading"><i class="fa fa-circle-o-notch fa-spin"></i></div> -->
 
                     <div class="note-block">
-                        <div v-for="note in notes" class="row">
+                        <div v-for="note in notes" :key="note.id" class="row">
                             <div class="col-12">
                                 <div class="note-block__note" v-on:click="editNote(note)">
                                     <h3><strong>{{note.title}}</strong></h3>
