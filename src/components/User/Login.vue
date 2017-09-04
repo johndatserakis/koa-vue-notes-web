@@ -41,11 +41,12 @@
                                 </div>
 
                                 <button
+                                    id="login-submit-button"
                                     class="btn btn-green btn-lg mt-4 btn-block"
                                     @click="submit()"
                                 >
-                                <span v-if="pending"><i class="fa fa-circle-o-notch fa-spin fa-fw"></i></span>
-                                <span v-else>Login <i class="fa fa-long-arrow-right"></i></span>
+                                    <span v-if="pending"><i class="fa fa-circle-o-notch fa-spin fa-fw"></i></span>
+                                    <span v-else>Login <i class="fa fa-long-arrow-right"></i></span>
                                 </button>
 
                                 <div class="mt-4 small">

@@ -105,6 +105,7 @@
                                 </div>
 
                                 <button
+                                    id="signup-submit-button"
                                     class="btn btn-green btn-lg mt-4 btn-block"
                                     @click="submit()"
                                 >

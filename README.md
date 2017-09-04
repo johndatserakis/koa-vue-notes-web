@@ -23,19 +23,23 @@ This is a simple SPA built using [Koa](http://koajs.com/) (2.3) as the backend a
 - Font-Awesome
 - Vue-Progressbar
 - Vue-Js-Modal
+- Jest and Vue-Test-Utils for testing
 - And more...
 
 ## Installing / Getting started
 
 ``` bash
-## install dependencies
+# install dependencies
 npm install
 
-## serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8080
 npm run watch
 
-## build for production with minification
+# build for production with minification
 npm run build
+
+# run tests
+npm run test
 ```
 
 ## General Information
@@ -98,11 +102,11 @@ Our main entrance to our JavaScript code - all the main modules like our Vuex st
 ### Todo
 
 - Use async/await on entire frontend
-- Add full tests
+- Continue to add tests
 
 ## Testing
 
-Testing is put on hold at the moment until `vue-test-utils` matures - I've had issues getting simple unit/integration tests to run because of multiple issues - babel doesn't seem to load correctly, elements that work fine in app usage don't seem to work when loaded in tests, and more. Will revist soon. The [backend code](https://github.com/johndatserakis/koa-vue-notes-api) has tests fully set up using Jest which will do for now.
+Testing is done using the newly official [vue-test-utils](https://github.com/vuejs/vue-test-utils) library - it's very good - but in the early stages of development. Due to some of the issues that I'm currently experiencing with the library - there are only a few very simple tests that make sure the Home and User Action components are loaded, can add data to inputs, and click their respective submit buttons. I'll be adding more involved tests in the future.
 
 ## Hit Me Up
 

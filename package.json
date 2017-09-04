@@ -1,6 +1,6 @@
 {
     "name": "web",
-    "version": "1.0.18",
+    "version": "1.1.0",
     "description": "A Vue.js project",
     "author": "John Datserakis <johndatserakis@gmail.com>",
     "private": true,
@@ -116,6 +116,7 @@
         }
     },
     "jest": {
+        "verbose": true,
         "moduleNameMapper": {
             "src/components/([^\\.]*)$": "<rootDir>/src/components/$1.vue",
             "^vue$": "vue/dist/vue.common.js",
