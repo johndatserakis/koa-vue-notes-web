@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import { shallow } from 'vue-test-utils'
 
-import Home from '../src/components/layouts/Home.vue'
+import Home from '../src/components/Layouts/Home.vue'
 
 import Vuex from 'vuex'
 Vue.use(Vuex)

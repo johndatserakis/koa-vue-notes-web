@@ -2,10 +2,10 @@ import Vue from 'vue'
 
 import { shallow } from 'vue-test-utils'
 
-import Login from '../src/components/user/Login.vue'
-import Signup from '../src/components/user/Signup.vue'
-import Forgot from '../src/components/user/Forgot.vue'
-import Reset from '../src/components/user/Reset.vue'
+import Login from '../src/components/User/Login.vue'
+import Signup from '../src/components/User/Signup.vue'
+import Forgot from '../src/components/User/Forgot.vue'
+import Reset from '../src/components/User/Reset.vue'
 
 import Vuex from 'vuex'
 Vue.use(Vuex)
