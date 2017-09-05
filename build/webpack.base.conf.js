@@ -25,9 +25,6 @@ module.exports = {
       '@': resolve('src')
     }
   },
-  stats: {
-    errorDetails: true
-  },
   module: {
     rules: [
       // {
