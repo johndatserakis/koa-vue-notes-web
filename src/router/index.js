@@ -4,7 +4,7 @@ Vue.use(Router)
 
 // Main Route
 //const Home = (resolve) => require(['@/components/layouts/Home.vue'], resolve)
-const Home = () => import('../components/layouts/Home.vue')
+const Home = () => import('./components/layouts/Home.vue')
 
 // User Routes
 const Login = (resolve) => require(['@/components/user/Login.vue'], resolve)
