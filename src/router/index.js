@@ -3,27 +3,36 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 // Main Route
-const Home = (resolve) => require(['@/components/Layouts/Home.vue'], resolve)
-// const Home = () => import('./components/layouts/Home.vue')
+// const Home = (resolve) => require(['@/components/Layouts/Home.vue'], resolve)
+const Home = () => import('@/components/Layouts/Home.vue')
 
 // User Routes
-const Login = (resolve) => require(['@/components/user/Login.vue'], resolve)
-const Signup = (resolve) => require(['@/components/user/Signup.vue'], resolve)
-const Forgot = (resolve) => require(['@/components/user/Forgot.vue'], resolve)
-const Reset = (resolve) => require(['@/components/user/Reset.vue'], resolve)
+// const Login = (resolve) => require(['@/components/User/Login.vue'], resolve)
+// const Signup = (resolve) => require(['@/components/User/Signup.vue'], resolve)
+// const Forgot = (resolve) => require(['@/components/User/Forgot.vue'], resolve)
+// const Reset = (resolve) => require(['@/components/User/Reset.vue'], resolve)
+
+const Login = () => import('@/components/User/Login.vue')
+const Signup = () => import('@/components/User/Signup.vue')
+const Forgot = () => import('@/components/User/Forgot.vue')
+const Reset = () => import('@/components/User/Reset.vue')
 
 //Account
-const Account = (resolve) => require(['@/components/Layouts/Account.vue'], resolve)
-const CreateNote = (resolve) => require(['@/components/Layouts/CreateNote.vue'], resolve)
-const EditNote = (resolve) => require(['@/components/Layouts/EditNote.vue'], resolve)
+// const Account = (resolve) => require(['@/components/Layouts/Account.vue'], resolve)
+// const CreateNote = (resolve) => require(['@/components/Layouts/CreateNote.vue'], resolve)
+// const EditNote = (resolve) => require(['@/components/Layouts/EditNote.vue'], resolve)
+const Account = () => import('@/components/Layouts/Account.vue')
+const CreateNote = () => import('@/components/Layouts/CreateNote.vue')
+const EditNote = () => import('@/components/Layouts/EditNote.vue')
 
 // Other
-const NotFound = (resolve) => require(['@/components/Layouts/NotFound.vue'], resolve)
+// const NotFound = (resolve) => require(['@/components/Layouts/NotFound.vue'], resolve)
+const NotFound = () => import('@/components/Layouts/NotFound.vue')
 
 //Non route compoinent registering
-Vue.component('navbar', require('@/components/partials/Navbar.vue'));
-Vue.component('footer-main', require('@/components/partials/Footer.vue'));
-Vue.component('sidebar', require('@/components/partials/Sidebar.vue'));
+Vue.component('navbar', require('@/components/Partials/Navbar.vue'));
+Vue.component('footer-main', require('@/components/Partials/Footer.vue'));
+Vue.component('sidebar', require('@/components/Partials/Sidebar.vue'));
 
 const router = new Router({
   mode: 'history',
