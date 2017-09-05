@@ -8,7 +8,7 @@
         "watch": "node build/dev-server.js",
         "build": "node build/build.js",
         "lint": "eslint --ext .js,.vue src",
-        "test": "jest"
+        "test": "jest --no-cache"
     },
     "dependencies": {
         "axios": "^0.15.3",
