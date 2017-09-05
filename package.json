@@ -117,6 +117,12 @@
     },
     "jest": {
         "verbose": true,
+        "moduleNameMapper": {
+            "src/components/([^\\.]*)$": "<rootDir>/src/components/$1.vue",
+            "^vue$": "vue/dist/vue.common.js",
+            "src/([^\\.]*)$": "<rootDir>/src/$1.vue",
+            "(.*)/(.*)$": "$1/$2.vue"
+        },
         "moduleFileExtensions": [
             "js",
             "vue"
