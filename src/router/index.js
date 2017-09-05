@@ -3,8 +3,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 // Main Route
-//const Home = (resolve) => require(['@/components/layouts/Home.vue'], resolve)
-const Home = () => import('./components/layouts/Home.vue')
+const Home = (resolve) => require(['@/components/Layouts/Home.vue'], resolve)
+// const Home = () => import('./components/layouts/Home.vue')
 
 // User Routes
 const Login = (resolve) => require(['@/components/user/Login.vue'], resolve)
@@ -13,12 +13,12 @@ const Forgot = (resolve) => require(['@/components/user/Forgot.vue'], resolve)
 const Reset = (resolve) => require(['@/components/user/Reset.vue'], resolve)
 
 //Account
-const Account = (resolve) => require(['@/components/layouts/Account.vue'], resolve)
-const CreateNote = (resolve) => require(['@/components/layouts/CreateNote.vue'], resolve)
-const EditNote = (resolve) => require(['@/components/layouts/EditNote.vue'], resolve)
+const Account = (resolve) => require(['@/components/Layouts/Account.vue'], resolve)
+const CreateNote = (resolve) => require(['@/components/Layouts/CreateNote.vue'], resolve)
+const EditNote = (resolve) => require(['@/components/Layouts/EditNote.vue'], resolve)
 
 // Other
-const NotFound = (resolve) => require(['@/components/layouts/NotFound.vue'], resolve)
+const NotFound = (resolve) => require(['@/components/Layouts/NotFound.vue'], resolve)
 
 //Non route compoinent registering
 Vue.component('navbar', require('@/components/partials/Navbar.vue'));
