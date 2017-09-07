@@ -7,4 +7,4 @@ function setAuthorizationHeader(accessToken) {
     return axios.defaults.headers.common['Authorization'] = "Bearer " +  accessToken
 }
 
-export { setAuthorizationHeader, checkRefreshTokensAndResend };
+export { setAuthorizationHeader };

@@ -106,7 +106,7 @@ Our main entrance to our JavaScript code - all the main modules like our Vuex st
 
 ## Testing
 
-Testing is done using the newly official [vue-test-utils](https://github.com/vuejs/vue-test-utils) library - it's very good - but in the early stages of development. Due to some of the issues that I'm currently experiencing with the library - there are only a few very simple tests that make sure the Home and User Action components are loaded, can add data to inputs, and click their respective submit buttons. I'll be adding more involved tests in the future.
+Testing is done using the newly official [vue-test-utils](https://github.com/vuejs/vue-test-utils) library - it's very good - but in the early stages of development. Due to some of the issues that I'm currently experiencing with the library - there are only a few simple tests that make sure the Home and User Action components are loaded, can add data to inputs, and click their respective submit buttons. I'll be adding more involved tests in the future.
 
 ## Hit Me Up
 

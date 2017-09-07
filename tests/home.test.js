@@ -11,12 +11,11 @@ describe('Home testing', () => {
     let actions
     let store
     beforeEach(() => {
-        actions = {}
         store = new Vuex.Store({
             state: {
                 user:{}
             },
-            actions
+            actions: {}
         })
     })
 

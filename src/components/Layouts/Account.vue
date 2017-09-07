@@ -37,7 +37,7 @@
 
 <script>
     import { mapState, mapGetters, mapActions } from 'vuex'
-    import { setAuthorizationHeader, checkRefreshTokensAndResend} from '@/common/utilities'
+    import { setAuthorizationHeader} from '@/common/utilities'
 
     export default {
         name: 'account',
@@ -69,10 +69,6 @@
                     this.$toasted.error('There was an error connecting to the server.')
                 })
             },
-            editNote(note) {
-                let i = this.notes.map(note => note.id).indexOf(note.id)
-                this.$router.push({name: 'editNote', query: {id: this.notes[i].id}})
-            }
         },
         computed: {
             ...mapState({

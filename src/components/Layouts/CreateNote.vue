@@ -22,7 +22,7 @@
                         <label>Content</label>
                         <textarea class="form-control" v-model="note.content"></textarea>
                     </div>
-                    <button v-on:click="createNote()" class="btn btn-primary mb-3"><i class="fa fa-plus fa-fw"></i> Create</button>
+                    <button id="create-note-button" v-on:click="createNote()" class="btn btn-primary mb-3"><i class="fa fa-plus fa-fw"></i> Create</button>
                 </div>
 
             </div>
@@ -33,7 +33,7 @@
 
 <script>
     import { mapState, mapGetters, mapActions } from 'vuex'
-    import { setAuthorizationHeader, checkRefreshTokensAndResend} from '@/common/utilities'
+    import { setAuthorizationHeader} from '@/common/utilities'
 
     export default {
         name: 'editNote',

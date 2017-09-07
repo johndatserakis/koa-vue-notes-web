@@ -55,7 +55,7 @@
                 .then((response) => {
                     this.note = response
                 }).catch((error) => {
-                    checkRefreshTokensAndResend(error).then((response) => { if (response) { this.loadNote() } })
+                    this.$toasted.error('There was an error connecting to the server.')
                 })
             },
             saveNote() {
@@ -70,8 +70,7 @@
                     }
                 })
                 .catch((error) => {
-                    console.log(error)
-                    checkRefreshTokensAndResend(error).then((response) => { if (response) { this.saveNote() } })
+                    this.$toasted.error('There was an error connecting to the server.')
                 })
             },
             confirmDeleteNote() {

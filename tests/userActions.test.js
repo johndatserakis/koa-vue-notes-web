@@ -5,7 +5,6 @@ import { shallow } from 'vue-test-utils'
 import Login from '../src/components/User/Login.vue'
 import Signup from '../src/components/User/Signup.vue'
 import Forgot from '../src/components/User/Forgot.vue'
-import Reset from '../src/components/User/Reset.vue'
 
 import Vuex from 'vuex'
 Vue.use(Vuex)
@@ -20,17 +19,16 @@ describe('User action testing', () => {
     let actions
     let store
     beforeEach(() => {
-        actions = {
-            //swallow response
-            'user/userLogin': () => { return resolve() },
-            'user/userSignup': () => { return resolve() },
-            'user/userForgot': () => { return resolve() }
-        }
         store = new Vuex.Store({
             state: {
                 user: {}
             },
-            actions
+            actions: {
+                //swallow response
+                'user/userLogin': () => { return resolve() },
+                'user/userSignup': () => { return resolve() },
+                'user/userForgot': () => { return resolve() }
+            }
         })
     })
 
@@ -93,15 +91,5 @@ describe('User action testing', () => {
         expect(wrapper.vm.credentials.email).toBe('test@email.com')
 
         wrapper.find('#forgot-submit-button').trigger('click')
-    })
-
-    it('Reset.vue test', () => {
-        //Commenting this out for now as this produces an error
-        //'TypeError: Cannot read property 'query' of undefined'.
-        //Seems to be having an issue with the mounted function in Reset.vue
-        //that uses this.$route.query to access a query variable
-
-        // const wrapper = shallow(Reset, { store })
-        // expect(wrapper).toBeTruthy()
     })
 })

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 import jwtDecode from 'jwt-decode';
-import store from './index'
+import store from '@/store/index'
 import router from '@/router'
 import { setAuthorizationHeader} from '@/common/utilities'
 import axios from 'axios'

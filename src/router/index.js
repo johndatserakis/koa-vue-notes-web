@@ -3,21 +3,21 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 // Main Route
-const Home = () => import('@/components/Layouts/Home.vue')
+const Home = (resolve) => require(['@/components/Layouts/Home.vue'], resolve)
 
 // User Routes
-const Login = () => import('@/components/User/Login.vue')
-const Signup = () => import('@/components/User/Signup.vue')
-const Forgot = () => import('@/components/User/Forgot.vue')
-const Reset = () => import('@/components/User/Reset.vue')
+const Login = (resolve) => require(['@/components/User/Login.vue'], resolve)
+const Signup = (resolve) => require(['@/components/User/Signup.vue'], resolve)
+const Forgot = (resolve) => require(['@/components/User/Forgot.vue'], resolve)
+const Reset = (resolve) => require(['@/components/User/Reset.vue'], resolve)
 
 //Account
-const Account = () => import('@/components/Layouts/Account.vue')
-const CreateNote = () => import('@/components/Layouts/CreateNote.vue')
-const EditNote = () => import('@/components/Layouts/EditNote.vue')
+const Account = (resolve) => require(['@/components/Layouts/Account.vue'], resolve)
+const CreateNote = (resolve) => require(['@/components/Layouts/CreateNote.vue'], resolve)
+const EditNote = (resolve) => require(['@/components/Layouts/EditNote.vue'], resolve)
 
 // Other
-const NotFound = () => import('@/components/Layouts/NotFound.vue')
+const NotFound = (resolve) => require(['@/components/Layouts/NotFound.vue'], resolve)
 
 //Non route compoinent registering
 Vue.component('navbar', require('@/components/Partials/Navbar.vue'))
@@ -25,8 +25,8 @@ Vue.component('footer-main', require('@/components/Partials/Footer.vue'))
 Vue.component('sidebar', require('@/components/Partials/Sidebar.vue'))
 
 const router = new Router({
-  mode: 'history',
-  routes: [
+    mode: 'history',
+    routes: [
     { path: '*', component: NotFound, name: 'notFound', meta: {title: 'Not Found'} },
     { path: '/', component: Home, name: 'home', meta: {title: 'Home'} },
     { path: '/user/login', component: Login, name: 'login', meta: {title: 'Login'} },
@@ -36,14 +36,14 @@ const router = new Router({
     { path: '/account', component: Account, name: 'account', meta: {title: 'Account', requiresAuth: true} },
     { path: '/createNote', component: CreateNote, name: 'createNote', meta: {title: 'Create Note', requiresAuth: true} },
     { path: '/editNote', component: EditNote, name: 'editNote', meta: {title: 'Edit Note', requiresAuth: true} }
-  ],
-  scrollBehavior (to, from, savedPosition) {
-    if (savedPosition) {
-        return savedPosition
-    } else {
-        return { x: 0, y: 0 }
-    }
-  },
+    ],
+    scrollBehavior (to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { x: 0, y: 0 }
+        }
+    },
 })
 
 router.beforeEach((to, from, next) => {
