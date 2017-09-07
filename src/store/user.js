@@ -1,32 +1,32 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
-import jwtDecode from 'jwt-decode';
+import jwtDecode from 'jwt-decode'
 import store from '@/store/index'
 import router from '@/router'
-import { setAuthorizationHeader} from '@/common/utilities'
+import { setAuthorizationHeader } from '@/common/utilities'
 import axios from 'axios'
-axios.defaults.baseURL = process.env.API_URL;
+axios.defaults.baseURL = process.env.API_URL
 
-//The following two interceptor blocks are strickly for
-//attaching the top-loading bar to all axios requests and
-//stoping the bar on all responses.
+// The following two interceptor blocks are strickly for
+// attaching the top-loading bar to all axios requests and
+// stoping the bar on all responses.
 axios.interceptors.request.use(function (config) {
     router.app.$Progress.start()
-    return config;
+    return config
 }, function (error) {
     router.app.$Progress.fail()
-    return Promise.reject(error);
-});
+    return Promise.reject(error)
+})
 axios.interceptors.response.use(function (response) {
     router.app.$Progress.finish()
-    return response;
+    return response
 }, function (error) {
     router.app.$Progress.fail()
-    return Promise.reject(error);
-});
+    return Promise.reject(error)
+})
 
-//Axios interceptor that handles automatically refreshing tokens
+// Axios interceptor that handles automatically refreshing tokens
 axios.interceptors.response.use((response) => {
     return response
 }, function (error) {
@@ -49,7 +49,6 @@ axios.interceptors.response.use((response) => {
                 return reject()
             })
         })
-        return Promise.reject(error)
     }
     return Promise.reject(error)
 })
@@ -67,24 +66,24 @@ const user = {
         refreshToken: null
     },
     mutations: {
-        SET_USER(state, data) {
+        SET_USER (state, data) {
             state.user = data
         },
-        STORE_ACCESS_TOKEN(state, accessToken) {
+        STORE_ACCESS_TOKEN (state, accessToken) {
             state.accessToken = accessToken
             localStorage.setItem('accessToken', accessToken)
         },
-        STORE_REFRESH_TOKEN(state, refreshToken) {
+        STORE_REFRESH_TOKEN (state, refreshToken) {
             state.refreshToken = refreshToken
             localStorage.setItem('refreshToken', refreshToken)
         },
-        LOGOUT_USER(state) {
+        LOGOUT_USER (state) {
             state.user = null
             state.accessToken = null
             state.refreshToken = null
             localStorage.removeItem('accessToken')
             localStorage.removeItem('refreshToken')
-        },
+        }
     },
     getters: {
         user (state) {
@@ -98,7 +97,7 @@ const user = {
         }
     },
     actions: {
-        setUserAndTokens({ dispatch, commit, getters, rootGetters }, data) {
+        setUserAndTokens ({ dispatch, commit, getters, rootGetters }, data) {
             return new Promise((resolve, reject) => {
                 let decoded = jwtDecode(data.accessToken)
                 commit(SET_USER, decoded.data)
@@ -107,7 +106,7 @@ const user = {
                 return resolve(true)
             })
         },
-        userLogin({ dispatch, commit, getters, rootGetters }, credentials){
+        userLogin ({ dispatch, commit, getters, rootGetters }, credentials) {
             return new Promise((resolve, reject) => {
                 axios.post('/api/v1/user/authenticate', {
                     username: credentials.username,
@@ -122,7 +121,7 @@ const user = {
                 })
             })
         },
-        refreshUserTokens({ dispatch, commit, getters, rootGetters }){
+        refreshUserTokens ({ dispatch, commit, getters, rootGetters }) {
             return new Promise((resolve, reject) => {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
                 axios.post('/api/v1/user/refreshAccessToken', {
@@ -137,13 +136,13 @@ const user = {
                 })
             })
         },
-        userLogout({ dispatch, commit, getters, rootGetters }) {
+        userLogout ({ dispatch, commit, getters, rootGetters }) {
             return new Promise((resolve, reject) => {
                 commit(LOGOUT_USER)
                 return resolve()
             })
         },
-        userSignup({ dispatch, commit, getters, rootGetters }, credentials){
+        userSignup ({ dispatch, commit, getters, rootGetters }, credentials) {
             return new Promise((resolve, reject) => {
                 axios.post('/api/v1/user/signup', {
                     firstName: credentials.firstName,
@@ -160,7 +159,7 @@ const user = {
                 })
             })
         },
-        userForgot({ dispatch, commit, getters, rootGetters }, credentials){
+        userForgot ({ dispatch, commit, getters, rootGetters }, credentials) {
             return new Promise((resolve, reject) => {
                 axios.post('/api/v1/user/forgot', {
                     email: credentials.email,
@@ -171,19 +170,19 @@ const user = {
                     resolve()
                 })
                 .catch(error => {
-                    //We really don't want to let spammers know
-                    //they've partially matched a user.
+                    // We really don't want to let spammers know
+                    // they've partially matched a user.
                     resolve()
                 })
             })
         },
-        userReset({ dispatch, commit, getters, rootGetters }, credentials){
+        userReset ({ dispatch, commit, getters, rootGetters }, credentials) {
             return new Promise((resolve, reject) => {
                 console.log('here')
                 axios.post('/api/v1/user/resetPassword', {
                     password: credentials.password,
                     passwordResetToken: credentials.passwordResetToken,
-                    email: credentials.email,
+                    email: credentials.email
                 })
                 .then(response => {
                     return resolve()
@@ -192,7 +191,7 @@ const user = {
                     return reject()
                 })
             })
-        },
+        }
     }
 }
 

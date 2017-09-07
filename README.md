@@ -40,6 +40,12 @@ npm run build
 
 # run tests
 npm run test
+
+# run linter
+npm run lint
+
+# run linter with auto-fix
+npm run lint-fix
 ```
 
 ## General Information

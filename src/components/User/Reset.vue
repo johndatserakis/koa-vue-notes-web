@@ -66,7 +66,7 @@
 </template>
 
 <script>
-    import { required, minLength, between, sameAs, email } from 'vuelidate/lib/validators'
+    import { required, minLength, sameAs } from 'vuelidate/lib/validators'
 
     export default {
         name: 'reset',
@@ -76,9 +76,9 @@
                     password: '',
                     passwordConfirm: '',
                     passwordResetToken: '',
-                    email: '',
+                    email: ''
                 },
-                pending: false,
+                pending: false
             }
         },
         methods: {
@@ -102,7 +102,7 @@
                     this.$router.push({name: 'login'})
                 })
                 .catch(() => {
-                    this.$toasted.error('Your reset link has expired or is incorrect. Please reset your password again.');
+                    this.$toasted.error('Your reset link has expired or is incorrect. Please reset your password again.')
                 })
                 .then(() => {
                     this.pending = false
@@ -114,12 +114,12 @@
         validations: {
             credentials: {
                 password: {
-                  required,
-                  minLength: minLength(8)
+                    required,
+                    minLength: minLength(8)
                 },
                 passwordConfirm: {
-                  sameAs: sameAs('password'),
-                },
+                    sameAs: sameAs('password')
+                }
             }
         },
         mounted () {

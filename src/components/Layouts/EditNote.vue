@@ -39,8 +39,7 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapActions } from 'vuex'
-    import { checkRefreshTokensAndResend} from '@/common/utilities'
+    import { mapState } from 'vuex'
 
     export default {
         name: 'editNote',
@@ -50,7 +49,7 @@
             }
         },
         methods: {
-            loadNote() {
+            loadNote () {
                 this.$store.dispatch('note/getNote', this.$route.query.id)
                 .then((response) => {
                     this.note = response
@@ -58,12 +57,12 @@
                     this.$toasted.error('There was an error connecting to the server.')
                 })
             },
-            saveNote() {
+            saveNote () {
                 this.$store.dispatch('note/saveNote', this.note)
                 .then((response) => {
                     this.$toasted.success('Saved.')
 
-                    //Now that we've updated the note, let's update it in the notes array
+                    // Now that we've updated the note, let's update it in the notes array
                     if (this.notes.length) {
                         let i = this.notes.map(note => note.id).indexOf(this.note.id)
                         this.$set(this.notes, i, this.note)
@@ -73,17 +72,17 @@
                     this.$toasted.error('There was an error connecting to the server.')
                 })
             },
-            confirmDeleteNote() {
+            confirmDeleteNote () {
                 this.$modal.show('dialog', {
                     title: 'Delete ' + this.note.title,
                     text: 'Are you sure you want to delete this note?',
                     buttons: [
                         { title: 'Close' },
-                        { title: 'Delete', handler: () => { this.deleteNote() }},
+                        { title: 'Delete', handler: () => { this.deleteNote() } }
                     ]
                 })
             },
-            deleteNote() {
+            deleteNote () {
                 this.$store.dispatch('note/deleteNote', this.note)
                 .then((response) => {
                     this.$modal.hide('dialog')
@@ -99,18 +98,18 @@
         computed: {
             ...mapState({
                 user: state => state.user.user,
-                notes: state => state.note.notes,
+                notes: state => state.note.notes
             })
         },
         created () {
             this.loadNote()
         },
         mounted () {
-            this.$router.app.$on('confirmDeleteNote', () => { this.confirmDeleteNote(); })
+            this.$router.app.$on('confirmDeleteNote', () => { this.confirmDeleteNote() })
         },
         beforeDestroy () {
             this.$router.app.$off('confirmDeleteNote')
-        },
+        }
 
     }
 </script>

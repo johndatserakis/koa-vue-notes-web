@@ -11,7 +11,7 @@ const Signup = (resolve) => require(['@/components/User/Signup.vue'], resolve)
 const Forgot = (resolve) => require(['@/components/User/Forgot.vue'], resolve)
 const Reset = (resolve) => require(['@/components/User/Reset.vue'], resolve)
 
-//Account
+// Account
 const Account = (resolve) => require(['@/components/Layouts/Account.vue'], resolve)
 const CreateNote = (resolve) => require(['@/components/Layouts/CreateNote.vue'], resolve)
 const EditNote = (resolve) => require(['@/components/Layouts/EditNote.vue'], resolve)
@@ -19,7 +19,7 @@ const EditNote = (resolve) => require(['@/components/Layouts/EditNote.vue'], res
 // Other
 const NotFound = (resolve) => require(['@/components/Layouts/NotFound.vue'], resolve)
 
-//Non route compoinent registering
+// Non route compoinent registering
 Vue.component('navbar', require('@/components/Partials/Navbar.vue'))
 Vue.component('footer-main', require('@/components/Partials/Footer.vue'))
 Vue.component('sidebar', require('@/components/Partials/Sidebar.vue'))
@@ -43,29 +43,29 @@ const router = new Router({
         } else {
             return { x: 0, y: 0 }
         }
-    },
+    }
 })
 
 router.beforeEach((to, from, next) => {
-    //Start our vue-progressbar
+    // Start our vue-progressbar
     router.app.$Progress.start()
 
-    //To set the title of each route
+    // To set the title of each route
     document.title = to.meta.title
 
-    //Grab the accessToken and refreshToken. Dealing with the localStorage and Vuex has been tricky,
-    //so we'll just set everything here at the top of the waterfall.
+    // Grab the accessToken and refreshToken. Dealing with the localStorage and Vuex has been tricky,
+    // so we'll just set everything here at the top of the waterfall.
     let accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : null
     let refreshToken = localStorage.getItem('refreshToken') ? localStorage.getItem('refreshToken') : null
 
-    //What we're accounting for is the instance of a reload, because up until then the user object will be
-    //present if they've already logged in. So if an accessToken is present let's set the user object
-    //and their access/refresh tokens.
+    // What we're accounting for is the instance of a reload, because up until then the user object will be
+    // present if they've already logged in. So if an accessToken is present let's set the user object
+    // and their access/refresh tokens.
     if (accessToken) {
         router.app.$options.store.dispatch('user/setUserAndTokens', {accessToken: accessToken, refreshToken: refreshToken})
     }
 
-    //If the user's not logged in do not allow into protected pages.
+    // If the user's not logged in do not allow into protected pages.
     if (to.meta.requiresAuth && !router.app.$options.store.getters['user/user']) {
         next({name: 'home'})
     }
@@ -74,7 +74,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, from) => {
-    //End our vue-progressbar
+    // End our vue-progressbar
     router.app.$Progress.finish()
 })
 

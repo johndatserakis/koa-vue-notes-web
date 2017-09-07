@@ -50,7 +50,7 @@
 </template>
 
 <script>
-    import { required, minLength, between, sameAs, email } from 'vuelidate/lib/validators'
+    import { required } from 'vuelidate/lib/validators'
 
     export default {
         name: 'forgot',
@@ -59,7 +59,7 @@
                 credentials: {
                     email: ''
                 },
-                pending: false,
+                pending: false
             }
         },
         methods: {
@@ -92,8 +92,8 @@
         validations: {
             credentials: {
                 email: {
-                  required
-                },
+                    required
+                }
             }
         }
     }

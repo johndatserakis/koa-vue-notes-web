@@ -129,8 +129,7 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapActions } from 'vuex'
-    import { required, minLength, between, sameAs, email } from 'vuelidate/lib/validators'
+    import { required, minLength, sameAs, email } from 'vuelidate/lib/validators'
 
     export default {
         name: 'signup',
@@ -142,9 +141,9 @@
                     username: '',
                     email: '',
                     password: '',
-                    passwordConfirm: '',
+                    passwordConfirm: ''
                 },
-                pending: false,
+                pending: false
             }
         },
         methods: {
@@ -159,7 +158,7 @@
                     username: this.credentials.username,
                     email: this.credentials.email,
                     password: this.credentials.password,
-                    passwordConfirm: this.credentials.passwordConfirm,
+                    passwordConfirm: this.credentials.passwordConfirm
                 }
 
                 this.$store.dispatch('user/userSignup', credentials)
@@ -187,26 +186,26 @@
         validations: {
             credentials: {
                 firstName: {
-                  required
+                    required
                 },
                 lastName: {
-                  required
+                    required
                 },
                 username: {
-                  required,
-                  minLength: minLength(3)
+                    required,
+                    minLength: minLength(3)
                 },
                 email: {
-                  required,
-                  email
+                    required,
+                    email
                 },
                 password: {
-                  required,
-                  minLength: minLength(8)
+                    required,
+                    minLength: minLength(8)
                 },
                 passwordConfirm: {
-                  sameAs: sameAs('password'),
-                },
+                    sameAs: sameAs('password')
+                }
             }
         }
     }

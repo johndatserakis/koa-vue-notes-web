@@ -49,8 +49,6 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapActions } from 'vuex'
-
     export default {
         name: 'sidebar',
         props: ['items'],
@@ -62,7 +60,7 @@
         methods: {
             goBack () {
                 this.$router.go(-1)
-            },
+            }
         },
         computed: {
         },

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapActions } from 'vuex'
+    import { mapState } from 'vuex'
 
     export default {
         name: 'home',
@@ -29,7 +29,7 @@
                 user: state => state.user.user
             })
         },
-        mounted() {
+        mounted () {
         }
     }
 </script>

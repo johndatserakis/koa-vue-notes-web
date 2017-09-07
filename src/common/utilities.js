@@ -1,10 +1,8 @@
-import Vue from 'vue'
 import axios from 'axios'
-import store from '@/store'
-import router from '@/router'
 
-function setAuthorizationHeader(accessToken) {
-    return axios.defaults.headers.common['Authorization'] = "Bearer " +  accessToken
+function setAuthorizationHeader (accessToken) {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken
+    return
 }
 
-export { setAuthorizationHeader };
+export { setAuthorizationHeader }

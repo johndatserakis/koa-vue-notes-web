@@ -65,7 +65,7 @@
 </template>
 
 <script>
-    import { required, minLength, between, sameAs, email } from 'vuelidate/lib/validators'
+    import { required } from 'vuelidate/lib/validators'
 
     export default {
         name: 'login',
@@ -73,9 +73,9 @@
             return {
                 credentials: {
                     username: '',
-                    password: '',
+                    password: ''
                 },
-                pending: false,
+                pending: false
             }
         },
         methods: {
@@ -86,7 +86,7 @@
 
                 const credentials = {
                     username: this.credentials.username,
-                    password: this.credentials.password,
+                    password: this.credentials.password
                 }
 
                 this.$store.dispatch('user/userLogin', credentials)
@@ -109,11 +109,11 @@
         validations: {
             credentials: {
                 username: {
-                  required
+                    required
                 },
                 password: {
-                  required
-                },
+                    required
+                }
             }
         }
     }

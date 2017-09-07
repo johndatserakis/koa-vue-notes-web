@@ -2,11 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 import axios from 'axios'
-axios.defaults.baseURL = process.env.API_URL;
-import store from '@/store'
-import router from '@/router'
-import jwtDecode from 'jwt-decode';
-import { setAuthorizationHeader, refreshTokensAndResend} from '@/common/utilities'
+axios.defaults.baseURL = process.env.API_URL
+import { setAuthorizationHeader } from '@/common/utilities'
 
 const ADD_NOTES = 'ADD_NOTES'
 const ADD_NOTE_TO_STACK = 'ADD_NOTE_TO_STACK'
@@ -19,30 +16,30 @@ const note = {
         notes: []
     },
     mutations: {
-        ADD_NOTES(state, data) {
+        ADD_NOTES (state, data) {
             state.notes = state.notes.concat(data)
         },
-        ADD_NOTE_TO_STACK(state, note) {
+        ADD_NOTE_TO_STACK (state, note) {
             state.notes.unshift(note)
         },
-        DELETE_NOTE_FROM_STACK(state, note) {
+        DELETE_NOTE_FROM_STACK (state, note) {
             if (state.notes.length) {
                 let i = state.notes.map(note => note.id).indexOf(note.id)
                 state.notes.splice(i, 1)
             }
         },
-        LOGOUT_USER(state) {
+        LOGOUT_USER (state) {
             state.notes = []
-        },
+        }
     },
     getters: {
         notes (state) {
             return state.notes
-        },
+        }
     },
     actions: {
-        //API Calls
-        getUsersNotes({ dispatch, commit, getters, rootGetters}, data){
+        // API Calls
+        getUsersNotes ({ dispatch, commit, getters, rootGetters }, data) {
             return new Promise((resolve, reject) => {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
                 axios.get('/api/v1/notes', {params: {sort: data.sort, order: data.order, page: data.page, limit: data.limit}})
@@ -55,7 +52,7 @@ const note = {
                 })
             })
         },
-        getNote({ dispatch, commit, getters, rootGetters}, data){
+        getNote ({ dispatch, commit, getters, rootGetters }, data) {
             return new Promise((resolve, reject) => {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
                 axios.get('/api/v1/notes/' + data)
@@ -67,7 +64,7 @@ const note = {
                 })
             })
         },
-        createNote({ dispatch, commit, getters, rootGetters}, data){
+        createNote ({ dispatch, commit, getters, rootGetters }, data) {
             return new Promise((resolve, reject) => {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
                 axios.post('/api/v1/notes/', {title: data.title, content: data.content})
@@ -79,7 +76,7 @@ const note = {
                 })
             })
         },
-        saveNote({ dispatch, commit, getters, rootGetters}, data){
+        saveNote ({ dispatch, commit, getters, rootGetters }, data) {
             return new Promise((resolve, reject) => {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
                 axios.put('/api/v1/notes/' + data.id, {title: data.title, content: data.content})
@@ -91,7 +88,7 @@ const note = {
                 })
             })
         },
-        deleteNote({ dispatch, commit, getters, rootGetters}, data){
+        deleteNote ({ dispatch, commit, getters, rootGetters }, data) {
             return new Promise((resolve, reject) => {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
                 axios.delete('/api/v1/notes/' + data.id)
@@ -104,25 +101,25 @@ const note = {
             })
         },
 
-        //Only Mutations
-        userLogout({ dispatch, commit, getters, rootGetters }) {
+        // Only Mutations
+        userLogout ({ dispatch, commit, getters, rootGetters }) {
             return new Promise((resolve, reject) => {
                 commit(LOGOUT_USER)
                 return resolve()
             })
         },
-        addNoteToStack({ dispatch, commit, getters, rootGetters }, note) {
+        addNoteToStack ({ dispatch, commit, getters, rootGetters }, note) {
             return new Promise((resolve, reject) => {
                 commit(ADD_NOTE_TO_STACK, note)
                 return resolve()
             })
         },
-        deleteNoteFromStack({ dispatch, commit, getters, rootGetters }, note) {
+        deleteNoteFromStack ({ dispatch, commit, getters, rootGetters }, note) {
             return new Promise((resolve, reject) => {
                 commit(DELETE_NOTE_FROM_STACK, note)
                 return resolve()
             })
-        },
+        }
     }
 }
 

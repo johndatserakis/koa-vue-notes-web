@@ -32,8 +32,7 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapActions } from 'vuex'
-    import { setAuthorizationHeader} from '@/common/utilities'
+    import { mapState } from 'vuex'
 
     export default {
         name: 'editNote',
@@ -42,12 +41,12 @@
                 loading: false,
                 note: {
                     title: '',
-                    content: '',
+                    content: ''
                 }
             }
         },
         methods: {
-            createNote() {
+            createNote () {
                 if (!this.note.title || !this.note.content) {
                     this.$toasted.error('Title and Content need to be filled out.')
                     return
@@ -70,16 +69,16 @@
                 .catch((error) => {
                     this.$toasted.error('There was an error connecting to the server.')
                 })
-            },
+            }
         },
         computed: {
             ...mapState({
                 user: state => state.user.user,
-                notes: state => state.note.notes,
+                notes: state => state.note.notes
             })
         },
         created () {
-        },
+        }
     }
 </script>
 

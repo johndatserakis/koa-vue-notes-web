@@ -36,12 +36,11 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapActions } from 'vuex'
-    import { setAuthorizationHeader} from '@/common/utilities'
+    import { mapState } from 'vuex'
 
     export default {
         name: 'account',
-        data() {
+        data () {
             return {
                 loading: false,
                 okToLoadMore: false,
@@ -49,12 +48,12 @@
                     sort: '',
                     order: 'desc',
                     page: 0,
-                    limit: 20,
+                    limit: 20
                 }
             }
         },
         methods: {
-            loadNotes() {
+            loadNotes () {
                 this.loading = true
                 this.$store.dispatch('note/getUsersNotes', this.query)
                 .then((response) => {
@@ -69,17 +68,21 @@
                     this.$toasted.error('There was an error connecting to the server.')
                 })
             },
+            editNote (note) {
+                let i = this.notes.map(note => note.id).indexOf(note.id)
+                this.$router.push({name: 'editNote', query: {id: this.notes[i].id}})
+            }
         },
         computed: {
             ...mapState({
                 user: state => state.user.user,
-                notes: state => state.note.notes,
+                notes: state => state.note.notes
             })
         },
         created () {
             this.loadNotes()
         },
-        destroyed() {
+        destroyed () {
         }
     }
 </script>

@@ -7,10 +7,10 @@ import user from '@/store/user'
 import note from '@/store/note'
 
 const store = new Vuex.Store({
-  modules: {
-    user: user,
-    note: note
-  }
+    modules: {
+        user: user,
+        note: note
+    }
 })
 
 export default store

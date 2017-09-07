@@ -2,7 +2,7 @@
     <div class="navbar-section">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-dark">
-                <router-link class="navbar-brand" :to="{name: 'home'}" exact data-target=".show" data-toggle="collapse">Koa-Vue-Notes</router-link>
+                <router-link class="navbar-brand" :to="{name: 'home'}" exact data-target=".show" data-toggle="collapse"> <i class="fa fa-sticky-note fa-fw"></i> Koa-Vue-Notes</router-link>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -46,24 +46,24 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapActions } from 'vuex'
+    import { mapState } from 'vuex'
 
     export default {
         name: 'navbar',
         methods: {
-            async logout() {
-                //As you can see, with Vuex we we need to fire logout methods
-                //for each of our modules.
+            async logout () {
+                // As you can see, with Vuex we we need to fire logout methods
+                // for each of our modules.
                 await this.$store.dispatch('user/userLogout')
                 await this.$store.dispatch('note/userLogout')
                 this.$router.push({name: 'home'})
 
-                //After logging the user out we need to refresh the page
-                //this is because some of our components initialize on their
-                //created methods - and when a user logs out they need to be
-                //fully cleared.
+                // After logging the user out we need to refresh the page
+                // this is because some of our components initialize on their
+                // created methods - and when a user logs out they need to be
+                // fully cleared.
                 // location.reload()
-                document.location.href = '/';
+                document.location.href = '/'
             }
         },
         computed: {
@@ -75,4 +75,7 @@
 </script>
 
 <style lang="scss" scoped>
+    .fa-sticky-note {
+        color: yellow;
+    }
 </style>
