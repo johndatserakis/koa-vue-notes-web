@@ -1,8 +1,7 @@
 <template>
     <section class="main-content">
         <div class="container-fluid">
-            <div class="row">
-
+            <div class="row" v-if="note !== null && Object.keys(this.note).length !== 0">
                 <div class="col-md-3">
                     <sidebar v-bind:items="[
                         {name: 'Back', type: 'back', icon: 'fa fa-long-arrow-left fa-fw'},
@@ -32,7 +31,12 @@
                         <button v-on:click="saveNote()" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Save</button>
                     </div>
                 </div>
+            </div>
 
+            <div class="row" v-if="note !== null && Object.keys(this.note).length === 0">
+                <div class="col-md-12">
+                    <p><i class="fa fa-frown-o fa-fw"></i> Hmm, that note couldn't be found.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -63,13 +67,10 @@
                     this.$toasted.success('Saved.')
 
                     // Now that we've updated the note, let's update it in the notes array
-                    if (this.notes.length) {
-                        let i = this.notes.map(note => note.id).indexOf(this.note.id)
-                        this.$set(this.notes, i, this.note)
-                    }
+                    this.$store.dispatch('note/editNoteInStack', this.note)
                 })
                 .catch((error) => {
-                    this.$toasted.error('There was an error connecting to the server.')
+                    this.$toasted.error('Your note couldn\'t be saved. There was an error connecting to the server.')
                 })
             },
             confirmDeleteNote () {
@@ -88,7 +89,7 @@
                     this.$modal.hide('dialog')
                     this.$toasted.success('Deleted.')
                     this.$store.dispatch('note/deleteNoteFromStack', this.note)
-                    this.$router.go(-1)
+                    this.$router.push({name: 'account'})
                 })
                 .catch((error) => {
                     this.$toasted.error('There was an error connecting to the server.')
@@ -110,7 +111,6 @@
         beforeDestroy () {
             this.$router.app.$off('confirmDeleteNote')
         }
-
     }
 </script>
 

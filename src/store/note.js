@@ -8,6 +8,7 @@ import { setAuthorizationHeader } from '@/common/utilities'
 const ADD_NOTES = 'ADD_NOTES'
 const ADD_NOTE_TO_STACK = 'ADD_NOTE_TO_STACK'
 const DELETE_NOTE_FROM_STACK = 'DELETE_NOTE_FROM_STACK'
+const EDIT_NOTE_IN_STACK = 'EDIT_NOTE_IN_STACK'
 const LOGOUT_USER = 'LOGOUT_USER'
 
 const note = {
@@ -26,6 +27,12 @@ const note = {
             if (state.notes.length) {
                 let i = state.notes.map(note => note.id).indexOf(note.id)
                 state.notes.splice(i, 1)
+            }
+        },
+        EDIT_NOTE_IN_STACK (state, note) {
+            if (state.notes.length) {
+                let i = state.notes.map(note => note.id).indexOf(note.id)
+                Vue.set(state.notes, i, note)
             }
         },
         LOGOUT_USER (state) {
@@ -117,6 +124,12 @@ const note = {
         deleteNoteFromStack ({ dispatch, commit, getters, rootGetters }, note) {
             return new Promise((resolve, reject) => {
                 commit(DELETE_NOTE_FROM_STACK, note)
+                return resolve()
+            })
+        },
+        editNoteInStack ({ dispatch, commit, getters, rootGetters }, note) {
+            return new Promise((resolve, reject) => {
+                commit(EDIT_NOTE_IN_STACK, note)
                 return resolve()
             })
         }
