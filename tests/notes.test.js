@@ -22,6 +22,11 @@ describe('Note testing', () => {
     })
 
     it('CreateNote.vue test', () => {
+        //Stubbing out sidebar component
+        Vue.config.ignoredElements = [
+            'sidebar'
+        ];
+
         const wrapper = shallow(CreateNote, { store })
 
         //Check that the proper object is preset
