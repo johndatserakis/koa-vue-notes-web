@@ -46,65 +46,42 @@ const note = {
     },
     actions: {
         // API Calls
-        getUsersNotes ({ dispatch, commit, getters, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
-                setAuthorizationHeader(rootGetters['user/accessToken'])
-                axios.get('/api/v1/notes', {params: {sort: data.sort, order: data.order, page: data.page, limit: data.limit}})
-                .then(response => {
-                    commit(ADD_NOTES, response.data)
-                    resolve(response.data)
-                })
-                .catch(error => {
-                    reject(error)
-                })
-            })
+        async getUsersNotes ({ dispatch, commit, getters, rootGetters }, data) {
+            // Why not create an API module in which you import store + axios and export axios with headers set? No need to set headers then.
+            setAuthorizationHeader(rootGetters['user/accessToken'])
+            // axios already returns a promise, no need to wrap it
+            // Also, I really like async/await
+            const { sort, order, page, limit } = data
+            const response = await axios.get('/api/v1/notes', {params: { sort, order, page, limit }})
+            commit(ADD_NOTES, response.data)
+            return response.data
         },
         getNote ({ dispatch, commit, getters, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
-                setAuthorizationHeader(rootGetters['user/accessToken'])
-                axios.get('/api/v1/notes/' + data)
-                .then(response => {
-                    resolve(response.data)
-                })
-                .catch(error => {
-                    reject(error)
-                })
+            setAuthorizationHeader(rootGetters['user/accessToken'])
+            return axios.get('/api/v1/notes/' + data)
+            .then(response => {
+                resolve(response.data)
             })
         },
         createNote ({ dispatch, commit, getters, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
-                setAuthorizationHeader(rootGetters['user/accessToken'])
-                axios.post('/api/v1/notes/', {title: data.title, content: data.content})
-                .then(response => {
-                    resolve(response)
-                })
-                .catch(error => {
-                    reject(error)
-                })
+            setAuthorizationHeader(rootGetters['user/accessToken'])
+            return axios.post('/api/v1/notes/', {title: data.title, content: data.content})
+            .then(response => {
+                resolve(response)
             })
         },
         saveNote ({ dispatch, commit, getters, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
-                setAuthorizationHeader(rootGetters['user/accessToken'])
-                axios.put('/api/v1/notes/' + data.id, {title: data.title, content: data.content})
-                .then(response => {
-                    resolve(response)
-                })
-                .catch(error => {
-                    reject(error)
-                })
+            setAuthorizationHeader(rootGetters['user/accessToken'])
+            return axios.put('/api/v1/notes/' + data.id, {title: data.title, content: data.content})
+            .then(response => {
+                resolve(response)
             })
         },
         deleteNote ({ dispatch, commit, getters, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
-                setAuthorizationHeader(rootGetters['user/accessToken'])
-                axios.delete('/api/v1/notes/' + data.id)
-                .then(response => {
-                    resolve(response)
-                })
-                .catch(error => {
-                    reject(error)
-                })
+            setAuthorizationHeader(rootGetters['user/accessToken'])
+            return axios.delete('/api/v1/notes/' + data.id)
+            .then(response => {
+                resolve(response)
             })
         },
 
