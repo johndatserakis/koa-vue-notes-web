@@ -86,11 +86,11 @@
                 if (this.$v.$invalid) { this.$v.$touch(); return }
 
                 this.pending = true
-
+                const { password, passwordResetToken, email } = this.credentials
                 const credentials = {
-                    password: this.credentials.password,
-                    passwordResetToken: this.credentials.passwordResetToken,
-                    email: this.credentials.email
+                    password,
+                    passwordResetToken,
+                    email
                 }
 
                 this.$store.dispatch('user/userReset', credentials)
