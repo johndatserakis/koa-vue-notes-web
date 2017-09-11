@@ -17,14 +17,14 @@
                     <div class="note-block">
                         <div v-for="note in notes" :key="note.id" class="row">
                             <div class="col-12">
-                                <div class="note-block__note" v-on:click="editNote(note)">
+                                <div class="note-block__note" :click="editNote(note)">
                                     <h3><strong>{{note.title}}</strong></h3>
                                     <p>{{note.content}} <span class="pull-right"><i class="fa fa-long-arrow-right"></i></span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button v-if="okToLoadMore" v-on:click="loadNotes()" class="btn btn-primary"><i class="fa fa-chevron-down fa-fw"></i>
+                    <button v-if="okToLoadMore" :click="loadNotes()" class="btn btn-primary"><i class="fa fa-chevron-down fa-fw"></i>
                         Load More
                     </button>
 
@@ -53,10 +53,10 @@
             }
         },
         methods: {
-            loadNotes () {
+            async loadNotes () {
                 this.loading = true
-                this.$store.dispatch('note/getUsersNotes', this.query)
-                .then((response) => {
+                try { 
+                    const response = await this.$store.dispatch('note/getUsersNotes', this.query)
                     this.loading = false
                     if (response.length === this.query.limit) {
                         this.okToLoadMore = true
@@ -64,9 +64,9 @@
                     } else {
                         this.okToLoadMore = false
                     }
-                }).catch((error) => {
+                } catch(err) {
                     this.$toasted.error('There was an error connecting to the server.')
-                })
+                }
             },
             editNote (note) {
                 let i = this.notes.map(note => note.id).indexOf(note.id)
