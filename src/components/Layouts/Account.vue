@@ -12,7 +12,7 @@
 
                 <!-- This is where the main content goes when using the sidebar. -->
                 <div class="col-md-9">
-                    <div v-if="!notes.length">Hmm, you don't have any notes.</div>
+                    <div v-if="!notes.length && completedFirstPass">Hmm, you don't have any notes.</div>
 
                     <div class="note-block">
                         <div v-for="note in notes" :key="note.id" class="row">
@@ -42,6 +42,7 @@
         name: 'account',
         data () {
             return {
+                completedFirstPass: false,
                 okToLoadMore: false,
                 query: {
                     sort: '',
@@ -63,6 +64,8 @@
                     }
                 } catch (error) {
                     this.$toasted.error('There was an error connecting to the server.')
+                } finally {
+                    if (this.completedFirstPass === false) { this.completedFirstPass = true }
                 }
             },
             editNote (note) {

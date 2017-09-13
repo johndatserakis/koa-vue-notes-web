@@ -51,7 +51,7 @@ const note = {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
                 const response = await axios.get('/api/v1/notes', {params: {sort: data.sort, order: data.order, page: data.page, limit: data.limit}})
                 commit(ADD_NOTES, response.data)
-                return response
+                return response.data
             } catch (error) {
                 throw new Error(error)
             }
