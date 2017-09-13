@@ -14,6 +14,7 @@ This is a simple SPA built using [Koa](http://koajs.com/) (2.3) as the backend a
 - Vue 2.4 (Initialized by Vue-CLI with Webpack)
 - Vue-Router
 - Vuex
+- Fully written using async/await
 - Bootstrap 4 Beta
 - SASS
 - Vuelidate validation library
@@ -107,7 +108,7 @@ Our main entrance to our JavaScript code - all the main modules like our Vuex st
 
 ### Todo
 
-- Use async/await on entire frontend
+- ~~Use async/await on entire frontend~~
 - Continue to add tests
 
 ## Testing

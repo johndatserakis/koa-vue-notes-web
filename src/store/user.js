@@ -44,6 +44,7 @@ axios.interceptors.response.use((response) => {
 
             router.replace({name: 'login'})
             Vue.toasted.error('To verify your session, please login.')
+            return Promise.reject(error)
         }
     }
     return Promise.reject(error)
