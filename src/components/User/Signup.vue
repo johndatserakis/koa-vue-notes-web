@@ -147,22 +147,23 @@
             }
         },
         methods: {
-            submit () {
+            async submit () {
                 if (this.$v.$invalid) { this.$v.$touch(); return }
 
                 this.pending = true
 
+                const { firstName, lastName, username, email, password, passwordConfirm } = this.credentials
                 const credentials = {
-                    firstName: this.credentials.firstName,
-                    lastName: this.credentials.lastName,
-                    username: this.credentials.username,
-                    email: this.credentials.email,
-                    password: this.credentials.password,
-                    passwordConfirm: this.credentials.passwordConfirm
+                    firstName,
+                    lastName,
+                    username,
+                    email,
+                    password,
+                    passwordConfirm
                 }
 
-                this.$store.dispatch('user/userSignup', credentials)
-                .then(() => {
+                try {
+                    await this.$store.dispatch('user/userSignup', credentials)
                     this.$toasted.success('Successfully signed up. Please login.')
                     this.credentials.firstName = ''
                     this.credentials.lastName = ''
@@ -172,16 +173,12 @@
                     this.credentials.passwordConfirm = ''
                     this.$v.$reset()
                     this.$router.push({name: 'login'})
-                })
-                .catch(() => {
+                } catch (error) {
                     this.$toasted.error('Hmm, something you entered doesn\'t seem right.')
-                })
-                .then(() => {
+                } finally {
                     this.pending = false
-                })
+                }
             }
-        },
-        computed: {
         },
         validations: {
             credentials: {

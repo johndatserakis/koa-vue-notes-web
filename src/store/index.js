@@ -8,8 +8,8 @@ import note from '@/store/note'
 
 const store = new Vuex.Store({
     modules: {
-        user: user,
-        note: note
+        user,
+        note
     }
 })
 

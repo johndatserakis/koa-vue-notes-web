@@ -53,25 +53,24 @@
             }
         },
         methods: {
-            loadNote () {
-                this.$store.dispatch('note/getNote', this.$route.query.id)
-                .then((response) => {
+            async loadNote () {
+                try {
+                    const response = await this.$store.dispatch('note/getNote', this.$route.query.id)
                     this.note = response
-                }).catch((error) => {
+                } catch (error) {
                     this.$toasted.error('There was an error connecting to the server.')
-                })
+                }
             },
-            saveNote () {
-                this.$store.dispatch('note/saveNote', this.note)
-                .then((response) => {
+            async saveNote () {
+                try {
+                    await this.$store.dispatch('note/saveNote', this.note)
                     this.$toasted.success('Saved.')
 
                     // Now that we've updated the note, let's update it in the notes array
-                    this.$store.dispatch('note/editNoteInStack', this.note)
-                })
-                .catch((error) => {
+                    await this.$store.dispatch('note/editNoteInStack', this.note)
+                } catch (error) {
                     this.$toasted.error('Your note couldn\'t be saved. There was an error connecting to the server.')
-                })
+                }
             },
             confirmDeleteNote () {
                 this.$modal.show('dialog', {
@@ -83,17 +82,16 @@
                     ]
                 })
             },
-            deleteNote () {
-                this.$store.dispatch('note/deleteNote', this.note)
-                .then((response) => {
+            async deleteNote () {
+                try {
+                    await this.$store.dispatch('note/deleteNote', this.note)
+                    await this.$store.dispatch('note/deleteNoteFromStack', this.note)
                     this.$modal.hide('dialog')
                     this.$toasted.success('Deleted.')
-                    this.$store.dispatch('note/deleteNoteFromStack', this.note)
                     this.$router.push({name: 'account'})
-                })
-                .catch((error) => {
+                } catch (error) {
                     this.$toasted.error('There was an error connecting to the server.')
-                })
+                }
             }
         },
         computed: {

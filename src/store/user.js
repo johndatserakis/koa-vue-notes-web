@@ -26,29 +26,25 @@ axios.interceptors.response.use(function (response) {
     return Promise.reject(error)
 })
 
-// Axios interceptor that handles automatically refreshing tokens
 axios.interceptors.response.use((response) => {
     return response
-}, function (error) {
+}, async (error) => {
     let originalRequest = error.config
     if (error.response.status === 401 && error.response.data.message === 'TOKEN_EXPIRED' && !originalRequest._retry) {
         originalRequest._retry = true
-        return new Promise((resolve, reject) => {
-            store.dispatch('user/refreshUserTokens')
-            .then((response) => {
-                store.dispatch('user/setUserAndTokens', {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken})
-                .then((response) => {
-                    originalRequest.headers['Authorization'] = 'Bearer ' + store.getters['user/accessToken']
-                    return resolve(axios(originalRequest))
-                })
-            })
-            .catch((error) => {
-                store.dispatch('user/userLogout')
-                router.replace({name: 'login'})
-                Vue.toasted.error('To verify your session, please login.')
-                return reject()
-            })
-        })
+        try {
+            const response = await store.dispatch('user/refreshUserTokens')
+            await store.dispatch('user/setUserAndTokens', {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken})
+            originalRequest.headers['Authorization'] = 'Bearer ' + store.getters['user/accessToken']
+            return axios(originalRequest)
+        } catch (error) {
+            // All Vuex modules must logout here
+            await store.dispatch('user/userLogout')
+            await store.dispatch('user/userLogout')
+
+            router.replace({name: 'login'})
+            Vue.toasted.error('To verify your session, please login.')
+        }
     }
     return Promise.reject(error)
 })
@@ -97,100 +93,79 @@ const user = {
         }
     },
     actions: {
-        setUserAndTokens ({ dispatch, commit, getters, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
+        async setUserAndTokens ({ dispatch, commit, getters, rootGetters }, data) {
+            try {
                 let decoded = jwtDecode(data.accessToken)
                 commit(SET_USER, decoded.data)
                 commit(STORE_ACCESS_TOKEN, data.accessToken)
                 commit(STORE_REFRESH_TOKEN, data.refreshToken)
-                return resolve(true)
-            })
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        userLogin ({ dispatch, commit, getters, rootGetters }, credentials) {
-            return new Promise((resolve, reject) => {
-                axios.post('/api/v1/user/authenticate', {
+        async userLogin ({ dispatch, commit, getters, rootGetters }, credentials) {
+            try {
+                const response = await axios.post('/api/v1/user/authenticate', {
                     username: credentials.username,
                     password: credentials.password
                 })
-                .then(response => {
-                    dispatch('setUserAndTokens', {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken})
-                    return resolve()
-                })
-                .catch(error => {
-                    return reject()
-                })
-            })
+                return await dispatch('setUserAndTokens', {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken})
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        refreshUserTokens ({ dispatch, commit, getters, rootGetters }) {
-            return new Promise((resolve, reject) => {
+        async refreshUserTokens ({ dispatch, commit, getters, rootGetters }) {
+            try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                axios.post('/api/v1/user/refreshAccessToken', {
+                return await axios.post('/api/v1/user/refreshAccessToken', {
                     username: getters.user.username,
                     refreshToken: getters.refreshToken
                 })
-                .then(response => {
-                    return resolve(response)
-                })
-                .catch(error => {
-                    return reject(error)
-                })
-            })
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        userLogout ({ dispatch, commit, getters, rootGetters }) {
-            return new Promise((resolve, reject) => {
+        async userLogout ({ dispatch, commit, getters, rootGetters }) {
+            try {
                 commit(LOGOUT_USER)
-                return resolve()
-            })
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        userSignup ({ dispatch, commit, getters, rootGetters }, credentials) {
-            return new Promise((resolve, reject) => {
-                axios.post('/api/v1/user/signup', {
+        async userSignup ({ dispatch, commit, getters, rootGetters }, credentials) {
+            try {
+                return await axios.post('/api/v1/user/signup', {
                     firstName: credentials.firstName,
                     lastName: credentials.lastName,
                     username: credentials.username,
                     email: credentials.email,
                     password: credentials.password
                 })
-                .then(response => {
-                    return resolve()
-                })
-                .catch(error => {
-                    return reject()
-                })
-            })
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        userForgot ({ dispatch, commit, getters, rootGetters }, credentials) {
-            return new Promise((resolve, reject) => {
-                axios.post('/api/v1/user/forgot', {
+        async userForgot ({ dispatch, commit, getters, rootGetters }, credentials) {
+            try {
+                return await axios.post('/api/v1/user/forgot', {
                     email: credentials.email,
                     url: process.env.APP_URL + '/user/reset',
                     type: 'web'
                 })
-                .then(response => {
-                    resolve()
-                })
-                .catch(error => {
-                    // We really don't want to let spammers know
-                    // they've partially matched a user.
-                    resolve()
-                })
-            })
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        userReset ({ dispatch, commit, getters, rootGetters }, credentials) {
-            return new Promise((resolve, reject) => {
-                console.log('here')
-                axios.post('/api/v1/user/resetPassword', {
+        async userReset ({ dispatch, commit, getters, rootGetters }, credentials) {
+            try {
+                return await axios.post('/api/v1/user/resetPassword', {
                     password: credentials.password,
                     passwordResetToken: credentials.passwordResetToken,
                     email: credentials.email
                 })
-                .then(response => {
-                    return resolve()
-                })
-                .catch(error => {
-                    return reject()
-                })
-            })
+            } catch (error) {
+                throw new Error(error)
+            }
         }
     }
 }

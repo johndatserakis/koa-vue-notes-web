@@ -38,7 +38,6 @@
         name: 'editNote',
         data () {
             return {
-                loading: false,
                 note: {
                     title: '',
                     content: ''
@@ -46,29 +45,22 @@
             }
         },
         methods: {
-            createNote () {
+            async createNote () {
                 if (!this.note.title || !this.note.content) {
                     this.$toasted.error('Title and Content need to be filled out.')
                     return
                 }
 
-                this.$store.dispatch('note/createNote', this.note)
-                .then((response) => {
+                try {
+                    const responseCreate = await this.$store.dispatch('note/createNote', this.note)
+                    let insertId = responseCreate.data.id
+                    const responseResult = await this.$store.dispatch('note/getNote', insertId)
+                    await this.$store.dispatch('note/addNoteToStack', responseResult)
+                    this.$router.push({name: 'account'})
                     this.$toasted.success('Note created.')
-
-                    let insertId = response.data.id
-                    this.$store.dispatch('note/getNote', insertId)
-                    .then((response) => {
-                        this.$store.dispatch('note/addNoteToStack', response)
-                        this.$router.push({name: 'account'})
-                    })
-                    .catch((error) => {
-                        this.$toasted.error('There was an error connecting to the server.')
-                    })
-                })
-                .catch((error) => {
+                } catch (error) {
                     this.$toasted.error('There was an error connecting to the server.')
-                })
+                }
             }
         },
         computed: {

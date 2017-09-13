@@ -79,7 +79,7 @@
             }
         },
         methods: {
-            submit () {
+            async submit () {
                 if (this.$v.$invalid) { this.$v.$touch(); return }
 
                 this.pending = true
@@ -89,22 +89,18 @@
                     password: this.credentials.password
                 }
 
-                this.$store.dispatch('user/userLogin', credentials)
-                .then(() => {
+                try {
+                    await this.$store.dispatch('user/userLogin', credentials)
                     this.credentials.username = ''
                     this.credentials.password = ''
                     this.$v.$reset()
                     this.$router.push({name: 'account'})
-                })
-                .catch(() => {
+                } catch (error) {
                     this.$toasted.error('Hmm, those details don\'t seem right.')
-                })
-                .then(() => {
+                } finally {
                     this.pending = false
-                })
+                }
             }
-        },
-        computed: {
         },
         validations: {
             credentials: {

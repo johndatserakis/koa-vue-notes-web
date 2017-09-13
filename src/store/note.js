@@ -46,92 +46,78 @@ const note = {
     },
     actions: {
         // API Calls
-        getUsersNotes ({ dispatch, commit, getters, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
+        async getUsersNotes ({ dispatch, commit, getters, rootGetters }, data) {
+            try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                axios.get('/api/v1/notes', {params: {sort: data.sort, order: data.order, page: data.page, limit: data.limit}})
-                .then(response => {
-                    commit(ADD_NOTES, response.data)
-                    resolve(response.data)
-                })
-                .catch(error => {
-                    reject(error)
-                })
-            })
+                const response = await axios.get('/api/v1/notes', {params: {sort: data.sort, order: data.order, page: data.page, limit: data.limit}})
+                commit(ADD_NOTES, response.data)
+                return response
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        getNote ({ dispatch, commit, getters, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
+        async getNote ({ dispatch, commit, getters, rootGetters }, data) {
+            try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                axios.get('/api/v1/notes/' + data)
-                .then(response => {
-                    resolve(response.data)
-                })
-                .catch(error => {
-                    reject(error)
-                })
-            })
+                const response = await axios.get('/api/v1/notes/' + data)
+                return response.data
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        createNote ({ dispatch, commit, getters, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
+        async createNote ({ dispatch, commit, getters, rootGetters }, data) {
+            try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                axios.post('/api/v1/notes/', {title: data.title, content: data.content})
-                .then(response => {
-                    resolve(response)
-                })
-                .catch(error => {
-                    reject(error)
-                })
-            })
+                return await axios.post('/api/v1/notes/', {title: data.title, content: data.content})
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        saveNote ({ dispatch, commit, getters, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
+        async saveNote ({ dispatch, commit, getters, rootGetters }, data) {
+            try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                axios.put('/api/v1/notes/' + data.id, {title: data.title, content: data.content})
-                .then(response => {
-                    resolve(response)
-                })
-                .catch(error => {
-                    reject(error)
-                })
-            })
+                return await axios.put('/api/v1/notes/' + data.id, {title: data.title, content: data.content})
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        deleteNote ({ dispatch, commit, getters, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
+        async deleteNote ({ dispatch, commit, getters, rootGetters }, data) {
+            try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                axios.delete('/api/v1/notes/' + data.id)
-                .then(response => {
-                    resolve(response)
-                })
-                .catch(error => {
-                    reject(error)
-                })
-            })
+                return await axios.delete('/api/v1/notes/' + data.id)
+            } catch (error) {
+                throw new Error(error)
+            }
         },
 
         // Only Mutations
-        userLogout ({ dispatch, commit, getters, rootGetters }) {
-            return new Promise((resolve, reject) => {
+        async userLogout ({ dispatch, commit, getters, rootGetters }) {
+            try {
                 commit(LOGOUT_USER)
-                return resolve()
-            })
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        addNoteToStack ({ dispatch, commit, getters, rootGetters }, note) {
-            return new Promise((resolve, reject) => {
+        async addNoteToStack ({ dispatch, commit, getters, rootGetters }, note) {
+            try {
                 commit(ADD_NOTE_TO_STACK, note)
-                return resolve()
-            })
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        deleteNoteFromStack ({ dispatch, commit, getters, rootGetters }, note) {
-            return new Promise((resolve, reject) => {
+        async deleteNoteFromStack ({ dispatch, commit, getters, rootGetters }, note) {
+            try {
                 commit(DELETE_NOTE_FROM_STACK, note)
-                return resolve()
-            })
+            } catch (error) {
+                throw new Error(error)
+            }
         },
-        editNoteInStack ({ dispatch, commit, getters, rootGetters }, note) {
-            return new Promise((resolve, reject) => {
+        async editNoteInStack ({ dispatch, commit, getters, rootGetters }, note) {
+            try {
                 commit(EDIT_NOTE_IN_STACK, note)
-                return resolve()
-            })
+            } catch (error) {
+                throw new Error(error)
+            }
         }
     }
 }

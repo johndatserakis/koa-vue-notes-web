@@ -42,7 +42,6 @@
         name: 'account',
         data () {
             return {
-                loading: false,
                 okToLoadMore: false,
                 query: {
                     sort: '',
@@ -53,20 +52,18 @@
             }
         },
         methods: {
-            loadNotes () {
-                this.loading = true
-                this.$store.dispatch('note/getUsersNotes', this.query)
-                .then((response) => {
-                    this.loading = false
+            async loadNotes () {
+                try {
+                    const response = await this.$store.dispatch('note/getUsersNotes', this.query)
                     if (response.length === this.query.limit) {
                         this.okToLoadMore = true
                         this.query.page = this.query.page + 1
                     } else {
                         this.okToLoadMore = false
                     }
-                }).catch((error) => {
+                } catch (error) {
                     this.$toasted.error('There was an error connecting to the server.')
-                })
+                }
             },
             editNote (note) {
                 let i = this.notes.map(note => note.id).indexOf(note.id)

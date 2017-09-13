@@ -82,34 +82,31 @@
             }
         },
         methods: {
-            submit () {
+            async submit () {
                 if (this.$v.$invalid) { this.$v.$touch(); return }
 
                 this.pending = true
 
+                const { password, passwordResetToken, email } = this.credentials
                 const credentials = {
-                    password: this.credentials.password,
-                    passwordResetToken: this.credentials.passwordResetToken,
-                    email: this.credentials.email
+                    password,
+                    passwordResetToken,
+                    email
                 }
 
-                this.$store.dispatch('user/userReset', credentials)
-                .then(() => {
+                try {
+                    await this.$store.dispatch('user/userReset', credentials)
                     this.$toasted.success('Successfully reset password. Please login.')
                     this.credentials.password = ''
                     this.credentials.passwordConfirm = ''
                     this.$v.$reset()
                     this.$router.push({name: 'login'})
-                })
-                .catch(() => {
+                } catch (error) {
                     this.$toasted.error('Your reset link has expired or is incorrect. Please reset your password again.')
-                })
-                .then(() => {
+                } finally {
                     this.pending = false
-                })
+                }
             }
-        },
-        computed: {
         },
         validations: {
             credentials: {

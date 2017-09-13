@@ -63,7 +63,7 @@
             }
         },
         methods: {
-            submit () {
+            async submit () {
                 if (this.$v.$invalid) { this.$v.$touch(); return }
 
                 this.pending = true
@@ -72,22 +72,23 @@
                     email: this.credentials.email
                 }
 
-                this.$store.dispatch('user/userForgot', credentials)
-                .then(() => {
+                try {
+                    await this.$store.dispatch('user/userForgot', credentials)
                     this.$toasted.success('Please check your email.')
                     this.credentials.email = ''
                     this.$v.$reset()
                     this.$router.push({name: 'home'})
-                })
-                .catch(() => {
+                } catch (error) {
+                    // Do the same thing even if it fails - so we don't tip off
+                    // the hackers.
                     this.$toasted.success('Please check your email.')
-                })
-                .then(() => {
+                    this.credentials.email = ''
+                    this.$v.$reset()
+                    this.$router.push({name: 'home'})
+                } finally {
                     this.pending = false
-                })
+                }
             }
-        },
-        computed: {
         },
         validations: {
             credentials: {

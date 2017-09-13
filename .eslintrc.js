@@ -25,6 +25,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     //Set indent
     'indent': [2, 4],
-    'handle-callback-err': 0
+    'handle-callback-err': 0,
   }
 }
