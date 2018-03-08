@@ -1,6 +1,6 @@
 {
     "name": "koa-vue-notes-web",
-    "version": "1.1.8",
+    "version": "1.1.9",
     "description": "A SPA using Koa as the backend and Vue as the frontend.",
     "author": "John Datserakis <johndatserakis@gmail.com>",
     "private": true,
@@ -20,6 +20,7 @@
         "jest-vue": "^0.5.1",
         "jquery": "^3.1.1",
         "jwt-decode": "^2.2.0",
+        "popper.js": "^1.12.9",
         "vue": "2.4.2",
         "vue-js-modal": "^1.2.8",
         "vue-progressbar": "^0.7.2",
