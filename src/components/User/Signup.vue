@@ -129,83 +129,83 @@
 </template>
 
 <script>
-    import { required, minLength, sameAs, email } from 'vuelidate/lib/validators'
+import { required, minLength, sameAs, email } from 'vuelidate/lib/validators'
 
-    export default {
-        name: 'signup',
-        data () {
-            return {
-                credentials: {
-                    firstName: '',
-                    lastName: '',
-                    username: '',
-                    email: '',
-                    password: '',
-                    passwordConfirm: ''
-                },
-                pending: false
-            }
-        },
-        methods: {
-            async submit () {
-                if (this.$v.$invalid) { this.$v.$touch(); return }
-
-                this.pending = true
-
-                const { firstName, lastName, username, email, password, passwordConfirm } = this.credentials
-                const credentials = {
-                    firstName,
-                    lastName,
-                    username,
-                    email,
-                    password,
-                    passwordConfirm
-                }
-
-                try {
-                    await this.$store.dispatch('user/userSignup', credentials)
-                    this.$toasted.success('Successfully signed up. Please login.')
-                    this.credentials.firstName = ''
-                    this.credentials.lastName = ''
-                    this.credentials.username = ''
-                    this.credentials.email = ''
-                    this.credentials.password = ''
-                    this.credentials.passwordConfirm = ''
-                    this.$v.$reset()
-                    this.$router.push({name: 'login'})
-                } catch (error) {
-                    this.$toasted.error('Hmm, something you entered doesn\'t seem right.')
-                } finally {
-                    this.pending = false
-                }
-            }
-        },
-        validations: {
+export default {
+    name: 'signup',
+    data () {
+        return {
             credentials: {
-                firstName: {
-                    required
-                },
-                lastName: {
-                    required
-                },
-                username: {
-                    required,
-                    minLength: minLength(3)
-                },
-                email: {
-                    required,
-                    email
-                },
-                password: {
-                    required,
-                    minLength: minLength(8)
-                },
-                passwordConfirm: {
-                    sameAs: sameAs('password')
-                }
+                firstName: '',
+                lastName: '',
+                username: '',
+                email: '',
+                password: '',
+                passwordConfirm: ''
+            },
+            pending: false
+        }
+    },
+    methods: {
+        async submit () {
+            if (this.$v.$invalid) { this.$v.$touch(); return }
+
+            this.pending = true
+
+            const { firstName, lastName, username, email, password, passwordConfirm } = this.credentials
+            const credentials = {
+                firstName,
+                lastName,
+                username,
+                email,
+                password,
+                passwordConfirm
+            }
+
+            try {
+                await this.$store.dispatch('user/userSignup', credentials)
+                this.$toasted.success('Successfully signed up. Please login.')
+                this.credentials.firstName = ''
+                this.credentials.lastName = ''
+                this.credentials.username = ''
+                this.credentials.email = ''
+                this.credentials.password = ''
+                this.credentials.passwordConfirm = ''
+                this.$v.$reset()
+                this.$router.push({name: 'login'})
+            } catch (error) {
+                this.$toasted.error('Hmm, something you entered doesn\'t seem right.')
+            } finally {
+                this.pending = false
+            }
+        }
+    },
+    validations: {
+        credentials: {
+            firstName: {
+                required
+            },
+            lastName: {
+                required
+            },
+            username: {
+                required,
+                minLength: minLength(3)
+            },
+            email: {
+                required,
+                email
+            },
+            password: {
+                required,
+                minLength: minLength(8)
+            },
+            passwordConfirm: {
+                sameAs: sameAs('password')
             }
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>

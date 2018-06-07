@@ -3,25 +3,10 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
 
-@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
 @import 'components/bootstrap_addition.scss';
-@import 'components/pattern_backgrounds.scss';
-@import 'components/navigation.scss';
-@import 'components/modal.scss';
-@import 'components/recaptcha.scss';
-
 @import 'components/fonts.scss';
-@import 'components/entry.scss';
-@import 'components/footer.scss';
-@import 'components/buttons.scss';
-@import 'components/hr.scss';
-@import 'components/shadow.scss';
-@import 'components/animations.scss';
-@import 'components/panel.scss';
-@import 'components/back_to_top.scss';
 @import 'components/user.scss';
-@import 'components/module.scss';
-@import 'components/sidebar.scss';
 @import 'components/main.scss';
 @import 'components/program.scss';

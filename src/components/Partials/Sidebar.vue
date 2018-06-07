@@ -12,7 +12,7 @@
                 <div class="sidebar-items">
                     <div class="sidebar-items__sidebar-item sidebar-items__sidebar-item--header">MENU</div>
 
-                    <div v-for="item in items">
+                    <div v-for="item in items" :key="item.name">
 
                         <router-link v-if="item.type === 'link'" v-bind:key="item.name" :to="{name: item.to}" class="sidebar-items__sidebar-item"><i :class="item.icon"></i> {{item.name}}</router-link>
 
@@ -30,7 +30,7 @@
                 <div class="sidebar-items">
                     <div class="sidebar-items__sidebar-item sidebar-items__sidebar-item--header">MENU</div>
 
-                    <div v-for="item in items">
+                    <div v-for="item in items" :key="item.name">
 
                         <router-link v-if="item.type === 'link'" v-bind:key="item.name" :to="{name: item.to}" class="sidebar-items__sidebar-item"><i :class="item.icon"></i> {{item.name}}</router-link>
 
@@ -49,25 +49,59 @@
 </template>
 
 <script>
-    export default {
-        name: 'sidebar',
-        props: ['items'],
-        data: function () {
-            return {
-                menuIsVisible: false
-            }
-        },
-        methods: {
-            goBack () {
-                this.$router.go(-1)
-            }
-        },
-        computed: {
-        },
-        mounted () {
+export default {
+    name: 'sidebar',
+    props: ['items'],
+    data: function () {
+        return {
+            menuIsVisible: false
         }
+    },
+    methods: {
+        goBack () {
+            this.$router.go(-1)
+        }
+    },
+    computed: {
+    },
+    mounted () {
     }
+}
 </script>
 
 <style lang="scss" scoped>
+    @import '~@/assets/css/app.scss';
+
+    .sidebar-items {
+        margin-bottom: 40px;
+        overflow: hidden;
+
+        &__sidebar-item {
+            display: block;
+            padding: 8px 4px 8px 10px;
+            border: 1px solid $grey;
+            border-top: 0;
+            background: $white;
+            transition: all ease 0.2s;
+            color: $black;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            &:hover:not(&--header) {
+                background: $light-grey;
+                text-decoration: none;
+                color: $black;
+            }
+
+            &--header {
+                border: 0;
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+                background: $blue;
+                color: darken($white, 6%);
+            }
+        }
+    }
+
 </style>

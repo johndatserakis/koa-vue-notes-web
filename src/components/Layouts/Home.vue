@@ -13,7 +13,7 @@
                     <p v-if="user"><i class="fa fa-user fa-fw"></i>  You: {{user}}</p>
                     <p v-else>Hmm, you are not logged in.</p>
 
-                    <p><i class="fa fa-info-circle fa-fw"></i> This is a simple SPA built using Koa (2.3) as the backend and Vue (2.4) as the frontend. If you don't want to create an account you can just use <strong>demousername</strong> and <strong>demopassword</strong> to login to the app.</p>
+                    <p><i class="fa fa-info-circle fa-fw"></i> This is a simple SPA built using Koa (2.5.1) as the backend and Vue (2.5.16) as the frontend. If you don't want to create an account you can just use <strong>demousername</strong> and <strong>demopassword</strong> to login to the app.</p>
 
                     <hr>
 
@@ -48,18 +48,18 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 
-    export default {
-        name: 'home',
-        computed: {
-            ...mapState({
-                user: state => state.user.user
-            })
-        },
-        mounted () {
-        }
+export default {
+    name: 'home',
+    computed: {
+        ...mapState({
+            user: state => state.user.user
+        })
+    },
+    mounted () {
     }
+}
 </script>
 
 <style lang="scss" scoped>

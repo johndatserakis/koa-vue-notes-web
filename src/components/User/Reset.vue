@@ -66,64 +66,64 @@
 </template>
 
 <script>
-    import { required, minLength, sameAs } from 'vuelidate/lib/validators'
+import { required, minLength, sameAs } from 'vuelidate/lib/validators'
 
-    export default {
-        name: 'reset',
-        data () {
-            return {
-                credentials: {
-                    password: '',
-                    passwordConfirm: '',
-                    passwordResetToken: '',
-                    email: ''
-                },
-                pending: false
-            }
-        },
-        methods: {
-            async submit () {
-                if (this.$v.$invalid) { this.$v.$touch(); return }
-
-                this.pending = true
-
-                const { password, passwordResetToken, email } = this.credentials
-                const credentials = {
-                    password,
-                    passwordResetToken,
-                    email
-                }
-
-                try {
-                    await this.$store.dispatch('user/userReset', credentials)
-                    this.$toasted.success('Successfully reset password. Please login.')
-                    this.credentials.password = ''
-                    this.credentials.passwordConfirm = ''
-                    this.$v.$reset()
-                    this.$router.push({name: 'login'})
-                } catch (error) {
-                    this.$toasted.error('Your reset link has expired or is incorrect. Please reset your password again.')
-                } finally {
-                    this.pending = false
-                }
-            }
-        },
-        validations: {
+export default {
+    name: 'reset',
+    data () {
+        return {
             credentials: {
-                password: {
-                    required,
-                    minLength: minLength(8)
-                },
-                passwordConfirm: {
-                    sameAs: sameAs('password')
-                }
-            }
-        },
-        mounted () {
-            this.credentials.passwordResetToken = this.$route.query.passwordResetToken
-            this.credentials.email = this.$route.query.email
+                password: '',
+                passwordConfirm: '',
+                passwordResetToken: '',
+                email: ''
+            },
+            pending: false
         }
+    },
+    methods: {
+        async submit () {
+            if (this.$v.$invalid) { this.$v.$touch(); return }
+
+            this.pending = true
+
+            const { password, passwordResetToken, email } = this.credentials
+            const credentials = {
+                password,
+                passwordResetToken,
+                email
+            }
+
+            try {
+                await this.$store.dispatch('user/userReset', credentials)
+                this.$toasted.success('Successfully reset password. Please login.')
+                this.credentials.password = ''
+                this.credentials.passwordConfirm = ''
+                this.$v.$reset()
+                this.$router.push({name: 'login'})
+            } catch (error) {
+                this.$toasted.error('Your reset link has expired or is incorrect. Please reset your password again.')
+            } finally {
+                this.pending = false
+            }
+        }
+    },
+    validations: {
+        credentials: {
+            password: {
+                required,
+                minLength: minLength(8)
+            },
+            passwordConfirm: {
+                sameAs: sameAs('password')
+            }
+        }
+    },
+    mounted () {
+        this.credentials.passwordResetToken = this.$route.query.passwordResetToken
+        this.credentials.email = this.$route.query.email
     }
+}
 </script>
 
 <style lang="scss" scoped>

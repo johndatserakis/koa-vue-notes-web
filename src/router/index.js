@@ -3,39 +3,84 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 // Main Route
-const Home = (resolve) => require(['@/components/Layouts/Home.vue'], resolve)
+import Home from '@/components/Layouts/Home.vue'
 
 // User Routes
-const Login = (resolve) => require(['@/components/User/Login.vue'], resolve)
-const Signup = (resolve) => require(['@/components/User/Signup.vue'], resolve)
-const Forgot = (resolve) => require(['@/components/User/Forgot.vue'], resolve)
-const Reset = (resolve) => require(['@/components/User/Reset.vue'], resolve)
+import Login from '@/components/User/Login.vue'
+import Signup from '@/components/User/Signup.vue'
+import Forgot from '@/components/User/Forgot.vue'
+import Reset from '@/components/User/Reset.vue'
 
 // Account
-const Account = (resolve) => require(['@/components/Layouts/Account.vue'], resolve)
-const CreateNote = (resolve) => require(['@/components/Layouts/CreateNote.vue'], resolve)
-const EditNote = (resolve) => require(['@/components/Layouts/EditNote.vue'], resolve)
+import Account from '@/components/Layouts/Account.vue'
+import CreateNote from '@/components/Layouts/CreateNote.vue'
+import EditNote from '@/components/Layouts/EditNote.vue'
 
 // Other
-const NotFound = (resolve) => require(['@/components/Layouts/NotFound.vue'], resolve)
+import NotFound from '@/components/Layouts/NotFound.vue'
 
 // Non route compoinent registering
-Vue.component('navbar', require('@/components/Partials/Navbar.vue'))
-Vue.component('footer-main', require('@/components/Partials/Footer.vue'))
-Vue.component('sidebar', require('@/components/Partials/Sidebar.vue'))
+Vue.component('navbar', require('@/components/Partials/Navbar.vue').default)
+Vue.component('footer-main', require('@/components/Partials/Footer.vue').default)
+Vue.component('sidebar', require('@/components/Partials/Sidebar.vue').default)
 
 const router = new Router({
     mode: 'history',
     routes: [
-    { path: '*', component: NotFound, name: 'notFound', meta: {title: 'Not Found'} },
-    { path: '/', component: Home, name: 'home', meta: {title: 'Home'} },
-    { path: '/user/login', component: Login, name: 'login', meta: {title: 'Login'} },
-    { path: '/user/signup', component: Signup, name: 'signup', meta: {title: 'Signup'} },
-    { path: '/user/forgot', component: Forgot, name: 'forgot', meta: {title: 'Forgot'} },
-    { path: '/user/reset', component: Reset, name: 'reset', meta: {title: 'Reset'} },
-    { path: '/account', component: Account, name: 'account', meta: {title: 'Account', requiresAuth: true} },
-    { path: '/createNote', component: CreateNote, name: 'createNote', meta: {title: 'Create Note', requiresAuth: true} },
-    { path: '/editNote', component: EditNote, name: 'editNote', meta: {title: 'Edit Note', requiresAuth: true} }
+        {
+            path: '*',
+            component: NotFound,
+            name: 'notFound',
+            meta: {title: 'Not Found'}
+        },
+        {
+            path: '/',
+            component: Home,
+            name: 'home',
+            meta: {title: 'Home'}
+        },
+        {
+            path: '/user/login',
+            component: Login,
+            name: 'login',
+            meta: {title: 'Login'}
+        },
+        {
+            path: '/user/signup',
+            component: Signup,
+            name: 'signup',
+            meta: {title: 'Signup'}
+        },
+        {
+            path: '/user/forgot',
+            component: Forgot,
+            name: 'forgot',
+            meta: {title: 'Forgot'}
+        },
+        {
+            path: '/user/reset',
+            component: Reset,
+            name: 'reset',
+            meta: {title: 'Reset'}
+        },
+        {
+            path: '/account',
+            component: Account,
+            name: 'account',
+            meta: {title: 'Account', requiresAuth: true}
+        },
+        {
+            path: '/createNote',
+            component: CreateNote,
+            name: 'createNote',
+            meta: {title: 'Create Note', requiresAuth: true}
+        },
+        {
+            path: '/editNote',
+            component: EditNote,
+            name: 'editNote',
+            meta: {title: 'Edit Note', requiresAuth: true}
+        }
     ],
     scrollBehavior (to, from, savedPosition) {
         if (savedPosition) {

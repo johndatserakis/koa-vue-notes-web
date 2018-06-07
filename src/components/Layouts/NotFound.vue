@@ -7,11 +7,11 @@
 </template>
 
 <script>
-    export default {
-        name: 'notFound',
-        mounted () {
-        }
+export default {
+    name: 'notFound',
+    mounted () {
     }
+}
 </script>
 
 <style lang="sass" scoped>

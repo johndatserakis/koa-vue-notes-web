@@ -1,111 +1,79 @@
 {
-    "name": "koa-vue-notes-web",
-    "version": "1.1.9",
-    "description": "A SPA using Koa as the backend and Vue as the frontend.",
-    "author": "John Datserakis <johndatserakis@gmail.com>",
-    "private": true,
-    "scripts": {
-        "watch": "node build/dev-server.js",
-        "build": "node build/build.js",
-        "lint": "eslint --ext .js,.vue src",
-        "lint-fix": "eslint --fix --ext .js,.vue src",
-        "test": "jest --no-cache"
+  "name": "koa-vue-notes-web",
+  "version": "2.0.0",
+  "description": "A SPA using Koa as the backend and Vue as the frontend.",
+  "author": "John Datserakis <johndatserakis@gmail.com>",
+  "private": true,
+  "scripts": {
+    "build": "vue-cli-service build",
+    "test": "vue-cli-service test:unit --verbose",
+    "lint": "vue-cli-service lint",
+    "watch": "vue-cli-service serve --open"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.1",
+    "es6-promise": "^4.2.2",
+    "jwt-decode": "^2.2.0",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "vue": "^2.5.16",
+    "vue-progressbar": "^0.7.2",
+    "vue-router": "^3.0.1",
+    "vue-toasted": "^1.1.24",
+    "vuelidate": "^0.6.2",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-beta.15",
+    "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
+    "@vue/cli-plugin-unit-jest": "^3.0.0-beta.15",
+    "@vue/cli-service": "^3.0.0-beta.15",
+    "@vue/test-utils": "^1.0.0-beta.15",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.0.4",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "vue-template-compiler": "^2.5.16",
+    "webpack-bundle-analyzer": "^2.11.1"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
     },
-    "dependencies": {
-        "axios": "^0.15.3",
-        "babel-jest": "^20.0.3",
-        "bootstrap": "^4.0.0-beta",
-        "es6-promise": "^4.1.1",
-        "jest": "^20.0.4",
-        "jest-vue": "^0.5.1",
-        "jquery": "^3.1.1",
-        "jwt-decode": "^2.2.0",
-        "popper.js": "^1.12.9",
-        "vue": "2.4.2",
-        "vue-js-modal": "^1.2.8",
-        "vue-progressbar": "^0.7.2",
-        "vue-router": "^2.3.1",
-        "vue-toasted": "^1.1.17",
-        "vuelidate": "^0.5.0",
-        "vuex": "^2.3.1"
-    },
-    "devDependencies": {
-        "autoprefixer": "^6.7.2",
-        "babel-core": "^6.26.0",
-        "babel-eslint": "^7.1.1",
-        "babel-loader": "^6.2.10",
-        "babel-preset-env": "^1.6.0",
-        "babel-preset-es2015": "^6.24.1",
-        "babel-preset-stage-2": "^6.22.0",
-        "babel-register": "^6.26.0",
-        "chalk": "^1.1.3",
-        "connect-history-api-fallback": "^1.3.0",
-        "copy-webpack-plugin": "^4.0.1",
-        "css-loader": "^0.28.5",
-        "eslint": "^3.19.0",
-        "eslint-config-standard": "^6.2.1",
-        "eslint-friendly-formatter": "^2.0.7",
-        "eslint-loader": "^1.7.1",
-        "eslint-plugin-html": "^2.0.0",
-        "eslint-plugin-promise": "^3.4.0",
-        "eslint-plugin-standard": "^2.0.1",
-        "eventsource-polyfill": "^0.9.6",
-        "express": "^4.14.1",
-        "extract-text-webpack-plugin": "^2.0.0",
-        "file-loader": "^0.11.1",
-        "friendly-errors-webpack-plugin": "^1.1.3",
-        "html-webpack-plugin": "^2.28.0",
-        "http-proxy-middleware": "^0.17.3",
-        "node-sass": "^4.5.3",
-        "opn": "^4.0.2",
-        "optimize-css-assets-webpack-plugin": "^1.3.0",
-        "ora": "^1.2.0",
-        "rimraf": "^2.6.0",
-        "sass-loader": "^6.0.6",
-        "semver": "^5.3.0",
-        "shelljs": "^0.7.6",
-        "url-loader": "^0.5.8",
-        "vue-loader": "^12.1.0",
-        "vue-style-loader": "^3.0.1",
-        "vue-template-compiler": "^2.3.3",
-        "vue-test-utils": "git+https://github.com/vuejs/vue-test-utils.git",
-        "webpack": "^2.6.1",
-        "webpack-bundle-analyzer": "^2.2.1",
-        "webpack-dev-middleware": "^1.10.0",
-        "webpack-hot-middleware": "^2.19.0",
-        "webpack-merge": "^4.1.0"
-    },
-    "engines": {
-        "node": ">= 4.0.0",
-        "npm": ">= 3.0.0"
-    },
-    "browserslist": [
-        "> 1%",
-        "last 2 versions",
-        "not ie <= 8"
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
     ],
-    "jest": {
-        "verbose": true,
-        "moduleFileExtensions": [
-            "js",
-            "vue"
-        ],
-        "transform": {
-            "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-            ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue"
-        },
-        "moduleNameMapper": {
-            "src/components/([^\\.]*)$": "<rootDir>/src/components/$1.vue",
-            "^vue$": "vue/dist/vue.common.js",
-            "src/([^\\.]*)$": "<rootDir>/src/$1.vue",
-            "^@[/](.+)": "<rootDir>/src/$1",
-            "(.*)/(.*)$": "$1/$2.vue"
-        },
-        "transformIgnorePatterns": [
-            "node_modules/(?!iggy-common)"
-        ],
-        "moduleDirectories": [
-            "node_modules"
-        ]
+    "rules": {
+      "indent": [
+        2,
+        4
+      ],
+      "no-unused-vars": [
+        "error",
+        {
+          "args": "none"
+        }
+      ],
+      "semi": [
+        2,
+        "never"
+      ],
+      "no-console": "off"
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
     }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

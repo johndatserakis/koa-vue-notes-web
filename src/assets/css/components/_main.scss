@@ -42,7 +42,11 @@
         font-weight: 400 !important;
     }
 
-
+    // router-link-exact
+    .router-link-exact-active {
+        font-weight: bold;
+        text-decoration: none;
+    }
 
 
 

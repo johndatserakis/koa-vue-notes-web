@@ -36,59 +36,58 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 
-    export default {
-        name: 'account',
-        data () {
-            return {
-                completedFirstPass: false,
-                okToLoadMore: false,
-                query: {
-                    sort: '',
-                    order: 'desc',
-                    page: 0,
-                    limit: 20
-                }
+export default {
+    name: 'account',
+    data () {
+        return {
+            completedFirstPass: false,
+            okToLoadMore: false,
+            query: {
+                sort: '',
+                order: 'desc',
+                page: 0,
+                limit: 20
             }
-        },
-        methods: {
-            async loadNotes () {
-                try {
-                    const response = await this.$store.dispatch('note/getUsersNotes', this.query)
-                    if (response.length === this.query.limit) {
-                        this.okToLoadMore = true
-                        this.query.page = this.query.page + 1
-                    } else {
-                        this.okToLoadMore = false
-                    }
-                } catch (error) {
-                    this.$toasted.error('There was an error connecting to the server.')
-                } finally {
-                    if (this.completedFirstPass === false) { this.completedFirstPass = true }
-                }
-            },
-            editNote (note) {
-                let i = this.notes.map(note => note.id).indexOf(note.id)
-                this.$router.push({name: 'editNote', query: {id: this.notes[i].id}})
-            }
-        },
-        computed: {
-            ...mapState({
-                user: state => state.user.user,
-                notes: state => state.note.notes
-            })
-        },
-        created () {
-            this.loadNotes()
-        },
-        destroyed () {
         }
+    },
+    methods: {
+        async loadNotes () {
+            try {
+                const response = await this.$store.dispatch('note/getUsersNotes', this.query)
+                if (response.length === this.query.limit) {
+                    this.okToLoadMore = true
+                    this.query.page = this.query.page + 1
+                } else {
+                    this.okToLoadMore = false
+                }
+            } catch (error) {
+                this.$toasted.error('There was an error connecting to the server.')
+            } finally {
+                if (this.completedFirstPass === false) { this.completedFirstPass = true }
+            }
+        },
+        editNote (note) {
+            let i = this.notes.map(note => note.id).indexOf(note.id)
+            this.$router.push({name: 'editNote', query: {id: this.notes[i].id}})
+        }
+    },
+    computed: {
+        ...mapState({
+            user: state => state.user.user,
+            notes: state => state.note.notes
+        })
+    },
+    created () {
+        this.loadNotes()
+    },
+    destroyed () {
     }
+}
 </script>
 
 <style lang="scss" scoped>
-
     @import '~@/assets/css/app.scss';
 
     .note-block {

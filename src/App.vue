@@ -10,15 +10,13 @@
 
         <div class="sticky-footer-spacing"></div>
         <footer-main></footer-main>
-
-        <v-dialog/>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'app'
-    }
+export default {
+    name: 'app'
+}
 </script>
 
 <style>

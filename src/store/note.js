@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
-import axios from 'axios'
-axios.defaults.baseURL = process.env.API_URL
+import axios from '@/common/axios'
 import { setAuthorizationHeader } from '@/common/utilities'
 
 const ADD_NOTES = 'ADD_NOTES'
@@ -49,7 +48,7 @@ const note = {
         async getUsersNotes ({ dispatch, commit, getters, rootGetters }, data) {
             try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                const response = await axios.get('/api/v1/notes', {params: {sort: data.sort, order: data.order, page: data.page, limit: data.limit}})
+                const response = await axios.get('notes', {params: {sort: data.sort, order: data.order, page: data.page, limit: data.limit}})
                 commit(ADD_NOTES, response.data)
                 return response.data
             } catch (error) {
@@ -59,7 +58,7 @@ const note = {
         async getNote ({ dispatch, commit, getters, rootGetters }, data) {
             try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                const response = await axios.get('/api/v1/notes/' + data)
+                const response = await axios.get('notes/' + data)
                 return response.data
             } catch (error) {
                 throw new Error(error)
@@ -68,7 +67,7 @@ const note = {
         async createNote ({ dispatch, commit, getters, rootGetters }, data) {
             try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                return await axios.post('/api/v1/notes/', {title: data.title, content: data.content})
+                return await axios.post('notes', {title: data.title, content: data.content})
             } catch (error) {
                 throw new Error(error)
             }
@@ -76,7 +75,7 @@ const note = {
         async saveNote ({ dispatch, commit, getters, rootGetters }, data) {
             try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                return await axios.put('/api/v1/notes/' + data.id, {title: data.title, content: data.content})
+                return await axios.put('notes/' + data.id, {title: data.title, content: data.content})
             } catch (error) {
                 throw new Error(error)
             }
@@ -84,7 +83,7 @@ const note = {
         async deleteNote ({ dispatch, commit, getters, rootGetters }, data) {
             try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                return await axios.delete('/api/v1/notes/' + data.id)
+                return await axios.delete('notes/' + data.id)
             } catch (error) {
                 throw new Error(error)
             }

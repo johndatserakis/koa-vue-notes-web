@@ -5,26 +5,7 @@ import jwtDecode from 'jwt-decode'
 import store from '@/store/index'
 import router from '@/router'
 import { setAuthorizationHeader } from '@/common/utilities'
-import axios from 'axios'
-axios.defaults.baseURL = process.env.API_URL
-
-// The following two interceptor blocks are strickly for
-// attaching the top-loading bar to all axios requests and
-// stoping the bar on all responses.
-axios.interceptors.request.use(function (config) {
-    router.app.$Progress.start()
-    return config
-}, function (error) {
-    router.app.$Progress.fail()
-    return Promise.reject(error)
-})
-axios.interceptors.response.use(function (response) {
-    router.app.$Progress.finish()
-    return response
-}, function (error) {
-    router.app.$Progress.fail()
-    return Promise.reject(error)
-})
+import axios from '@/common/axios'
 
 axios.interceptors.response.use((response) => {
     return response
@@ -106,7 +87,7 @@ const user = {
         },
         async userLogin ({ dispatch, commit, getters, rootGetters }, credentials) {
             try {
-                const response = await axios.post('/api/v1/user/authenticate', {
+                const response = await axios.post('user/authenticate', {
                     username: credentials.username,
                     password: credentials.password
                 })
@@ -118,7 +99,7 @@ const user = {
         async refreshUserTokens ({ dispatch, commit, getters, rootGetters }) {
             try {
                 setAuthorizationHeader(rootGetters['user/accessToken'])
-                return await axios.post('/api/v1/user/refreshAccessToken', {
+                return await axios.post('user/refreshAccessToken', {
                     username: getters.user.username,
                     refreshToken: getters.refreshToken
                 })
@@ -135,7 +116,7 @@ const user = {
         },
         async userSignup ({ dispatch, commit, getters, rootGetters }, credentials) {
             try {
-                return await axios.post('/api/v1/user/signup', {
+                return await axios.post('user/signup', {
                     firstName: credentials.firstName,
                     lastName: credentials.lastName,
                     username: credentials.username,
@@ -148,9 +129,9 @@ const user = {
         },
         async userForgot ({ dispatch, commit, getters, rootGetters }, credentials) {
             try {
-                return await axios.post('/api/v1/user/forgot', {
+                return await axios.post('user/forgot', {
                     email: credentials.email,
-                    url: process.env.APP_URL + '/user/reset',
+                    url: process.env.VUE_APP_URL + '/user/reset',
                     type: 'web'
                 })
             } catch (error) {
@@ -159,7 +140,7 @@ const user = {
         },
         async userReset ({ dispatch, commit, getters, rootGetters }, credentials) {
             try {
-                return await axios.post('/api/v1/user/resetPassword', {
+                return await axios.post('user/resetPassword', {
                     password: credentials.password,
                     passwordResetToken: credentials.passwordResetToken,
                     email: credentials.email

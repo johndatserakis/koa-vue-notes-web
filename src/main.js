@@ -2,13 +2,10 @@
 // https://github.com/johndatserakis/koa-vue-notes-api/issues/1
 import 'es6-promise/auto'
 
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
 
 import router from './router'
-
 import store from './store'
 
 import Vuelidate from 'vuelidate'
@@ -16,19 +13,16 @@ Vue.use(Vuelidate)
 
 import Toasted from 'vue-toasted'
 Vue.use(Toasted, {
-    theme: 'bubble',
-    position: 'top-right',
+    theme: 'primary',
+    position: 'top-center',
     duration: 2300
 })
-
-import VModal from 'vue-js-modal'
-Vue.use(VModal, { dialog: true })
 
 import VueProgressBar from 'vue-progressbar'
 Vue.use(VueProgressBar, {
     color: '#ADE027',
     failedColor: '#F43D41',
-    thickness: '5px',
+    thickness: '3px',
     transition: {
         speed: '0.2s',
         opacity: '0.6s',
@@ -39,26 +33,32 @@ Vue.use(VueProgressBar, {
     inverse: false
 })
 
-// Importing jQuery in ES6 style
-// We need to expose jQuery as global variable
-// ES6 import does not work it throws error: Missing jQuery
-// using Node.js style import works without problems
-// Also we're silencing the Popper Bootstrap error message
-import $ from 'jquery'
-window.jQuery = window.$ = $
-window.Popper = {}
-require('bootstrap')
+import axios from 'axios'
 
-/* App Styles */
-import './assets/css/app.scss'
+import './assets/css/app.scss' // app styles
 
-Vue.config.productionTip = false
+// The following two interceptor blocks are strictly for
+// attaching the top-loading bar to all axios requests and
+// stoping the bar on all responses.
+axios.interceptors.request.use(function (config) {
+    router.app.$Progress.start()
+    return config
+}, function (error) {
+    router.app.$Progress.fail()
+    return Promise.reject(error)
+})
+axios.interceptors.response.use(function (response) {
+    router.app.$Progress.finish()
+    return response
+}, function (error) {
+    router.app.$Progress.fail()
+    return Promise.reject(error)
+})
 
-/* eslint-disable no-new */
+Vue.config.productionTip = true
+
 new Vue({
-    el: '#app',
     store,
     router,
-    template: '<App/>',
-    components: { App }
-})
+    render: h => h(App)
+}).$mount('#app')

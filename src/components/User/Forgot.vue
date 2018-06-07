@@ -50,54 +50,54 @@
 </template>
 
 <script>
-    import { required } from 'vuelidate/lib/validators'
+import { required } from 'vuelidate/lib/validators'
 
-    export default {
-        name: 'forgot',
-        data () {
-            return {
-                credentials: {
-                    email: ''
-                },
-                pending: false
-            }
-        },
-        methods: {
-            async submit () {
-                if (this.$v.$invalid) { this.$v.$touch(); return }
-
-                this.pending = true
-
-                const credentials = {
-                    email: this.credentials.email
-                }
-
-                try {
-                    await this.$store.dispatch('user/userForgot', credentials)
-                    this.$toasted.success('Please check your email.')
-                    this.credentials.email = ''
-                    this.$v.$reset()
-                    this.$router.push({name: 'home'})
-                } catch (error) {
-                    // Do the same thing even if it fails - so we don't tip off
-                    // the hackers.
-                    this.$toasted.success('Please check your email.')
-                    this.credentials.email = ''
-                    this.$v.$reset()
-                    this.$router.push({name: 'home'})
-                } finally {
-                    this.pending = false
-                }
-            }
-        },
-        validations: {
+export default {
+    name: 'forgot',
+    data () {
+        return {
             credentials: {
-                email: {
-                    required
-                }
+                email: ''
+            },
+            pending: false
+        }
+    },
+    methods: {
+        async submit () {
+            if (this.$v.$invalid) { this.$v.$touch(); return }
+
+            this.pending = true
+
+            const credentials = {
+                email: this.credentials.email
+            }
+
+            try {
+                await this.$store.dispatch('user/userForgot', credentials)
+                this.$toasted.success('Please check your email.')
+                this.credentials.email = ''
+                this.$v.$reset()
+                this.$router.push({name: 'home'})
+            } catch (error) {
+                // Do the same thing even if it fails - so we don't tip off
+                // the hackers.
+                this.$toasted.success('Please check your email.')
+                this.credentials.email = ''
+                this.$v.$reset()
+                this.$router.push({name: 'home'})
+            } finally {
+                this.pending = false
+            }
+        }
+    },
+    validations: {
+        credentials: {
+            email: {
+                required
             }
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>

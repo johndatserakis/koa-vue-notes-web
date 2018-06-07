@@ -65,54 +65,54 @@
 </template>
 
 <script>
-    import { required } from 'vuelidate/lib/validators'
+import { required } from 'vuelidate/lib/validators'
 
-    export default {
-        name: 'login',
-        data () {
-            return {
-                credentials: {
-                    username: '',
-                    password: ''
-                },
-                pending: false
-            }
-        },
-        methods: {
-            async submit () {
-                if (this.$v.$invalid) { this.$v.$touch(); return }
-
-                this.pending = true
-
-                const credentials = {
-                    username: this.credentials.username,
-                    password: this.credentials.password
-                }
-
-                try {
-                    await this.$store.dispatch('user/userLogin', credentials)
-                    this.credentials.username = ''
-                    this.credentials.password = ''
-                    this.$v.$reset()
-                    this.$router.push({name: 'account'})
-                } catch (error) {
-                    this.$toasted.error('Hmm, those details don\'t seem right.')
-                } finally {
-                    this.pending = false
-                }
-            }
-        },
-        validations: {
+export default {
+    name: 'login',
+    data () {
+        return {
             credentials: {
-                username: {
-                    required
-                },
-                password: {
-                    required
-                }
+                username: '',
+                password: ''
+            },
+            pending: false
+        }
+    },
+    methods: {
+        async submit () {
+            if (this.$v.$invalid) { this.$v.$touch(); return }
+
+            this.pending = true
+
+            const credentials = {
+                username: this.credentials.username,
+                password: this.credentials.password
+            }
+
+            try {
+                await this.$store.dispatch('user/userLogin', credentials)
+                this.credentials.username = ''
+                this.credentials.password = ''
+                this.$v.$reset()
+                this.$router.push({name: 'account'})
+            } catch (error) {
+                this.$toasted.error('Hmm, those details don\'t seem right.')
+            } finally {
+                this.pending = false
+            }
+        }
+    },
+    validations: {
+        credentials: {
+            username: {
+                required
+            },
+            password: {
+                required
             }
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>
