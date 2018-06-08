@@ -7,27 +7,52 @@ import router from '@/router'
 import { setAuthorizationHeader } from '@/common/utilities'
 import axios from '@/common/axios'
 
-axios.interceptors.response.use((response) => {
-    return response
-}, async (error) => {
-    let originalRequest = error.config
-    if (error.response.status === 401 && error.response.data.message === 'TOKEN_EXPIRED' && !originalRequest._retry) {
-        originalRequest._retry = true
-        try {
-            const response = await store.dispatch('user/refreshUserTokens')
-            await store.dispatch('user/setUserAndTokens', {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken})
-            originalRequest.headers['Authorization'] = 'Bearer ' + store.getters['user/accessToken']
-            return axios(originalRequest)
-        } catch (error) {
-            // All Vuex modules must logout here
-            await store.dispatch('user/userLogout')
-            await store.dispatch('user/userLogout')
+// In the case of multiple api calls needing to be refreshed
+// https://github.com/axios/axios/issues/450#issuecomment-247446276
+let authTokenRequest
+async function getAuthToken () {
+    if (!authTokenRequest) {
+        authTokenRequest = store.dispatch('user/refreshUserTokens')
+        authTokenRequest.then(() => {
+            authTokenRequest = null
+        }).catch(() => {
+            authTokenRequest = null
+        })
+    }
+    return authTokenRequest
+}
 
-            router.replace({name: 'login'})
-            Vue.toasted.error('To verify your session, please login.')
+async function logoutOfProgram () {
+    // All Vuex modules must logout here
+    await store.dispatch('user/userLogout')
+    await store.dispatch('tournament/userLogout')
+    await store.dispatch('tournaments/userLogout')
+
+    router.replace({name: 'login'})
+}
+
+axios.interceptors.response.use(undefined, async (error) => {
+    if (error.response.status === 401 && error.response.data.message === 'TOKEN_EXPIRED' && !error.config.__isRetryRequest) {
+        try {
+            let response = await getAuthToken()
+            await store.dispatch('user/setUserAndTokens', {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken})
+            error.config.headers['Authorization'] = 'Bearer ' + store.getters['user/accessToken']
+            error.config.__isRetryRequest = true
+            return axios(error.config)
+        } catch (error) {
+            logoutOfProgram()
             return Promise.reject(error)
         }
     }
+
+    // This is for a user that isn't logged in correctly
+    if (error.response.status === 401 && error.response.data.message === 'AUTHENTICATION_ERROR') {
+        logoutOfProgram()
+        return Promise.reject(error)
+    }
+
+    // If someone gets here we don't want to log them out, because it's
+    // more of a general error
     return Promise.reject(error)
 })
 
