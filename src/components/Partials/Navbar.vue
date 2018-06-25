@@ -33,10 +33,10 @@
                             <a href="https://johndatserakis.github.io/koa-react-notes-web/" class="btn btn-white my-2 my-lg-0 mr-sm-2" target="_blank"><i class="fa fa-github fa-fw"></i> Visit the React Version!</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://github.com/johndatserakis/koa-vue-notes-web" class="btn btn-white my-2 my-lg-0 mr-sm-2" target="_blank"><i class="fa fa-github fa-fw"></i> Web Code on GitHub</a>
+                            <a href="https://github.com/johndatserakis/koa-vue-notes-web" class="btn btn-white my-2 my-lg-0 mr-sm-2" target="_blank"><i class="fa fa-github fa-fw"></i> Web Code</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://github.com/johndatserakis/koa-vue-notes-api" class="btn btn-white my-2 my-lg-0 mr-sm-2" target="_blank"><i class="fa fa-github fa-fw"></i> API Code on GitHub</a>
+                            <a href="https://github.com/johndatserakis/koa-vue-notes-api" class="btn btn-white my-2 my-lg-0 mr-sm-2" target="_blank"><i class="fa fa-github fa-fw"></i> API Code</a>
                         </li>
                         <li class="nav-item">
                             <a href="https://github.com/johndatserakis/" class="btn btn-white my-2 my-lg-0 mr-sm-2" target="_blank"><i class="fa fa-info-circle fa-fw"></i></a>
