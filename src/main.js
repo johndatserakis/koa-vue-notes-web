@@ -11,6 +11,10 @@ import store from './store'
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
 
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue)
+
 import Toasted from 'vue-toasted'
 Vue.use(Toasted, {
     theme: 'primary',

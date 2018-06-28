@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
+    "bootstrap-vue": "^2.0.0-rc.11",
     "es6-promise": "^4.2.2",
     "jwt-decode": "^2.2.0",
     "node-sass": "^4.7.2",
