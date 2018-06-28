@@ -97,6 +97,7 @@ export default {
     //when using a container
     .navbar-section {
         background-color: $blue;
+        margin-bottom: 20px;
 
         .container-nav {
             padding-left: 0;
