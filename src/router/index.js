@@ -22,7 +22,6 @@ import NotFound from '@/components/Layouts/NotFound.vue'
 // Non route compoinent registering
 Vue.component('navbar', require('@/components/Partials/Navbar.vue').default)
 Vue.component('footer-main', require('@/components/Partials/Footer.vue').default)
-Vue.component('sidebar', require('@/components/Partials/Sidebar.vue').default)
 
 const router = new Router({
     mode: 'history',

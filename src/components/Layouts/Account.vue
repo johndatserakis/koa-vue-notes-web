@@ -11,7 +11,7 @@
                     <div class="note-block">
                         <div v-for="note in notes" :key="note.id" class="row">
                             <div class="col-12">
-                                <div class="note-block__note" v-on:click="editNote(note)">
+                                <div class="note-block__note" @click="editNote(note)">
                                     <h3><strong>{{note.title}}</strong></h3>
                                     <p>{{note.content}}</p>
                                 </div>
@@ -19,7 +19,7 @@
                         </div>
                     </div>
 
-                    <button v-if="okToLoadMore" v-on:click="loadNotes()" class="btn btn-primary"><i class="fa fa-chevron-down fa-fw"></i>
+                    <button v-if="okToLoadMore" @click="loadNotes" class="btn btn-primary"><i class="fa fa-chevron-down fa-fw"></i>
                         Load More
                     </button>
                 </div>

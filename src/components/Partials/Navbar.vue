@@ -28,7 +28,7 @@
                         Account
                     </b-nav-item>
 
-                    <a href="javascript:void(0)" v-if="user" v-on:click="logout()" class="nav-link">Logout</a>
+                    <a href="javascript:void(0)" v-if="user" @click="logout" class="nav-link">Logout</a>
                 </b-navbar-nav>
 
                 <b-navbar-nav class="ml-auto">

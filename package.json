@@ -1,6 +1,6 @@
 {
   "name": "koa-vue-notes-web",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A SPA using Koa as the backend and Vue as the frontend.",
   "author": "John Datserakis <johndatserakis@gmail.com>",
   "private": true,
