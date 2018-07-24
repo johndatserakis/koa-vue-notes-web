@@ -1,17 +1,11 @@
 <template>
     <section class="main-content pb-5">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row justify-content-center">
 
-                <!-- Sidebar -->
-                <div class="col-md-3">
-                    <sidebar v-bind:items="[
-                        {name: 'Create Note', to: 'createNote', type: 'link', icon: 'fa fa-plus fa-fw'},
-                    ]"></sidebar>
-                </div>
-
-                <!-- This is where the main content goes when using the sidebar. -->
-                <div class="col-md-9">
+                <!-- This is where the main content goes. -->
+                <div class="col-md-6">
+                    <router-link :to="{name: 'createNote'}" class="btn btn-primary mb-3">Create Note</router-link>
                     <div v-if="!notes.length && completedFirstPass">Hmm, you don't have any notes.</div>
 
                     <div class="note-block">
@@ -19,15 +13,15 @@
                             <div class="col-12">
                                 <div class="note-block__note" v-on:click="editNote(note)">
                                     <h3><strong>{{note.title}}</strong></h3>
-                                    <p>{{note.content}} <span class="pull-right"><i class="fa fa-long-arrow-right"></i></span></p>
+                                    <p>{{note.content}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <button v-if="okToLoadMore" v-on:click="loadNotes()" class="btn btn-primary"><i class="fa fa-chevron-down fa-fw"></i>
                         Load More
                     </button>
-
                 </div>
 
             </div>

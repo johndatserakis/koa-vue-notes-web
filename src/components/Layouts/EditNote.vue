@@ -1,22 +1,10 @@
 <template>
     <section class="main-content">
         <div class="container-fluid">
-            <div class="row" v-if="note !== null && Object.keys(this.note).length !== 0">
-                <div class="col-md-3">
-                    <sidebar v-bind:items="[
-                        {name: 'Back', type: 'back', icon: 'fa fa-long-arrow-left fa-fw'},
-                        {name: 'Delete Note', functionName: 'confirmDeleteNote', type: 'function', icon: 'fa fa-trash fa-fw'},
-                    ]"></sidebar>
-                </div>
+            <div class="row justify-content-center" v-if="note !== null && Object.keys(this.note).length !== 0">
 
-                <div class="col-md-9">
-
-                    <h3 v-if="user">{{note.title}}</h3>
-                    <p v-if="user">{{note.content}}</p>
-
-                    <hr class="mt-4 mb-4">
-
-                    <h1>Edit</h1>
+                <div class="col-md-5">
+                    <h1>Edit Note</h1>
 
                     <div v-if="note">
                         <div class="form-group">
@@ -28,7 +16,8 @@
                             <label>Content</label>
                             <textarea class="form-control" v-model="note.content"></textarea>
                         </div>
-                        <button v-on:click="saveNote()" class="btn btn-primary"><i class="fa fa-save fa-fw"></i> Save</button>
+                        <button @click="saveNote" class="btn btn-primary btn-block mb-3"><i class="fa fa-save fa-fw"></i> Save</button>
+                        <button @click="deleteNote" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Delete Note</button>
                     </div>
                 </div>
             </div>
@@ -68,6 +57,9 @@ export default {
 
                 // Now that we've updated the note, let's update it in the notes array
                 await this.$store.dispatch('note/editNoteInStack', this.note)
+
+                // Let go back to the main screen
+                this.$router.push({name: 'account'})
             } catch (error) {
                 this.$toasted.error('Your note couldn\'t be saved. There was an error connecting to the server.')
             }
