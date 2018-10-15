@@ -1,0 +1,11 @@
+# Global build settings
+[build]
+   base    = ""        # run the build from this directory
+   publish = "dist/"      # the output diretory to push to the CDN after the build
+   command = "npm run build"  # the command to build our site
+
+# Redirects
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
