@@ -15,7 +15,7 @@
 
                     <p><i class="fa fa-info-circle fa-fw"></i> This is a simple SPA built using Koa (2.5.1) as the backend and Vue (2.5.16) as the frontend. If you don't want to create an account you can just use <strong>demousername</strong> and <strong>demopassword</strong> to login to the app.</p>
 
-                    <p>This site has a sister! Visit it here - <a href="https://johndatserakis.github.io/koa-react-notes-web/">https://johndatserakis.github.io/koa-react-notes-web/</a>. It's the exact same app - but written in React!</p>
+                    <p>This site has a sister! Visit it here - <a href="https://koa-react-notes-web.innermonkdesign.com">https://koa-react-notes-web.innermonkdesign.com</a>. It's the exact same app - but written in React!</p>
 
                     <hr>
 

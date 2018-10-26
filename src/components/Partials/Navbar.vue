@@ -33,7 +33,7 @@
 
                 <b-navbar-nav class="ml-auto">
                     <li class="nav-item">
-                        <a href="https://johndatserakis.github.io/koa-react-notes-web/" class="navbar-text mr-sm-3" target="_blank">Visit the React Version!</a>
+                        <a href="https://koa-react-notes-web.innermonkdesign.com" class="navbar-text mr-sm-3" target="_blank">Visit the React Version!</a>
                     </li>
                     <li class="nav-item">
                         <a href="https://github.com/johndatserakis/koa-vue-notes-web" class="navbar-text mr-sm-3" target="_blank">Web Code</a>
