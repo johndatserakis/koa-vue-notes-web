@@ -1,10 +1,16 @@
 # Global build settings
 [build]
-   base    = ""        # run the build from this directory
-   publish = "dist/"      # the output diretory to push to the CDN after the build
-   command = "npm run build"  # the command to build our site
+   base    = ""
+   publish = "dist/"
+   command = "sed -i s/API_URL_PLACEHOLDER/$API_URL/g netlify.toml && npm run build"
 
 # Redirects
+[[redirects]]
+  from = "/api/v1/*"
+  to = "API_URL_PLACEHOLDER/api/v1/:splat"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
