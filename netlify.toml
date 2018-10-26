@@ -7,7 +7,7 @@
 # Redirects
 [[redirects]]
   from = "/api/v1/*"
-  to = "$API_URL/api/v1/:splat"
+  to = "API_URL/api/v1/:splat"
   status = 200
   force = true
 
