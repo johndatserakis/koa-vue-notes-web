@@ -6,7 +6,6 @@ import store from '@/store/index'
 import router from '@/router'
 import { setAuthorizationHeader } from '@/common/utilities'
 import axios from '@/common/axios'
-import bareAxiosInstance from 'axios'
 
 // In the case of multiple api calls needing to be refreshed
 // https://github.com/axios/axios/issues/450#issuecomment-247446276
@@ -33,14 +32,16 @@ async function logoutOfProgram () {
 }
 
 axios.interceptors.response.use(undefined, async (error) => {
-    console.log(error.config)
     if (error.response.status === 401 && error.response.data.message === 'TOKEN_EXPIRED' && !error.config.__isRetryRequest) {
         try {
             let response = await getAuthToken()
             await store.dispatch('user/setUserAndTokens', {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken})
             error.config.headers['Authorization'] = 'Bearer ' + store.getters['user/accessToken']
             error.config.__isRetryRequest = true
-            return bareAxiosInstance(error.config)
+            // error.config.baseURL needs to be zeroed out to prevent tripping over
+            // the baseURL we set in our main axios instance
+            error.config.baseURL = ''
+            return axios(error.config)
         } catch (error) {
             logoutOfProgram()
             return Promise.reject(error)
