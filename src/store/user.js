@@ -6,6 +6,7 @@ import store from '@/store/index'
 import router from '@/router'
 import { setAuthorizationHeader } from '@/common/utilities'
 import axios from '@/common/axios'
+import bareAxiosInstance from 'axios'
 
 // In the case of multiple api calls needing to be refreshed
 // https://github.com/axios/axios/issues/450#issuecomment-247446276
@@ -38,7 +39,7 @@ axios.interceptors.response.use(undefined, async (error) => {
             await store.dispatch('user/setUserAndTokens', {accessToken: response.data.accessToken, refreshToken: response.data.refreshToken})
             error.config.headers['Authorization'] = 'Bearer ' + store.getters['user/accessToken']
             error.config.__isRetryRequest = true
-            return axios(error.config)
+            return bareAxiosInstance(error.config)
         } catch (error) {
             logoutOfProgram()
             return Promise.reject(error)
