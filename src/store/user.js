@@ -33,6 +33,7 @@ async function logoutOfProgram () {
 }
 
 axios.interceptors.response.use(undefined, async (error) => {
+    console.log(error.config)
     if (error.response.status === 401 && error.response.data.message === 'TOKEN_EXPIRED' && !error.config.__isRetryRequest) {
         try {
             let response = await getAuthToken()
