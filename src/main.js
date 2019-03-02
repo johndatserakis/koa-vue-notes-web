@@ -21,6 +21,7 @@ Vue.use(Toasted, {
     position: 'top-center',
     duration: 2300
 })
+import 'vue-toasted/dist/vue-toasted.min.css'
 
 import VueProgressBar from 'vue-progressbar'
 Vue.use(VueProgressBar, {

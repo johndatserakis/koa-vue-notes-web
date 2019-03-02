@@ -1,6 +1,6 @@
 {
   "name": "koa-vue-notes-web",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A SPA using Koa as the backend and Vue as the frontend.",
   "author": "John Datserakis <johndatserakis@gmail.com>",
   "private": true,
@@ -12,30 +12,35 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bootstrap": "^4.1.1",
-    "bootstrap-vue": "^2.0.0-rc.11",
-    "es6-promise": "^4.2.2",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.13",
+    "es6-promise": "^4.2.6",
     "jwt-decode": "^2.2.0",
-    "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6",
-    "vue": "^2.5.16",
-    "vue-progressbar": "^0.7.2",
-    "vue-router": "^3.0.1",
-    "vue-toasted": "^1.1.24",
-    "vuelidate": "^0.6.2",
-    "vuex": "^3.0.1"
+    "vue": "^2.6.8",
+    "vue-progressbar": "^0.7.5",
+    "vue-router": "^3.0.2",
+    "vue-toasted": "^1.1.26",
+    "vuelidate": "^0.7.4",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.15",
-    "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
-    "@vue/cli-plugin-unit-jest": "^3.0.0-beta.15",
-    "@vue/cli-service": "^3.0.0-beta.15",
-    "@vue/test-utils": "^1.0.0-beta.15",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^22.0.4",
+    "@vue/cli-plugin-babel": "^3.4.1",
+    "@vue/cli-plugin-eslint": "^3.4.1",
+    "@vue/cli-plugin-unit-jest": "^3.4.1",
+    "@vue/cli-service": "^3.4.1",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
-    "vue-template-compiler": "^2.5.16",
-    "webpack-bundle-analyzer": "^2.11.1"
+    "vue-template-compiler": "^2.6.8",
+    "webpack-bundle-analyzer": "^3.0.4"
+  },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
   },
   "eslintConfig": {
     "root": true,

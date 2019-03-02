@@ -6,30 +6,70 @@ $off-white: darken($white, 2%);
 $black: #222;
 
 $light-grey: #eee;
-$grey: darken($light-grey, 15%);
-$dark-grey: darken($grey, 15%);
+$grey: darken($light-grey, 10%);
+$dark-grey: darken($grey, 10%);
 
 //Main
 $blue: #408ADE;
-$dark-blue: darken($blue, 15%);
+$dark-blue: darken($blue, 10%);
+$light-blue: lighten($blue, 10%);
 
 $red: #E63A45;
-$dark-red: darken($red, 15%);
+$dark-red: darken($red, 10%);
+$light-red: lighten($red, 10%);
 
 $yellow: yellow;
-$dark-yellow: darken($yellow, 15%);
+$dark-yellow: darken($yellow, 10%);
+$light-yellow: lighten($yellow, 10%);
 
 $green: #45CB85;
-$dark-green: darken($green, 15%);
+$dark-green: darken($green, 10%);
+$light-green: lighten($green, 10%);
 
 $orange: orange;
-$dark-orange: darken($orange, 15%);
+$dark-orange: darken($orange, 10%);
+$light-orange: lighten($orange, 10%);
 
 $purple: purple;
-$dark-purple: darken($purple, 15%);
+$dark-purple: darken($purple, 10%);
+$light-purple: lighten($purple, 10%);
 
 //Color specs
 $font-color: $black;
 
 //Animations
 $transition: all 0.2s ease;
+
+//Overriding the theme and base colors
+$theme-colors: (
+    primary: $blue,
+    secondary: $grey,
+    success: $green,
+    info: $light-blue,
+    warning: $yellow,
+    danger: $red,
+    light: $white,
+    dark: $black
+);
+$colors: (
+    "blue":       $blue,
+    //"indigo":     $indigo,
+    "purple":     $purple,
+    //"pink":       $pink,
+    "red":        $red,
+    "orange":     $orange,
+    "yellow":     $yellow,
+    "green":      $green,
+    //"teal":       $teal,
+    //"cyan":       $cyan,
+    "white":      $white,
+    //"gray":       $gray-600,
+    //"gray-dark":  $gray-800
+);
+
+// Navbar colors
+$navbar-light-color: $font-color;
+$navbar-dark-color: $white;
+
+//Fonts
+$font-family-base: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif !default;

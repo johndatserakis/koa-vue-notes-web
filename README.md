@@ -8,12 +8,12 @@
 
 # Koa-Vue-Notes-Web
 
-This is a simple SPA built using [Koa](http://koajs.com/) (2.5.1) as the backend and [Vue](https://vuejs.org/) (2.5.16) as the frontend. Click [here](https://github.com/johndatserakis/koa-vue-notes-api) to see the backend Koa code. Click [here](https://koa-vue-notes-web.innermonkdesign.com/) to view the app live. Also, you can check out [koa-react-notes-web](https://koa-react-notes-web.innermonkdesign.com) for the React implementation of this exact project! You can also check out the [koa-vue-notes-project](https://github.com/johndatserakis/koa-vue-notes-project) repo if you like to have both your frontend and backend living within the same folder.
+This is a simple SPA built using [Koa](http://koajs.com/) (2.5.1) as the backend and [Vue](https://vuejs.org/) (2.6.8) as the frontend. Click [here](https://github.com/johndatserakis/koa-vue-notes-api) to see the backend Koa code. Click [here](https://koa-vue-notes-web.innermonkdesign.com/) to view the app live. Also, you can check out [koa-react-notes-web](https://koa-react-notes-web.innermonkdesign.com) for the React implementation of this exact project! You can also check out the [koa-vue-notes-project](https://github.com/johndatserakis/koa-vue-notes-project) repo if you like to have both your frontend and backend living within the same folder.
 
-## Note - Now fully updated to Vue 2.5.16 initialized with Vue-CLI 3!
+## Note - Now fully updated to Vue 2.6.8 initialized with Vue-CLI 3!
 
 ### Features
-- Vue 2.5.16 (Initialized by Vue-CLI 3 with Webpack)
+- Vue 2.6.8 (Initialized by Vue-CLI 3 with Webpack)
 - Vue-Router
 - Vuex
 - Fully written using async/await
