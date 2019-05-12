@@ -1,11 +1,11 @@
 {
   "name": "koa-vue-notes-web",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "A SPA using Koa as the backend and Vue as the frontend.",
   "author": "John Datserakis <johndatserakis@gmail.com>",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build",
+    "build": "npm run test && vue-cli-service build",
     "test": "vue-cli-service test:unit --verbose",
     "lint": "vue-cli-service lint",
     "watch": "vue-cli-service serve --open"
@@ -13,34 +13,30 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
-    "bootstrap-vue": "^2.0.0-rc.13",
+    "bootstrap-vue": "^2.0.0-rc.19",
+    "core-js": "^2.6.5",
     "es6-promise": "^4.2.6",
     "jwt-decode": "^2.2.0",
-    "vue": "^2.6.8",
+    "vue": "^2.6.10",
     "vue-progressbar": "^0.7.5",
-    "vue-router": "^3.0.2",
+    "vue-router": "^3.0.6",
     "vue-toasted": "^1.1.26",
     "vuelidate": "^0.7.4",
-    "vuex": "^3.1.0"
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.4.1",
-    "@vue/cli-plugin-eslint": "^3.4.1",
-    "@vue/cli-plugin-unit-jest": "^3.4.1",
-    "@vue/cli-service": "^3.4.1",
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-plugin-unit-jest": "^3.7.0",
+    "@vue/cli-service": "^3.7.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
-    "vue-template-compiler": "^2.6.8",
-    "webpack-bundle-analyzer": "^3.0.4"
-  },
-  "babel": {
-    "presets": [
-      "@vue/app"
-    ]
+    "vue-template-compiler": "^2.6.10",
+    "webpack-bundle-analyzer": "^3.3.2"
   },
   "eslintConfig": {
     "root": true,

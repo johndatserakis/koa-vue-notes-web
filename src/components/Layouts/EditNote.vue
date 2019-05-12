@@ -17,7 +17,7 @@
                             <textarea class="form-control" v-model="note.content"></textarea>
                         </div>
                         <button @click="saveNote" class="btn btn-primary btn-block mb-3"><i class="fa fa-save fa-fw"></i> Save</button>
-                        <button @click="$root.$emit('confirmDeleteNote')" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Delete Note</button>
+                        <button @click="confirmDeleteNote" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Delete Note</button>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
     name: 'editNote',
@@ -83,23 +83,17 @@ export default {
         }
     },
     computed: {
-        ...mapState({
-            user: state => state.user.user,
-            notes: state => state.note.notes
+        ...mapGetters({
+            user: 'user/user',
+            notes: 'note/notes',
         })
     },
     created () {
         this.loadNote()
-    },
-    mounted () {
-        this.$root.$on('confirmDeleteNote', () => { this.confirmDeleteNote() })
-    },
-    beforeDestroy () {
-        this.$root.$off('confirmDeleteNote')
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    @import '~@/assets/css/app.scss'
+    @import '~@/assets/css/components/_variables.scss';
 </style>

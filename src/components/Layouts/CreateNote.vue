@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
     name: 'editNote',
@@ -58,9 +58,9 @@ export default {
         }
     },
     computed: {
-        ...mapState({
-            user: state => state.user.user,
-            notes: state => state.note.notes
+        ...mapGetters({
+            user: 'user/user',
+            notes: 'note/notes',
         })
     },
     created () {
@@ -69,5 +69,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import '~@/assets/css/app.scss';
+    @import '~@/assets/css/components/_variables.scss';
 </style>

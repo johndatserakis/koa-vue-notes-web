@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p><a href="https://github.com/johndatserakis">Koa-Vue-Notes</a> is a SPA using Koa (2.3) as the <a href="https://github.com/johndatserakis/koa-vue-notes-api">backend</a> and Vue (2.6.8) as the <a href="https://github.com/johndatserakis/koa-vue-notes-api">frontend</a>.</p>
+                    <p><a href="https://github.com/johndatserakis">Koa-Vue-Notes</a> is a SPA using Koa (2.3) as the <a href="https://github.com/johndatserakis/koa-vue-notes-api">backend</a> and Vue (2.6.10) as the <a href="https://github.com/johndatserakis/koa-vue-notes-api">frontend</a>.</p>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import '~@/assets/css/app.scss';
+    @import '~@/assets/css/components/_variables.scss';
 
     //This is just a blank div that sits about footer-main. This is needed
     //because footer-main is absolutely positioned.
@@ -60,9 +60,6 @@ export default {
                 max-height: 60px;
                 margin-bottom: 15px;
             }
-        }
-
-        @include media-breakpoint-up(md) {
         }
     }
 

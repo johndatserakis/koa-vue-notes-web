@@ -50,13 +50,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
     name: 'home',
     computed: {
-        ...mapState({
-            user: state => state.user.user
+        ...mapGetters({
+            user: 'user/user'
         })
     },
     mounted () {

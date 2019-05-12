@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
     name: 'account',
@@ -68,21 +68,19 @@ export default {
         }
     },
     computed: {
-        ...mapState({
-            user: state => state.user.user,
-            notes: state => state.note.notes
+        ...mapGetters({
+            user: 'user/user',
+            notes: 'note/notes',
         })
     },
     created () {
         this.loadNotes()
-    },
-    destroyed () {
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    @import '~@/assets/css/app.scss';
+    @import '~@/assets/css/components/_variables.scss';
 
     .note-block {
         &__note {
