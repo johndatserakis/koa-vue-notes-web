@@ -13,6 +13,10 @@ localVue.use(VueRouter)
 localVue.use(Vuex)
 localVue.use(Vuelidate)
 
+const localVueForReset = createLocalVue()
+localVueForReset.use(Vuex)
+localVueForReset.use(Vuelidate)
+
 describe('User Action Testing', () => {
     let actions
     let state
@@ -26,7 +30,8 @@ describe('User Action Testing', () => {
         actions = {
             ['user/userLogin']: () => { return },
             ['user/userSignup']: () => { return },
-            ['user/userForgot']: () => { return }
+            ['user/userForgot']: () => { return },
+            ['user/userReset']: () => { return }
         }
 
         store = new Vuex.Store({
@@ -114,7 +119,51 @@ describe('User Action Testing', () => {
 
         expect(wrapper.find('#forgot-submit-button')).toBeTruthy()
     })
-})
 
-// We need to skip reset for now - see
-// https://github.com/vuejs/vue-test-utils/issues/323
+    // We need to skip reset for now - see
+    // https://github.com/vuejs/vue-test-utils/issues/323
+    // UPDATE - Workaround in place
+    it('Reset.vue test', () => {
+        const wrapper = shallowMount(Reset, {
+          store,
+          localVueForReset,
+          propsData: {},
+          stubs: ['router-link'],
+          mocks: {
+            $v: {
+              credentials: {
+                password: '',
+                passwordConfirm: '',
+                passwordResetToken: '',
+                email: ''
+              }
+            },
+            $route: {
+              name: 'reset',
+              query: {
+                passwordResetToken: '123123123123123123',
+                email: 'test@test.com'
+              }
+            }
+          }
+        })
+
+        expect(wrapper.vm.credentials.password).toBe('')
+        expect(wrapper.vm.credentials.passwordConfirm).toBe('')
+        expect(wrapper.vm.credentials.passwordResetToken).toBe('123123123123123123')
+        expect(wrapper.vm.credentials.email).toBe('test@test.com')
+
+        wrapper.vm.credentials.password = '123123123'
+        wrapper.vm.credentials.passwordConfirm = '123123123'
+        wrapper.vm.credentials.passwordResetToken = '123123123123123123'
+        wrapper.vm.credentials.email = 'test@test.com'
+
+        expect(wrapper).toBeTruthy()
+        expect(wrapper.vm.credentials.password).toBe('123123123')
+        expect(wrapper.vm.credentials.passwordConfirm).toBe('123123123')
+        expect(wrapper.vm.credentials.passwordResetToken).toBe('123123123123123123')
+        expect(wrapper.vm.credentials.email).toBe('test@test.com')
+
+        expect(wrapper.find('#reset-submit-button')).toBeTruthy()
+    })
+})
