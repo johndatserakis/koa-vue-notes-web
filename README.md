@@ -100,14 +100,6 @@ This is our main app component. Things like the `navbar`, `footer`, and `vue-pro
 
 Our main entrance to our JavaScript code - all the main modules like our Vuex store and router are loaded here. This is also where our main Vue instance is implemented.
 
-#### Todo
-
-- Continue to add tests
-
-### Testing
-
-Testing is done using the newly official [vue-test-utils](https://github.com/vuejs/vue-test-utils) library - it's very good - but in the early stages of development. Due to some of the issues that I'm currently experiencing with the library - there are only a few simple tests that make sure the Home and User Action components are loaded, can add data to inputs, and click their respective submit buttons. I'll be adding more involved tests in the future.
-
 ### Hit Me Up
 
 Go ahead and fork the project! Message me here if you have questions or submit an issue if needed. I'll be making touch-ups as time goes on. Have fun with this!
