@@ -1,7 +1,5 @@
-/* Bootstrap Override ------------------------------------------------------------------*/
-
 //For additional heading display
-$display5-weight:     300 !default;
+$display5-weight: 300 !default;
 $display5-size: 2.5rem !default;
 .display-5 {
   font-size: $display5-size;
@@ -19,7 +17,13 @@ $display5-size: 2.5rem !default;
 //changed the way to set the button text color of your choice. It's been changed
 //to automatically detect button text color by contrast - but it is actually getting in the way
 //https://github.com/twbs/bootstrap/blame/v4-dev/scss/mixins/_buttons.scss.
-@mixin button-variant-custom($color, $background, $border, $active-background: darken($background, 7.5%), $active-border: darken($border, 10%)) {
+@mixin button-variant-custom(
+  $color,
+  $background,
+  $border,
+  $active-background: darken($background, 7.5%),
+  $active-border: darken($border, 10%)
+) {
   color: $color;
   background-color: $background;
   border-color: $border;
@@ -35,9 +39,9 @@ $display5-size: 2.5rem !default;
   &.focus {
     // Avoid using mixin so we can pass custom focus shadow properly
     @if $enable-shadows {
-      box-shadow: $btn-box-shadow, 0 0 0 3px rgba($border, .5);
+      box-shadow: $btn-box-shadow, 0 0 0 3px rgba($border, 0.5);
     } @else {
-      box-shadow: 0 0 0 3px rgba($border, .5);
+      box-shadow: 0 0 0 3px rgba($border, 0.5);
     }
   }
 
@@ -95,9 +99,8 @@ $display5-size: 2.5rem !default;
 }
 
 .btn-outline-white:hover {
-    color: $font-color;
+  color: $font-color;
 }
-
 
 //Badges
 
@@ -117,25 +120,24 @@ $display5-size: 2.5rem !default;
   @include badge-variant($orange);
 }
 
-
 //Font size
 
 .large {
-    font-size: $font-size-lg;
-    font-weight: $font-weight-normal;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-normal;
 }
 
 .extra-large {
-    font-size: 1.4rem;
-    font-weight: $font-weight-normal;
+  font-size: 1.4rem;
+  font-weight: $font-weight-normal;
 }
 
 //Text
 
 .text-black {
-    color: $black !important;
+  color: $black !important;
 }
 
 .text-white {
-    color: $white !important;
+  color: $white !important;
 }

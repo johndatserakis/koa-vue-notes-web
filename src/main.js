@@ -1,69 +1,57 @@
-// Older browser support fix
-// https://github.com/johndatserakis/koa-vue-notes-api/issues/1
-import 'es6-promise/auto'
+// Mutation Observer
+// https://bootstrap-vue.js.org/docs#migrating-a-project-already-using-bootstrap
+import "mutationobserver-shim";
 
-import Vue from 'vue'
-import App from './App.vue'
+// Older browser fix github.com/johndatserakis/koa-vue-notes-api/issues/1
+import "es6-promise/auto";
 
-import router from './router'
-import store from './store'
+// Intersection Observer polyfill
+import "intersection-observer";
 
-import Vuelidate from 'vuelidate'
-Vue.use(Vuelidate)
+import Vue from "vue";
+import App from "./App.vue";
 
-import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-Vue.use(BootstrapVue)
+import router from "./router";
+import store from "./store";
 
-import Toasted from 'vue-toasted'
+import Vuelidate from "vuelidate";
+Vue.use(Vuelidate);
+
+import BootstrapVue from "bootstrap-vue";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+Vue.use(BootstrapVue);
+
+// Color issue
+// https://github.com/shakee93/vue-toasted/issues/112
+import Toasted from "vue-toasted";
 Vue.use(Toasted, {
-    theme: 'primary',
-    position: 'top-center',
-    duration: 2300
-})
-import 'vue-toasted/dist/vue-toasted.min.css'
+  theme: "toasted-primary",
+  position: "top-center",
+  duration: 2300
+});
+import "vue-toasted/dist/vue-toasted.min.css";
 
-import VueProgressBar from 'vue-progressbar'
+import VueProgressBar from "vue-progressbar";
 Vue.use(VueProgressBar, {
-    color: '#ADE027',
-    failedColor: '#F43D41',
-    thickness: '3px',
-    transition: {
-        speed: '0.2s',
-        opacity: '0.6s',
-        termination: 300
-    },
-    autoRevert: true,
-    location: 'top',
-    inverse: false
-})
+  color: "#ADE027",
+  failedColor: "#F43D41",
+  thickness: "3px",
+  transition: {
+    speed: "0.2s",
+    opacity: "0.6s",
+    termination: 300
+  },
+  autoRevert: true,
+  location: "top",
+  inverse: false
+});
 
-import axios from 'axios'
+import "./assets/css/app.scss"; // app styles
 
-import './assets/css/app.scss' // app styles
-
-// The following two interceptor blocks are strictly for
-// attaching the top-loading bar to all axios requests and
-// stoping the bar on all responses.
-axios.interceptors.request.use(function (config) {
-    router.app.$Progress.start()
-    return config
-}, function (error) {
-    router.app.$Progress.fail()
-    return Promise.reject(error)
-})
-axios.interceptors.response.use(function (response) {
-    router.app.$Progress.finish()
-    return response
-}, function (error) {
-    router.app.$Progress.fail()
-    return Promise.reject(error)
-})
-
-Vue.config.productionTip = true
+Vue.config.productionTip = true;
 
 new Vue({
-    store,
-    router,
-    render: h => h(App)
-}).$mount('#app')
+  store,
+  router,
+  render: h => h(App)
+}).$mount("#app");

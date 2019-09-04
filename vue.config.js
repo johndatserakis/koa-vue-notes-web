@@ -3,9 +3,12 @@
 // new BundleAnalyzerPlugin()
 
 module.exports = {
-    lintOnSave: 'error',
-    configureWebpack: {
-        plugins: []
-    },
-    productionSourceMap: false // turn off prod sourcemaps
-}
+  devServer: {
+    clientLogLevel: "info"
+  },
+  lintOnSave: "error",
+  configureWebpack: {
+    plugins: []
+  },
+  productionSourceMap: false // turn off prod sourcemaps
+};

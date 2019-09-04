@@ -4,17 +4,19 @@
 $white: #ffffff;
 $off-white: darken($white, 2%);
 $black: #222;
+$muted: rgba(15, 53, 86, 0.6);
+$light-muted: lighten($black, 35%);
 
 $light-grey: #eee;
 $grey: darken($light-grey, 10%);
 $dark-grey: darken($grey, 10%);
 
 //Main
-$blue: #408ADE;
+$blue: #408ade;
 $dark-blue: darken($blue, 10%);
 $light-blue: lighten($blue, 10%);
 
-$red: #E63A45;
+$red: #e63a45;
 $dark-red: darken($red, 10%);
 $light-red: lighten($red, 10%);
 
@@ -22,7 +24,7 @@ $yellow: yellow;
 $dark-yellow: darken($yellow, 10%);
 $light-yellow: lighten($yellow, 10%);
 
-$green: #45CB85;
+$green: #45cb85;
 $dark-green: darken($green, 10%);
 $light-green: lighten($green, 10%);
 
@@ -42,28 +44,28 @@ $transition: all 0.2s ease;
 
 //Overriding the theme and base colors
 $theme-colors: (
-    primary: $blue,
-    secondary: $grey,
-    success: $green,
-    info: $light-blue,
-    warning: $yellow,
-    danger: $red,
-    light: $white,
-    dark: $black
+  primary: $blue,
+  secondary: $grey,
+  success: $green,
+  info: $light-blue,
+  warning: $yellow,
+  danger: $red,
+  light: $white,
+  dark: $black
 );
 $colors: (
-    "blue":       $blue,
-    //"indigo":     $indigo,
-    "purple":     $purple,
-    //"pink":       $pink,
-    "red":        $red,
-    "orange":     $orange,
-    "yellow":     $yellow,
-    "green":      $green,
-    //"teal":       $teal,
+  "blue": $blue,
+  //"indigo":     $indigo,
+    "purple": $purple,
+  //"pink":       $pink,
+    "red": $red,
+  "orange": $orange,
+  "yellow": $yellow,
+  "green": $green,
+  //"teal":       $teal,
     //"cyan":       $cyan,
-    "white":      $white,
-    //"gray":       $gray-600,
+    "white": $white,
+  //"gray":       $gray-600,
     //"gray-dark":  $gray-800
 );
 

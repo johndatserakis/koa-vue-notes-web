@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axios from "axios";
 
-function setAuthorizationHeader (accessToken) {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken
-    return
+function setAuthorizationHeader(accessToken) {
+  axios.defaults.headers.common["Authorization"] = "Bearer " + accessToken;
+  return;
 }
 
-export { setAuthorizationHeader }
+export { setAuthorizationHeader };

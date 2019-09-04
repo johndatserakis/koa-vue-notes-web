@@ -1,42 +1,50 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils'
-import VueRouter from 'vue-router'
-import Vuex from 'vuex'
-import Home from '@/components/Layouts/Home'
+import { shallowMount, createLocalVue } from "@vue/test-utils";
+import VueRouter from "vue-router";
+import Vuex from "vuex";
+import Home from "@/components/Layouts/Home";
 
-const localVue = createLocalVue()
-localVue.use(VueRouter)
-localVue.use(Vuex)
+const localVue = createLocalVue();
+localVue.use(VueRouter);
+localVue.use(Vuex);
 
-describe('Home.vue', () => {
-    let actions
-    let state
-    let store
+describe("Home.vue", () => {
+  let actions;
+  let state;
+  let getters;
+  let store;
 
-    beforeEach(() => {
-        state = {
-            user: {}
+  beforeEach(() => {
+    state = {
+      user: {}
+    };
+
+    actions = {};
+
+    getters = {
+      ["user/user"]: () => {
+        return {};
+      }
+    };
+
+    store = new Vuex.Store({
+      modules: {
+        user: {
+          state,
+          actions,
+          getters
         }
+      }
+    });
+  });
 
-        actions = {}
+  it("Loads correctly", () => {
+    const wrapper = shallowMount(Home, {
+      store,
+      localVue,
+      propsData: {},
+      stubs: []
+    });
 
-        store = new Vuex.Store({
-            modules: {
-                user: {
-                    state,
-                    actions
-                }
-            }
-        })
-    })
-
-    it('Loads correctly', () => {
-        const wrapper = shallowMount(Home, {
-            store,
-            localVue,
-            propsData: {},
-            stubs: []
-        })
-
-        expect(wrapper).toBeTruthy()
-    })
-})
+    expect(wrapper).toBeTruthy();
+  });
+});

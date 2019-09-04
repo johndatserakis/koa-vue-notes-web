@@ -1,60 +1,45 @@
 html {
-    position: relative;
-    min-height: 100%;
+  position: relative;
+  min-height: 100%;
 }
 
 body {
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-    color: $font-color;
-    font-weight: 400;
-    background: $white;
-    font-family: $font-family-base;
-    margin-bottom: 100px; //tied to footer height
-
-    @include media-breakpoint-up(md) {
-    }
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  color: $font-color;
+  font-weight: 400;
+  background: $white;
+  font-family: $font-family-base;
+  margin-bottom: 100px; //tied to footer height
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 400;
-    color: $black;
-    text-transform: none;
-    font-family: $font-family-base;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  color: $black;
+  text-transform: none;
+  font-family: $font-family-base;
 }
 
-@media(max-width:992px) {
-    h1 {
-        font-size: 28px;
-    }
+@media (max-width: 992px) {
+  h1 {
+    font-size: 28px;
+  }
 
-    h2 {
-        font-size: 24px;
-    }
+  h2 {
+    font-size: 24px;
+  }
 
-    h3 {
-        font-size: 20px;
-    }
+  h3 {
+    font-size: 20px;
+  }
 }
 
-.label, label {
-    font-weight: 400 !important;
+.label,
+label {
+  font-weight: 400 !important;
 }
-
-// router-link-exact
-.router-link-exact-active {
-    font-weight: bold;
-    text-decoration: none;
-}
-
-
-
-
-
-
-
-
-
-
-
-
