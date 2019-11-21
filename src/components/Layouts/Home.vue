@@ -7,26 +7,20 @@
 
           <div class="callout-panel">
             <p>
-              Like the site? Then checkout
-              <strong>
-                <a
-                  href="https://www.rsvpkeeper.com/?ref=koa-vue-notes-web"
-                  class="px-1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >RSVP Keeper</a
-                >
-              </strong>
-              - my latest project.
+              Like the project? Then checkout my latest work - RSVP Keeper -
+              it's made using Vue!
             </p>
-            <p>
-              RSVP Keeper lets you easily accept RSVP's for your Wedding,
-              Shower, Bar Mitzvah, or any other upcoming event.
-            </p>
-            <p>
-              What's really cool is that RSVP Keeper is completly made with Vue
-              and is using a lot of the same exact code found in this project!
-            </p>
+            <a
+              href="https://www.rsvpkeeper.com/?ref=koa-vue-notes-web"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="@/assets/images/social.png"
+                alt="RSVP Keeper"
+                class="img-fluid"
+              />
+            </a>
           </div>
 
           <p>
@@ -182,22 +176,21 @@ export default {
 @import "~@/assets/css/components/_variables.scss";
 
 .callout-panel {
-  font-size: 1.2rem;
-  color: $white;
-  background: $blue;
-  border: 1px solid $grey;
-  padding: 20px;
-  width: 100%;
-  max-width: 600px;
-  border-radius: 6px;
-  margin-bottom: 30px;
-
   a {
-    color: $yellow;
+    display: inline-block;
   }
 
-  p:last-of-type {
-    margin-bottom: 0;
+  img {
+    max-height: 300px;
+    display: block;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px 0 rgba(17, 51, 83, 0.18);
+    transition: box-shadow 0.2s ease-in;
+    border-radius: 4px;
+
+    &:hover {
+      box-shadow: 0 3px 5px 0 rgba(17, 51, 83, 0.28);
+    }
   }
 }
 </style>
