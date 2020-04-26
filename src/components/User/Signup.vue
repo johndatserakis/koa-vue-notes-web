@@ -275,7 +275,9 @@ export default {
         this.$v.$reset();
         this.$router.push({ name: "login" });
       } catch (error) {
-        this.$toasted.error("Hmm, something you entered doesn't seem right.");
+        this.$toasted.error(
+          "Hmm, something you entered doesn't seem right. Please try a new username."
+        );
       } finally {
         this.pending = false;
       }

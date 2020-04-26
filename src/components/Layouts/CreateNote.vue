@@ -58,16 +58,14 @@ export default {
       }
 
       try {
-        const responseCreate = await this.$store.dispatch(
+        const response = await this.$store.dispatch(
           "note/createNote",
           this.note
         );
-        let insertId = responseCreate.data.id;
-        const responseResult = await this.$store.dispatch(
-          "note/getNote",
-          insertId
+        await this.$store.dispatch(
+          "note/addNoteToStack",
+          response.data.data.note
         );
-        await this.$store.dispatch("note/addNoteToStack", responseResult);
         this.$router.push({ name: "account" });
         this.$toasted.success("Note created.");
       } catch (error) {

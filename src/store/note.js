@@ -56,8 +56,8 @@ const note = {
             limit: data.limit
           }
         });
-        commit(ADD_NOTES, response.data);
-        return response.data;
+        commit(ADD_NOTES, response.data.data.notes);
+        return response.data.data.notes;
       } catch (error) {
         return Promise.reject(error.response ? error.response : error);
       }
@@ -66,7 +66,7 @@ const note = {
       try {
         setAuthorizationHeader(rootGetters["user/accessToken"]);
         const response = await axios.get("notes/" + data);
-        return response.data;
+        return response.data.data.note;
       } catch (error) {
         return Promise.reject(error.response ? error.response : error);
       }

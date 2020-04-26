@@ -38,14 +38,14 @@ async function logoutOfProgram() {
 axios.interceptors.response.use(undefined, async error => {
   if (
     error.response.status === 401 &&
-    error.response.data.message === "TOKEN_EXPIRED" &&
+    error.response.data.error.message === "TOKEN_EXPIRED" &&
     !error.config.__isRetryRequest
   ) {
     try {
       let response = await getAuthToken();
       await store.dispatch("user/setUserAndTokens", {
-        accessToken: response.data.accessToken,
-        refreshToken: response.data.refreshToken
+        accessToken: response.data.data.accessToken,
+        refreshToken: response.data.data.refreshToken
       });
       error.config.headers["Authorization"] =
         "Bearer " + store.getters["user/accessToken"];
@@ -63,7 +63,7 @@ axios.interceptors.response.use(undefined, async error => {
   // This is for a user that isn't logged in correctly
   if (
     error.response.status === 401 &&
-    error.response.data.message === "AUTHENTICATION_ERROR"
+    error.response.data.error.message === "AUTHENTICATION_ERROR"
   ) {
     logoutOfProgram();
     return Promise.reject(error);
@@ -135,8 +135,8 @@ const user = {
           password: credentials.password
         });
         return await dispatch("setUserAndTokens", {
-          accessToken: response.data.accessToken,
-          refreshToken: response.data.refreshToken
+          accessToken: response.data.data.accessToken,
+          refreshToken: response.data.data.refreshToken
         });
       } catch (error) {
         return Promise.reject(error.response ? error.response : error);
@@ -186,7 +186,7 @@ const user = {
     },
     async userReset(_, credentials) {
       try {
-        return await axios.post("user/resetPassword", {
+        return await axios.post("user/reset", {
           password: credentials.password,
           passwordResetToken: credentials.passwordResetToken,
           email: credentials.email
