@@ -5,24 +5,6 @@
         <div class="col-md-12">
           <h1 class="mb-4"><strong>Home</strong></h1>
 
-          <div class="callout-panel">
-            <p>
-              Like the project? Then checkout my latest work - RSVP Keeper -
-              it's made using Vue!
-            </p>
-            <a
-              href="https://www.rsvpkeeper.com/?ref=koa-vue-notes-web"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="@/assets/images/social.png"
-                alt="RSVP Keeper"
-                class="img-fluid"
-              />
-            </a>
-          </div>
-
           <p>
             Here will be a check to see if you are currently logged in and your
             user info.
