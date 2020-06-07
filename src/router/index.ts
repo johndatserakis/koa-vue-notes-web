@@ -1,39 +1,49 @@
-// import Vue from "vue";
-// import VueRouter, { RouteConfig } from "vue-router";
-// import Home from "../views/Home.vue";
-
-// Vue.use(VueRouter);
-
-// const router = new VueRouter({
-//   mode: "history",
-//   base: process.env.BASE_URL,
-//   routes
-// });
-
-// export default router;
-
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../components/layouts/pages/Home.vue";
-// import About from "../components/layouts/pages/About.vue";
+
+// Main
+// import NotFound from "@/components/Layouts/main/NotFound.vue";
+// import Maintenance from "@/components/layouts/main/Maintenance.vue"
+import Home from "@/components/layouts/pages/Home.vue";
+import About from "@/components/layouts/pages/About.vue";
+
+// User
+// import Login from "@/components/user/components/Login.vue";
+// import Signup from "@/components/user/components/Signup.vue";
+// import Forgot from "@/components/user/components/Forgot.vue";
+// import Reset from "@/components/user/components/Reset.vue";
+
+// Account
+// import Dashboard from "@/components/layouts/program/Dashboard.vue";
+// import CreateNote from "@/components/layouts/program/CreateNote.vue";
+// import EditNote from "@/components/layouts/program/EditNote.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: Home
-    // component: () => import("../components/layouts/pages/Home.vue")
+    component: Home,
+    meta: {
+      title: "Home | Koa-Vue-Notes",
+      description: "Home | Koa-Vue-Notes",
+      partialType: "full",
+    },
   },
   {
     path: "/about",
     name: "About",
-    component: () => import("../components/layouts/pages/About.vue")
-  }
+    component: About,
+    meta: {
+      title: "About | Koa-Vue-Notes",
+      description: "About | Koa-Vue-Notes",
+      partialType: "full",
+    },
+  },
 ];
 
 const routerHistory = createWebHistory();
 const router = createRouter({
   history: routerHistory,
-  routes
+  routes,
 });
 
 export default router;
