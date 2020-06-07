@@ -1,31 +1,23 @@
 <template>
-  <div id="app">
-    <vue-progress-bar></vue-progress-bar>
-
-    <navbar></navbar>
-
-    <keep-alive include="account">
-      <router-view></router-view>
-    </keep-alive>
-
-    <div class="sticky-footer-spacing"></div>
-    <footer-main></footer-main>
-  </div>
+  <div>Wow {{ msg }}</div>
+  <!-- <router-view></router-view> -->
 </template>
 
-<script>
-import Navbar from "@/components/Partials/Navbar";
-import FooterMain from "@/components/Partials/FooterMain";
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+export default defineComponent({
+  setup() {
+    const msg = ref(0);
 
-export default {
-  name: "app",
-  components: {
-    Navbar,
-    FooterMain
+    return {
+      msg
+    };
   }
-};
+});
 </script>
 
-<style>
-@import "https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css";
+<style lang="scss">
+body {
+  background: red;
+}
 </style>

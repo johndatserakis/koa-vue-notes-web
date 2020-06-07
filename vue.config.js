@@ -1,4 +1,4 @@
-// Turn this on to analyze your bundle
+// Turn this on and add to plugins to analyze your bundle
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // new BundleAnalyzerPlugin()
 

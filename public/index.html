@@ -1,89 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <meta name="robots" content="index,follow" />
-
-  <title>Online RSVP's made easy | Koa-Vue-Notes</title>
-  <meta data-vue-meta="1" vmid="description" name="description"
-    content="A simple SPA built using Koa (2.5.1) as the backend and Vue (2.5.16) as the frontend. Features MySQL integration, user authentication, CRUD note actions, and Vuex store modules." />
-  <meta name="keywords"
-    content="online, RSVP, RSVP's, wedding, rsvp, rsvps, event, shower, invitations, manage, rsvp keeper" />
-
-  <link rel="shortcut icon" href="<%= webpackConfig.output.publicPath %>favicon.ico" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="theme-color" content="#1384ff" />
-  <meta name="application-name" content="Koa-Vue-Notes">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Koa-Vue-Notes">
-  <meta name="application-name" content="Koa-Vue-Notes">
-  <link rel="apple-touch-icon-precomposed" href="https://koa-vue-notes-web.innermonkdesign.com/apple-touch-icon.png">
-  <link rel="icon" href="https://koa-vue-notes-web.innermonkdesign.com/apple-touch-icon.png">
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@johndatserakis" />
-  <meta name="twitter:creator" content="@johndatserakis" />
-  <meta name="twitter:title" content="Koa-Vue-Notes" />
-  <meta name="twitter:description"
-    content="A simple SPA built using Koa (2.5.1) as the backend and Vue (2.5.16) as the frontend." />
-  <meta name="twitter:image" content="https://koa-vue-notes-web.innermonkdesign.com/social.png" />
-  <meta name="twitter:image:alt" content="Koa-Vue-Notes Logo" />
-
-  <meta property="og:image" content="https://koa-vue-notes-web.innermonkdesign.com/social.png" />
-  <meta property="og:url" content="https://koa-vue-notes-web.innermonkdesign.com" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Koa-Vue-Notes" />
-  <meta property="og:description"
-    content="A simple SPA built using Koa (2.5.1) as the backend and Vue (2.5.16) as the frontend." />
-
-
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- For older browser support -->
-  <script src="//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
-    crossorigin="anonymous"></script>
-
-  <noscript>
-    <style type="text/css">
-      body {
-        background: #ffffff;
-        color: #333333;
-      }
-
-      .jsCheck {
-        display: none;
-      }
-
-      p {
-        padding: 20px 10px;
-        text-align: center;
-      }
-
-      img {
-        display: block;
-        max-height: 100px;
-        margin: 50px auto 0;
-      }
-    </style>
-    <div class="noscriptmsg">
-      <div>
-        <p>Sorry, but this website requires Javascript.</p>
-      </div>
-    </div>
-  </noscript>
-</head>
-
-<body>
-  <div id="app"></div>
-</body>
-
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
 </html>
