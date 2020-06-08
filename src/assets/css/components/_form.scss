@@ -1,0 +1,103 @@
+.input-wrapper {
+  margin-bottom: 20px;
+
+  &--no-margin-bottom {
+    margin-bottom: 0;
+  }
+
+  &--no-margin-bottom-desktop {
+    margin-bottom: 20px;
+
+    @media (min-width: 992px) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__label {
+    color: colors(black);
+    font-weight: 500;
+
+    &--white {
+      color: colors(white);
+    }
+  }
+
+  &__error-message {
+    color: colors(red);
+    margin-top: 10px;
+
+    &--white {
+      color: colors(white);
+    }
+  }
+}
+
+.form-control {
+  border: var(--border);
+
+  &:disabled,
+  &[readonly] {
+    background-color: color(gray-300);
+  }
+}
+
+input,
+select,
+textarea {
+  box-shadow: var(--inset-shadow);
+}
+
+input:not([type="radio"]):not([type="checkbox"]),
+select {
+  font-size: 16px;
+  height: auto;
+  line-height: normal;
+  padding: 18px 12px;
+}
+
+select,
+select.form-control {
+  height: 58px;
+}
+
+// select height needs to be auto for FF
+@-moz-document url-prefix("") {
+  select {
+    height: auto;
+  }
+}
+
+textarea {
+  min-height: 100px;
+  width: 100%;
+}
+
+input[type="radio"] {
+  box-shadow: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: colors(gray-700);
+}
+
+.label,
+label {
+  color: colors(black);
+  font-weight: 500;
+}
+
+.form-check {
+  display: block;
+  padding-left: 1.25rem;
+  position: relative;
+
+  .form-check-input {
+    margin-right: 20px;
+    margin-top: 0.4rem;
+  }
+
+  .form-check-label {
+    margin-left: 4px;
+  }
+}

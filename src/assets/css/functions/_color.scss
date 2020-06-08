@@ -1,0 +1,3 @@
+@function colors($color-name) {
+  @return var(--#{$color-name});
+}

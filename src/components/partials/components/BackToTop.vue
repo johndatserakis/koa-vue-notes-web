@@ -8,7 +8,7 @@
     >
       <slot>
         <div class="default">
-          <font-awesome-icon :icon="['fas', 'arrow-up']" />
+          <span>&#x2191;</span>
         </div>
       </slot>
     </div>

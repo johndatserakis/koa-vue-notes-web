@@ -1,0 +1,36 @@
+section.user-action {
+  padding: 35px 0 55px;
+}
+
+.user-block {
+  background: color(blue);
+  border-radius: 8px;
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 25px;
+
+  @media (min-width: 992px) {
+    max-width: 500px;
+  }
+
+  &__header {
+    color: colors(white);
+  }
+
+  &__content {
+    color: colors(white);
+
+    label {
+      color: colors(white);
+    }
+  }
+
+  a {
+    color: colors(white);
+    text-decoration: underline;
+
+    &:hover {
+      color: colors(grey-200);
+    }
+  }
+}

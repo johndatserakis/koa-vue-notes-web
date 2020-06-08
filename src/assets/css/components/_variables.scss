@@ -1,0 +1,246 @@
+/* stylelint-disable color-no-hex */
+
+// Mainly, we want to use CSS Variables in our apps. The thing is, we need
+// to declare at least the base colors as SCSS Variables, in addition to
+// CSS Variables, as Bootstrap uses them to do some of it's initialization.
+// Really, you want to use the CSS Variable when possible.
+
+// Only for Bootstrap initialization
+$blue: #135edb;
+$indigo: #3f00ff;
+$purple: #800080;
+$pink: #ffc0cb;
+$red: #fb1505;
+$orange: #ff7f00;
+$yellow: #fdff00;
+$green: #16ca43;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+$white: #fff;
+$off-white: darken($white, 1%);
+$muted: rgba(15, 53, 86, 0.6);
+$font-color: $muted;
+$font-color-header: $black;
+
+// Ok, now start our actual app variables to be accessed with var(--blue)
+
+// Main colors for app
+$colors: (
+  "blue": #135edb,
+  "indigo": #3f00ff,
+  "purple": #800080,
+  "pink": #ffc0cb,
+  "red": #fb1505,
+  "orange": #ff7f00,
+  "yellow": #fdff00,
+  "green": #16ca43,
+
+  gray-100: #f8f9fa,
+  gray-200: #e9ecef,
+  gray-300: #dee2e6,
+  gray-400: #ced4da,
+  gray-500: #adb5bd,
+  gray-600: #6c757d,
+  gray-700: #495057,
+  gray-800: #343a40,
+  gray-900: #212529,
+
+  "black": $black,
+  "white": $white,
+  off-white: $off-white,
+  muted: $muted,
+
+  // Palettes built with https://noeldelgado.github.io/shadowlord
+
+  blue-100: #e3ecfb,
+  blue-200: #afc8f3,
+  blue-300: #7ba5eb,
+  blue-400: #4781e3,
+  blue-500: #135edb, // blue
+  blue-600: #0f49ab,
+  blue-700: #0b357b,
+  blue-800: #06204a,
+  blue-900: #020b1a,
+
+  indigo-100: #e8e0ff,
+  indigo-200: #bea8ff,
+  indigo-300: #9370ff,
+  indigo-400: #6938ff,
+  indigo-500: #3f00ff, // indigo
+  indigo-600: #3100c7,
+  indigo-700: #23008f,
+  indigo-800: #150057,
+  indigo-900: #08001f,
+
+  purple-100: #f0e0f0,
+  purple-200: #d4a8d4,
+  purple-300: #b870b8,
+  purple-400: #9c389c,
+  purple-500: #800080, // purple
+  purple-600: #640064,
+  purple-700: #480048,
+  purple-800: #2c002c,
+  purple-900: #0f000f,
+
+  pink-100: #fff7f9,
+  pink-200: #ffeaed,
+  pink-300: #ffdce2,
+  pink-400: #ffced6,
+  pink-500: #ffc0cb, // pink
+  pink-600: #c7969e,
+  pink-700: #8f6c72,
+  pink-800: #574145,
+  pink-900: #1f1718,
+
+  red-100: #ffe3e1,
+  red-200: #feafaa,
+  red-300: #fd7c73,
+  red-400: #fc483c,
+  red-500: #fb1505, // red
+  red-600: #c41004,
+  red-700: #8d0c03,
+  red-800: #550702,
+  red-900: #1e0301,
+
+  orange-100: #fff0e0,
+  orange-200: #ffd3a8,
+  orange-300: #ffb770,
+  orange-400: #ff9b38,
+  orange-500: #ff7f00, // orange
+  orange-600: #c76300,
+  orange-700: #8f4700,
+  orange-800: #572b00,
+  orange-900: #1f0f00,
+
+  yellow-100: #ffffe0,
+  yellow-200: #ffffa8,
+  yellow-300: #ffff70,
+  yellow-400: #ffff38,
+  yellow-500: #ff0, // yellow
+  yellow-600: #c7c700,
+  yellow-700: #8f8f00,
+  yellow-800: #575700,
+  yellow-900: #1f1f00,
+
+  green-100: #e3f9e8,
+  green-200: #b0edbf,
+  green-300: #7de196,
+  green-400: #49d66c,
+  green-500: #16ca43, // green
+  green-600: #119e34,
+  green-700: #0c7126,
+  green-800: #074517,
+  green-900: #031808,
+);
+
+// Add the rest of our variables
+:root {
+  // Add $colors array to :root as css variables
+  @each $name, $color in $colors {
+    --#{$name}: #{$color};
+  }
+
+  // Rest of the gloabl CSS Variables...
+
+  // Animations
+  --transition: all 0.2s ease-in;
+
+  // Shadow
+  --box-shadow-300: rgba(17, 51, 83, 0.1) 0px 2px 4px 0px;
+  --box-shadow-400: rgba(17, 51, 83, 0.14) 0px 2px 4px 0px;
+  --box-shadow-500: rgba(17, 51, 83, 0.18) 0px 2px 4px 0px; // Base
+  --box-shadow-600: rgba(17, 51, 83, 0.22) 0px 2px 4px 0px;
+  --box-shadow-700: rgba(17, 51, 83, 0.26) 0px 4px 6px 0px;
+
+  // Text shadow
+  --text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+
+  // Icon shadow
+  --icon-shadow: drop-shadow(0 0 1px rgba(100, 100, 100, 0.5));
+
+  // Inset shadow
+  --inset-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  // Container box-shadow
+  --container-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.4);
+
+  // Borders
+  --border: 1px solid var(--gray-400);
+
+  // Gradient
+  --gradient-primary: linear-gradient(90deg, var(--green-500), var(--green-600));
+  --gradient-grey: linear-gradient(90deg, var(--gray-200), var(--gray-300));
+
+  // Navbar colors
+  --navbar-light-color: var(--black);
+  --navbar-dark-color: var(--white);
+
+  // Fonts
+  --font-family-base: "Quicksand", "Helvetica Neue", Arial, sans-serif;
+
+  // font sizing
+  --font-size: 18px;
+  --line-height: 1.6;
+
+  // Rule border
+  --rule-border: 1px solid rgba(100, 100, 100, 0.9);
+
+  // Radius
+  --border-radius: 4px;
+
+  // Theme
+  --background-color: var(--white);
+  --background-color-secondary: var(--gray-400);
+  --font-color: var(--muted);
+  --font-color-header: var(--black);
+  --link-color: var(--blue);
+  --hr-color: var(--gray)
+}
+
+// Using our CSS font variable to set our Bootstrap font base.
+$font-family-base: var(--font-family-base) !default;
+
+// Overriding the Bootstrap theme and base colors using SCSS Variables
+$theme-colors: (
+  primary: $blue,
+  secondary: $gray-400,
+  success: $green,
+  info: lighten($blue, 10%),
+  warning: $yellow,
+  danger: $red,
+  light: $white,
+  dark: $black
+);
+$colors: (
+  "blue": $blue,
+  "indigo": $indigo,
+  "purple": $purple,
+  "pink": $pink,
+  "red": $red,
+  "orange": $orange,
+  "yellow": $yellow,
+  "green": $green,
+  // teal: $teal,
+  // cyan: $cyan,
+  "white": $white,
+  "gray": $gray-400,
+  "gray-dark": $gray-700
+);
+
+// For Bootstrap
+// Set the container width a little bit higher on larger screens
+// https://stackoverflow.com/a/53367733/8014660
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1240px
+) !default;

@@ -4,11 +4,11 @@
 
 module.exports = {
   devServer: {
-    clientLogLevel: "info"
+    clientLogLevel: "info",
   },
   lintOnSave: "error",
   configureWebpack: {
-    plugins: []
+    plugins: [],
   },
-  productionSourceMap: false // turn off prod sourcemaps
+  productionSourceMap: false, // turn off prod sourcemaps
 };

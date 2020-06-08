@@ -1,0 +1,58 @@
+// Just .btn
+.btn {
+  border-radius: var(--border-radius);
+}
+
+.btn,
+button {
+  box-shadow: var(--box-shadow-300);
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: var(--line-height);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  text-transform: none;
+
+  &:hover {
+    box-shadow: var(--box-shadow-400);
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: 1px dotted !important; /* stylelint-disable-line declaration-no-important */
+    outline: 5px auto -webkit-focus-ring-color !important; /* stylelint-disable-line declaration-no-important */
+  }
+}
+
+// Adjust global dropdown
+.dropdown-menu li a {
+  color: colors(font-color);
+  font-size: 18px;
+}
+
+// Adjust global list-group buttons
+.list-group {
+  .btn,
+  button {
+    box-shadow: none;
+    font-weight: 400;
+    text-shadow: none;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+.btn-link {
+  box-shadow: none;
+  color: colors(grey-700);
+  text-shadow: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    box-shadow: none;
+    color: colors(grey-600);
+    text-decoration: none;
+  }
+}

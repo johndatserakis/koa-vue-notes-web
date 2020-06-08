@@ -1,0 +1,25 @@
+$blockquote-background: #ededed;
+$blockquote-grey: #555;
+
+blockquote {
+  background: $blockquote-background;
+  border-left: 8px solid color(blue);
+  color: $blockquote-grey;
+  font-family: var(--font-family-base);
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.4;
+  padding: 1.2rem 30px 1.2rem 35px;
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  blockquote {
+    width: 100%;
+  }
+}
+
+blockquote:after {
+  content: "";
+}

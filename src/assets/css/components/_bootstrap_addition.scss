@@ -1,0 +1,538 @@
+/* stylelint-disable color-no-hex, declaration-no-important */
+
+// Button mixin - have to hold this here because bootstrap has changed the way
+// to set the button text color of your choice. It's been changed to
+// automatically detect button text color by contrast - but it is actually
+// getting in the way.
+// https://github.com/twbs/bootstrap/blame/v4-dev/scss/mixins/_buttons.scss.
+//
+// Also, I'm using important here because react-bootstrap is forcing me to
+// use a variant prop, which defaults to btn-primary. Will follow up on this
+// github issue in the future to see if we can avoid this:
+// https://github.com/react-bootstrap/react-bootstrap/issues/5047
+@mixin button-variant-custom(
+  $color,
+  $background,
+  $border,
+  $hover-color: darken($color, 5%),
+  $hover-background: darken($background, 5%),
+  $hover-border: darken($border, 5%),
+  $active-color: $hover-color,
+  $active-background: darken($background, 10%),
+  $active-border: darken($border, 10%)
+) {
+  background-color: $background !important;
+  border-color: $border !important;
+  color: $color !important;
+  @include box-shadow($btn-box-shadow);
+
+  &:hover {
+    background-color: $hover-background !important;
+    border-color: $hover-border !important;
+    color: $hover-color !important;
+  }
+
+  &:focus,
+  &.focus {
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $enable-shadows {
+      box-shadow: $btn-box-shadow, 0 0 0 3px rgba($border, 0.5);
+    } @else {
+      box-shadow: 0 0 0 3px rgba($border, 0.5);
+    }
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    background-color: $background !important;
+    border-color: $border !important;
+  }
+
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    background-color: $active-background !important;
+    background-image: none !important; // Remove the gradient for the pressed/active state
+    border-color: $active-border !important;
+    color: $active-color !important;
+    @include box-shadow($btn-active-box-shadow);
+  }
+}
+
+// Buttons
+.btn-white {
+  @include button-variant-custom($font-color, $white, $white);
+}
+
+.btn-grey {
+  @include button-variant-custom($font-color, $gray-500, darken($gray-500, 5%));
+}
+
+.btn-white-black-text {
+  @include button-variant-custom(lighten($black, 14%), $white, $white);
+}
+
+.btn-white-blue-text {
+  @include button-variant-custom($blue, $white, $white);
+}
+
+.btn-white-text {
+  @include button-variant-custom($white, transparent, transparent, rgba(0, 0, 0, 0.1));
+}
+
+.btn-red {
+  @include button-variant-custom($white, $red, darken($red, 2%));
+}
+
+.btn-dark-red {
+  @include button-variant-custom($white, darken($red, 10%), darken($red, 10%));
+}
+
+.btn-orange {
+  @include button-variant-custom($white, $orange, darken($orange, 2%));
+}
+
+.btn-dark-orange {
+  @include button-variant-custom($white, darken($orange, 10%), darken($orange, 10%));
+}
+
+.btn-purple {
+  @include button-variant-custom($white, $purple, darken($purple, 2%));
+}
+
+.btn-yellow {
+  @include button-variant-custom($black, $yellow, darken($yellow, 2%));
+}
+
+.btn-green {
+  @include button-variant-custom($white, $green, darken($green, 2%));
+}
+
+.btn-dark-green {
+  @include button-variant-custom($white, darken($green, 10%), darken($green, 10%));
+}
+
+.btn-blue {
+  @include button-variant-custom($white, $blue, darken($blue, 2%));
+}
+
+.btn-dark-blue {
+  @include button-variant-custom($white, darken($blue, 10%), darken($blue, 10%));
+}
+
+.btn-custom-navbar-dropdown-white {
+  @include button-variant-custom($white, transparent, transparent);
+}
+
+// Button outlines - btn-outline
+.btn-outline-blue {
+  @include button-variant-custom(
+    $blue,
+    rgba($blue, 0.1),
+    rgba($blue, 0.4),
+    $blue,
+    rgba($blue, 0.1),
+    $blue,
+    $blue,
+    rgba($blue, 0.2),
+    $blue
+  );
+}
+
+.btn-outline-red {
+  @include button-variant-custom(
+    $red,
+    rgba($red, 0.1),
+    rgba($red, 0.4),
+    $red,
+    rgba($red, 0.1),
+    $red,
+    $red,
+    rgba($red, 0.2),
+    $red
+  );
+}
+
+.btn-outline-green {
+  @include button-variant-custom(
+    $green,
+    rgba($green, 0.1),
+    rgba($green, 0.4),
+    $green,
+    rgba($green, 0.1),
+    $green,
+    $green,
+    rgba($green, 0.2),
+    $green
+  );
+}
+
+.btn-outline-orange {
+  @include button-variant-custom(
+    $orange,
+    rgba($orange, 0.1),
+    rgba($orange, 0.4),
+    $orange,
+    rgba($orange, 0.1),
+    $orange,
+    $orange,
+    rgba($orange, 0.2),
+    $orange
+  );
+}
+
+.btn-outline-yellow {
+  @include button-variant-custom(
+    $yellow,
+    rgba($yellow, 0.1),
+    rgba($yellow, 0.4),
+    $yellow,
+    rgba($yellow, 0.1),
+    $yellow,
+    $yellow,
+    rgba($yellow, 0.2),
+    $yellow
+  );
+}
+
+.btn-outline-grey {
+  @include button-variant-custom(
+    rgba($black, 0.8),
+    rgba($black, 0.06),
+    rgba($black, 0.4),
+    rgba($black, 0.8),
+    rgba($black, 0.06),
+    rgba($black, 0.8),
+    rgba($black, 0.8),
+    rgba($black, 0.1),
+    $black
+  );
+}
+
+// Badges
+.badge {
+  border-radius: var(--border-radius);
+  font-family: var(--font-family-base);
+  font-size: 80%;
+  font-weight: 400;
+  letter-spacing: 0.75px;
+  padding: 6px 6px;
+
+  @media (min-width: 992px) {
+    font-size: 90%;
+    padding: 6px 12px;
+  }
+}
+
+.badge-block {
+  display: block;
+  line-height: 1.6;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  text-align: left;
+  white-space: normal;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.badge-blue {
+  @include badge-variant(rgba($blue, 0.1));
+  border: 1px solid color(blue-400);
+  color: colors(blue) !important;
+}
+
+.badge-red {
+  @include badge-variant(rgba($red, 0.1));
+  border: 1px solid color(red-400);
+  color: colors(red) !important;
+}
+
+.badge-green {
+  @include badge-variant(rgba($green, 0.1));
+  border: 1px solid color(green-400);
+  color: colors(green) !important;
+}
+
+.badge-orange {
+  @include badge-variant(rgba($green, 0.1));
+  border: 1px solid color(orange-400);
+  color: colors(orange) !important;
+}
+
+.badge-light-grey {
+  @include badge-variant($gray-300);
+  border: 1px solid color(gray-700);
+  color: colors(gray-500);
+}
+
+.badge-grey {
+  @include badge-variant($gray-500);
+  border: 1px solid color(gray-700);
+  color: colors(gray-500);
+}
+
+.badge-yellow {
+  @include badge-variant(rgba($yellow, 0.1));
+  border: 1px solid color(yellow-500);
+  color: $muted !important;
+}
+
+// Because badges can be a tags
+a {
+  &.badge {
+    &.badge-blue {
+      &:hover {
+        border-color: color(blue);
+      }
+    }
+
+    &.badge-red {
+      &:hover {
+        border-color: color(red);
+      }
+    }
+
+    &.badge-green {
+      &:hover {
+        border-color: color(green);
+      }
+    }
+
+    &.badge-orange {
+      &:hover {
+        border-color: color(orange);
+      }
+    }
+
+    &.badge-light-grey {
+      &:hover {
+        border-color: color(gray-300)
+      }
+    }
+
+    &.badge-grey {
+      &:hover {
+        border-color: color(gray-500);
+      }
+    }
+
+    &.badge-yellow {
+      &:hover {
+        border-color: color(yellow);
+      }
+    }
+  }
+}
+
+//Font size
+.text-large {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.text-extra-large {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+// Button size
+.btn-xs {
+  @include button-size(5px, 5px, 0.8rem, 1, 4px);
+}
+
+// Text helpers
+.text-black {
+  color: colors(black) !important;
+}
+
+.text-white {
+  color: colors(white) !important;
+}
+
+.text-blue {
+  color: colors(blue) !important;
+}
+
+.text-red {
+  color: colors(red) !important;
+}
+
+.text-green {
+  color: colors(green) !important;
+}
+
+.text-orange {
+  color: colors(orange) !important;
+}
+
+.text-purple {
+  color: colors(purple) !important;
+}
+
+.text-yellow {
+  color: colors(yellow) !important;
+}
+
+.text-grey {
+  color: colors(gray-500) !important;
+}
+
+.muted {
+  color: colors(muted) !important;
+}
+
+.list-group-item-off-white {
+  background: color(off-white);
+}
+
+//For additional heading display
+$display5-weight: 300 !default;
+$display5-size: 2.5rem !default;
+.display-5 {
+  font-size: $display5-size;
+  font-weight: $display5-weight;
+  line-height: $display-line-height;
+}
+
+// input-group button margin-bottom
+.input-group {
+  .btn {
+    margin-bottom: 0;
+  }
+}
+
+// Add responsive sizing helpers
+// https://github.com/twbs/bootstrap/issues/21943
+@media (min-width: 576px) {
+  .w-sm-25 {
+    width: 25% !important;
+  }
+  .w-sm-50 {
+    width: 50% !important;
+  }
+  .w-sm-75 {
+    width: 75% !important;
+  }
+  .w-sm-100 {
+    width: 100% !important;
+  }
+  .w-sm-auto {
+    width: auto !important;
+  }
+  .h-sm-25 {
+    height: 25% !important;
+  }
+  .h-sm-50 {
+    height: 50% !important;
+  }
+  .h-sm-75 {
+    height: 75% !important;
+  }
+  .h-sm-100 {
+    height: 100% !important;
+  }
+  .h-sm-auto {
+    height: auto !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .w-md-25 {
+    width: 25% !important;
+  }
+  .w-md-50 {
+    width: 50% !important;
+  }
+  .w-md-75 {
+    width: 75% !important;
+  }
+  .w-md-100 {
+    width: 100% !important;
+  }
+  .w-md-auto {
+    width: auto !important;
+  }
+  .h-md-25 {
+    height: 25% !important;
+  }
+  .h-md-50 {
+    height: 50% !important;
+  }
+  .h-md-75 {
+    height: 75% !important;
+  }
+  .h-md-100 {
+    height: 100% !important;
+  }
+  .h-md-auto {
+    height: auto !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .w-lg-25 {
+    width: 25% !important;
+  }
+  .w-lg-50 {
+    width: 50% !important;
+  }
+  .w-lg-75 {
+    width: 75% !important;
+  }
+  .w-lg-100 {
+    width: 100% !important;
+  }
+  .w-lg-auto {
+    width: auto !important;
+  }
+  .h-lg-25 {
+    height: 25% !important;
+  }
+  .h-lg-50 {
+    height: 50% !important;
+  }
+  .h-lg-75 {
+    height: 75% !important;
+  }
+  .h-lg-100 {
+    height: 100% !important;
+  }
+  .h-lg-auto {
+    height: auto !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .w-xl-25 {
+    width: 25% !important;
+  }
+  .w-xl-50 {
+    width: 50% !important;
+  }
+  .w-xl-75 {
+    width: 75% !important;
+  }
+  .w-xl-100 {
+    width: 100% !important;
+  }
+  .w-xl-auto {
+    width: auto !important;
+  }
+  .h-xl-25 {
+    height: 25% !important;
+  }
+  .h-xl-50 {
+    height: 50% !important;
+  }
+  .h-xl-75 {
+    height: 75% !important;
+  }
+  .h-xl-100 {
+    height: 100% !important;
+  }
+  .h-xl-auto {
+    height: auto !important;
+  }
+}

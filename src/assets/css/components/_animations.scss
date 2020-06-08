@@ -1,0 +1,84 @@
+// shake
+@keyframes shake {
+  0%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  20% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+
+  40% {
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+  }
+
+  60% {
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+  }
+
+  80% {
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+}
+
+// slide-fade
+// Note the enter and and leave-to look better like this,
+// and for some reason `duration` is needed on the transition component
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.slide-fade-enter {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+.slide-fade-leave-to {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.quick-fade-enter-active,
+.quick-fade-leave-active {
+  transition: opacity 0.2s cubic-bezier(0, 0, 0.58, 1);
+}
+.quick-fade-enter {
+  opacity: 0;
+}
+.quick-fade-leave-to {
+  opacity: 0;
+}
+
+// Pulsating effect
+.pulsating {
+  animation: pulse 1.35s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+.pulsating:hover {
+  animation: none;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 25px rgba(0, 0, 0, 0);
+  }
+}
+
+// Spin
+.spin {
+  animation: spin 2s infinite linear;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}

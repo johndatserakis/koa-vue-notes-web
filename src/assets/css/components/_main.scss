@@ -1,0 +1,134 @@
+html {
+  // Need to set the main font-size here to override bootstrap
+  font-size: var(--font-size);
+}
+
+body {
+  background: var(--background-color);
+  color: var(--font-color);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size);
+  font-weight: 400;
+  line-height: var(--line-height);
+  min-height: 100%;
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+}
+
+//These two rules are for proper footer/page alignment
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  min-height: 100vh;
+}
+.main-content-wrapper {
+  // flex: 1; //this doesn't work for ie too well
+  flex: 1 0 auto;
+
+  // navbar is 58px tall - only needed with fixed nav
+  // margin-top: 58px;
+
+  &--no-padding {
+    padding-top: 0;
+  }
+
+  &--with-padding {
+    padding-bottom: 25px;
+    padding-top: 25px;
+  }
+
+  &--grey-background {
+    background: color(gray-300);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--font-color-header);
+  font-family: var(--font-family-base);
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  text-transform: none;
+}
+@media (min-width: 992px) {
+  h1 {
+    font-size: 48px;
+  }
+
+  h2 {
+    font-size: 44px;
+  }
+
+  h3 {
+    font-size: 40px;
+  }
+
+  h4 {
+    font-size: 36px;
+  }
+
+  h5 {
+    font-size: 32px;
+  }
+
+  h6 {
+    font-size: 28px;
+  }
+}
+
+// Control the default paragraph style here
+p {
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+//Main link styling
+a {
+  color: var(--link-color);
+
+  &:hover {
+    color: colors(blue-700);
+  }
+}
+
+//At large width, container-fluid should have a bit
+//more padding left and right
+@media (min-width: 1400px) {
+  .container-fluid {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+//Fix weird bold issue
+b,
+strong {
+  font-weight: 500;
+}
+
+// IE10/11 only
+// https://github.com/philipwalton/flexbugs/issues/75
+@media screen and(-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .modal-body {
+    min-height: 1px;
+  }
+}
+
+// Make sure disabled is not clickable
+[disabled] {
+  cursor: not-allowed !important; /* stylelint-disable-line declaration-no-important */
+  opacity: 0.35 !important; /* stylelint-disable-line declaration-no-important */
+  pointer-events: none;
+}
+
+// Flex stretch image fix
+// https://stackoverflow.com/questions/36822370
+img {
+  flex-shrink: 0;
+  max-width: 100%;
+}

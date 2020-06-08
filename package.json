@@ -1,16 +1,9 @@
 {
-  "name": "koa-vue-notes-web",
-  "version": "4.0.0",
-  "private": true,
-  "scripts": {
-    "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint",
-    "watch": "vue-cli-service serve"
-  },
   "dependencies": {
+    "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.15.0",
     "core-js": "^3.6.5",
+    "sanitize.css": "^11.0.1",
     "vue": "^3.0.0-beta.14",
     "vue-navigation-bar": "^2.0.0",
     "vue-router": "^4.0.0-alpha.12",
@@ -40,5 +33,15 @@
     "sass-loader": "^8.0.2",
     "typescript": "~3.9.3",
     "vue-cli-plugin-vue-next": "~0.1.3"
-  }
+  },
+  "name": "koa-vue-notes-web",
+  "private": true,
+  "scripts": {
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:unit": "vue-cli-service test:unit",
+    "watch": "vue-cli-service serve"
+  },
+  "version": "4.0.0"
 }

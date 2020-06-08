@@ -1,0 +1,27 @@
+// Hosting fonts in cra
+// https://github.com/styled-components/styled-components/issues/1513#issuecomment-364782724
+
+@font-face {
+  font-family: "Quicksand";
+  font-weight: 300;
+  src: url("/fonts/Quicksand/Quicksand-Light.ttf");
+}
+
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/Quicksand/Quicksand-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Quicksand";
+  font-weight: 500;
+  src: url("/fonts/Quicksand/Quicksand-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Quicksand";
+  font-weight: 700;
+  src: url("/fonts/Quicksand/Quicksand-Bold.ttf");
+}

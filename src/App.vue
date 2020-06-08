@@ -24,7 +24,7 @@
           <router-view></router-view>
         </div>
 
-        <footer-account></footer-account>
+        <footer-main></footer-main>
       </div>
     </div>
 
@@ -39,24 +39,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-// import { useRouter } from "vue-router";
+import { defineComponent, computed } from "vue";
+import { useRoute } from "vue-router";
 import Navbar from "@/components/partials/main/Navbar.vue";
+import NavbarAccount from "@/components/partials/main/NavbarAccount.vue";
 import FooterMain from "@/components/partials/main/FooterMain.vue";
 import BackToTop from "@/components/partials/components/BackToTop.vue";
 
 export default defineComponent({
   setup() {
-    // const msg = ref(0);
-    // return {
-    //   msg,
-    // };
-
-    // const router = useRouter();
-
-    // const routePartialType = computed(() => route.meta.partialType);
-
-    const routePartialType = ref("");
+    const route = useRoute();
+    const routePartialType = computed(() => route.meta.partialType);
 
     return {
       routePartialType,
@@ -64,6 +57,7 @@ export default defineComponent({
   },
   components: {
     Navbar,
+    NavbarAccount,
     FooterMain,
     BackToTop,
   },
@@ -71,6 +65,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import "~@/assets/css/components/_variables.scss";
+
 body {
   background: red;
 }
