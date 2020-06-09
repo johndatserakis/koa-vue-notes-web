@@ -26,6 +26,10 @@
 - https://www.reddit.com/r/vuejs/comments/crla3m/composition_api_rfc_revised_from_functionbased/
 - https://www.danvega.dev/blog/2020/02/12/vue3-ref-vs-reactive/
 
+# Third-party libs
+
+- https://www.reddit.com/r/vuejs/comments/gyqr37/anyone_have_an_example_of_a_thirdparty/
+
 # Other
 
 - Lynus talking about the vue3 changes, a lot of good examples - https://www.reddit.com/r/vuejs/comments/byoe0u/functionbased_component_api_rfc/ and gist of an example transformation https://gist.github.com/LinusBorg/839612d13a702f55d5a78359bb5e696b
