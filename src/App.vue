@@ -39,29 +39,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useRoute } from "vue-router";
 import Navbar from "@/components/partials/main/Navbar.vue";
 import NavbarAccount from "@/components/partials/main/NavbarAccount.vue";
 import FooterMain from "@/components/partials/main/FooterMain.vue";
 import BackToTop from "@/components/partials/components/BackToTop.vue";
 
-export default defineComponent({
-  setup() {
-    const route = useRoute();
-    const routePartialType = computed(() => route.meta.partialType);
-
-    return {
-      routePartialType,
-    };
+export default {
+  name: "app",
+  computed: {
+    routePartialType() {
+      return this.$route.meta.partialType;
+    },
   },
+  methods: {},
   components: {
     Navbar,
     NavbarAccount,
     FooterMain,
     BackToTop,
   },
-});
+};
 </script>
 
 <style lang="scss">

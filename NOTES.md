@@ -21,6 +21,12 @@
 - https://github.com/cumet04/slack_emoji_viewer
 - https://github.com/thinksoul/todolist
 
+# Vue 2 TypeScript Repos
+
+- https://github.com/Microsoft/TypeScript-Vue-Starter
+- https://github.com/victorgarciaesgi/Vue-Typescript-TodoMvc
+- https://github.com/victorgarciaesgi/Moving-Mate
+
 # ref vs reactive
 
 - https://www.reddit.com/r/vuejs/comments/crla3m/composition_api_rfc_revised_from_functionbased/
@@ -35,3 +41,14 @@
 - Lynus talking about the vue3 changes, a lot of good examples - https://www.reddit.com/r/vuejs/comments/byoe0u/functionbased_component_api_rfc/ and gist of an example transformation https://gist.github.com/LinusBorg/839612d13a702f55d5a78359bb5e696b
 - Convo about third party components - https://github.com/vuejs/vue-next/issues/1267
 - https://www.reddit.com/r/vuejs/comments/gyc1z8/is_vue_3_stable_enough_to_start_a_project_right/
+
+# Vue2 TS
+
+- https://www.digitalocean.com/community/tutorials/vuejs-using-typescript-with-vue
+- Module augmentation for Vue plugins - https://vuejs.org/v2/guide/typescript.html#Augmenting-Types-for-Use-with-Plugins
+- Example of module augmentation for vue-progressbar - https://github.com/hilongjw/vue-progressbar/issues/49#issuecomment-377385833
+- Vue TS Return Types - https://vuejs.org/v2/guide/typescript.html#Annotating-Return-Types
+- Vue TS Annotating Props - https://vuejs.org/v2/guide/typescript.html#Annotating-Props
+- Vuex with TS - https://stackoverflow.com/a/59041769/8014660
+- Vuex TS discussion on official repo - https://github.com/vuejs/vuex/issues/564
+- Seems to be the best Vuex answer for TS - https://github.com/ktsn/vuex-smart-module - https://www.reddit.com/r/vuejs/comments/fx6kqc/is_vuex_really_usefull_for_a_typescript/fmse9ns?utm_source=share&utm_medium=web2x

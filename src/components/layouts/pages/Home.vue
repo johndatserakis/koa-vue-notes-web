@@ -1,13 +1,15 @@
 <template>
   <div>
-    <h1>Home</h1>
-    <router-link to="/about">About</router-link>
+    Home Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius nihil,
+    iure velit, tenetur aperiam voluptate hic harum dolor maxime, optio
+    accusantium tempora. Tempora error molestias ratione iure ea. Eos, quas.
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({});
+import Vue from "vue";
+
+export default Vue.extend({});
 </script>
 
 <style lang="scss"></style>
