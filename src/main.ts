@@ -15,18 +15,33 @@ import Vue from "vue";
 import App from "./App.vue";
 
 import router from "./router";
-import store from "./store";
+// import store from "./store";
 
 import BootstrapVue from "bootstrap-vue";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 Vue.use(BootstrapVue);
+
+import VueProgressBar from "vue-progressbar";
+Vue.use(VueProgressBar, {
+  color: "#ADE027",
+  failedColor: "#F43D41",
+  thickness: "3px",
+  transition: {
+    speed: "0.2s",
+    opacity: "0.6s",
+    termination: 300,
+  },
+  autoRevert: true,
+  location: "top",
+  inverse: false,
+});
 
 import "./assets/css/app.scss"; // app styles
 
 Vue.config.productionTip = true;
 
 new Vue({
-  store,
   router,
+  // store,
   render: h => h(App),
 }).$mount("#app");

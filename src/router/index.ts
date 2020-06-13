@@ -5,21 +5,22 @@ import axios from "axios";
 Vue.use(VueRouter);
 
 // Main Route
-import Home from "@/components/Layouts/Home.vue";
+import Home from "@/components/layouts/pages/Home.vue";
 
 // User Routes
-import Login from "@/components/User/Login.vue";
-import Signup from "@/components/User/Signup.vue";
-import Forgot from "@/components/User/Forgot.vue";
-import Reset from "@/components/User/Reset.vue";
+// import Login from "@/components/user/components/Login.vue";
+// import Signup from "@/components/user/components/Signup.vue";
+// import Forgot from "@/components/user/components/Forgot.vue";
+// import Reset from "@/components/user/components/Reset.vue";
 
 // Account
-import Account from "@/components/Layouts/Account.vue";
-import CreateNote from "@/components/Layouts/CreateNote.vue";
-import EditNote from "@/components/Layouts/EditNote.vue";
+import Dashboard from "@/components/layouts/program/Dashboard.vue";
+import CreateNote from "@/components/layouts/program/CreateNote.vue";
+import EditNote from "@/components/layouts/program/EditNote.vue";
 
 // Other
-import NotFound from "@/components/Layouts/NotFound.vue";
+import NotFound from "@/components/layouts/main/NotFound.vue";
+import Maintenance from "@/components/layouts/main/Maintenance.vue";
 
 const routes: Array<RouteConfig> = [
   // Main
@@ -27,59 +28,67 @@ const routes: Array<RouteConfig> = [
     path: "*",
     component: NotFound,
     name: "notFound",
-    meta: { title: "Not Found" },
+    meta: { title: "Not Found", partialType: "meta" },
   },
+  {
+    path: "/maintenance",
+    component: Maintenance,
+    name: "maintenance",
+    meta: { title: "Maintenance", partialType: "meta" },
+  },
+
+  // Pages
   {
     path: "/",
     component: Home,
     name: "home",
-    meta: { title: "Home" },
+    meta: { title: "Home", partialType: "full" },
   },
 
   // User
-  {
-    path: "/user/login",
-    component: Login,
-    name: "login",
-    meta: { title: "Login" },
-  },
-  {
-    path: "/user/signup",
-    component: Signup,
-    name: "signup",
-    meta: { title: "Signup" },
-  },
-  {
-    path: "/user/forgot",
-    component: Forgot,
-    name: "forgot",
-    meta: { title: "Forgot" },
-  },
-  {
-    path: "/user/reset",
-    component: Reset,
-    name: "reset",
-    meta: { title: "Reset" },
-  },
+  // {
+  //   path: "/user/login",
+  //   component: Login,
+  //   name: "login",
+  //   meta: { title: "Login" },
+  // },
+  // {
+  //   path: "/user/signup",
+  //   component: Signup,
+  //   name: "signup",
+  //   meta: { title: "Signup" },
+  // },
+  // {
+  //   path: "/user/forgot",
+  //   component: Forgot,
+  //   name: "forgot",
+  //   meta: { title: "Forgot" },
+  // },
+  // {
+  //   path: "/user/reset",
+  //   component: Reset,
+  //   name: "reset",
+  //   meta: { title: "Reset" },
+  // },
 
   // Program
   {
-    path: "/account",
-    component: Account,
-    name: "account",
-    meta: { title: "Account", requiresAuth: true },
+    path: "/dashboard",
+    component: Dashboard,
+    name: "dashboard",
+    meta: { title: "Dashboard", requiresAuth: true, partialType: "account" },
   },
   {
-    path: "/createNote",
+    path: "/create-note",
     component: CreateNote,
-    name: "createNote",
-    meta: { title: "Create Note", requiresAuth: true },
+    name: "create-note",
+    meta: { title: "Create Note", requiresAuth: true, partialType: "account" },
   },
   {
-    path: "/editNote",
+    path: "/edit-note",
     component: EditNote,
-    name: "editNote",
-    meta: { title: "Edit Note", requiresAuth: true },
+    name: "edit-note",
+    meta: { title: "Edit Note", requiresAuth: true, partialType: "account" },
   },
 ];
 
@@ -98,7 +107,10 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  // Vue.$Progress.start();
+
   // Start our vue-progressbar
+  console.log(router.app.$Progress);
   router.app.$Progress.start();
 
   // To set the title of each route
@@ -110,25 +122,25 @@ router.beforeEach((to, from, next) => {
   const accessToken = localStorage.getItem("accessToken")
     ? localStorage.getItem("accessToken")
     : null;
-  const refreshToken = localStorage.getItem("refreshToken")
-    ? localStorage.getItem("refreshToken")
-    : null;
+  // const refreshToken = localStorage.getItem("refreshToken")
+  //   ? localStorage.getItem("refreshToken")
+  //   : null;
 
   // What we're accounting for is the instance of a reload, because up until
   // then the user object will be present if they've already logged in.
   // So if an accessToken is present let's set the user object and their
   // access/refresh tokens.
   if (accessToken) {
-    router.app.$options.store.dispatch("user/setUserAndTokens", {
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    });
+    // router.app.$options.store.dispatch("user/setUserAndTokens", {
+    //   accessToken: accessToken,
+    //   refreshToken: refreshToken,
+    // });
   }
 
   // If the user's not logged in do not allow into protected pages.
-  if (to.meta.requiresAuth && !router.app.$options.store.getters["user/user"]) {
-    next({ name: "home" });
-  }
+  // if (to.meta.requiresAuth && !router.app.$options.store.getters["user/user"]) {
+  //   next({ name: "home" });
+  // }
 
   next();
 });

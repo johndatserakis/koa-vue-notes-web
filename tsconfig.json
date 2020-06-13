@@ -13,7 +13,8 @@
     "skipLibCheck": true,
     "types": [
       "webpack-env",
-      "jest"
+      "jest",
+      "./src/types"
     ],
     "paths": {
       "@/*": [

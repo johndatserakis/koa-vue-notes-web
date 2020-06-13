@@ -39,15 +39,17 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue";
 import Navbar from "@/components/partials/main/Navbar.vue";
 import NavbarAccount from "@/components/partials/main/NavbarAccount.vue";
 import FooterMain from "@/components/partials/main/FooterMain.vue";
 import BackToTop from "@/components/partials/components/BackToTop.vue";
 
-export default {
+export default Vue.extend({
   name: "app",
   computed: {
-    routePartialType() {
+    routePartialType(): string {
+      console.log(this.$route);
       return this.$route.meta.partialType;
     },
   },
@@ -58,7 +60,7 @@ export default {
     FooterMain,
     BackToTop,
   },
-};
+});
 </script>
 
 <style lang="scss">

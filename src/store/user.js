@@ -42,10 +42,10 @@ axios.interceptors.response.use(undefined, async error => {
     !error.config.__isRetryRequest
   ) {
     try {
-      let response = await getAuthToken();
+      const response = await getAuthToken();
       await store.dispatch("user/setUserAndTokens", {
         accessToken: response.data.data.accessToken,
-        refreshToken: response.data.data.refreshToken
+        refreshToken: response.data.data.refreshToken,
       });
       error.config.headers["Authorization"] =
         "Bearer " + store.getters["user/accessToken"];
@@ -84,7 +84,7 @@ const user = {
   state: {
     user: null,
     accessToken: null,
-    refreshToken: null
+    refreshToken: null,
   },
   mutations: {
     SET_USER(state, data) {
@@ -104,7 +104,7 @@ const user = {
       state.refreshToken = null;
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-    }
+    },
   },
   getters: {
     user(state) {
@@ -115,12 +115,12 @@ const user = {
     },
     refreshToken(state) {
       return state.refreshToken;
-    }
+    },
   },
   actions: {
     async setUserAndTokens({ commit }, data) {
       try {
-        let decoded = jwtDecode(data.accessToken);
+        const decoded = jwtDecode(data.accessToken);
         commit(SET_USER, decoded.data);
         commit(STORE_ACCESS_TOKEN, data.accessToken);
         commit(STORE_REFRESH_TOKEN, data.refreshToken);
@@ -132,11 +132,11 @@ const user = {
       try {
         const response = await axios.post("user/authenticate", {
           username: credentials.username,
-          password: credentials.password
+          password: credentials.password,
         });
         return await dispatch("setUserAndTokens", {
           accessToken: response.data.data.accessToken,
-          refreshToken: response.data.data.refreshToken
+          refreshToken: response.data.data.refreshToken,
         });
       } catch (error) {
         return Promise.reject(error.response ? error.response : error);
@@ -147,7 +147,7 @@ const user = {
         setAuthorizationHeader(rootGetters["user/accessToken"]);
         return await axios.post("user/refreshAccessToken", {
           username: getters.user.username,
-          refreshToken: getters.refreshToken
+          refreshToken: getters.refreshToken,
         });
       } catch (error) {
         return Promise.reject(error.response ? error.response : error);
@@ -167,7 +167,7 @@ const user = {
           lastName: credentials.lastName,
           username: credentials.username,
           email: credentials.email,
-          password: credentials.password
+          password: credentials.password,
         });
       } catch (error) {
         return Promise.reject(error.response ? error.response : error);
@@ -178,7 +178,7 @@ const user = {
         return await axios.post("user/forgot", {
           email: credentials.email,
           url: process.env.VUE_APP_URL + "/user/reset",
-          type: "web"
+          type: "web",
         });
       } catch (error) {
         return Promise.reject(error.response ? error.response : error);
@@ -189,13 +189,13 @@ const user = {
         return await axios.post("user/reset", {
           password: credentials.password,
           passwordResetToken: credentials.passwordResetToken,
-          email: credentials.email
+          email: credentials.email,
         });
       } catch (error) {
         return Promise.reject(error.response ? error.response : error);
       }
-    }
-  }
+    },
+  },
 };
 
 export default user;

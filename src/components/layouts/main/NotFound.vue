@@ -1,7 +1,7 @@
 <template>
   <div>
-    FoooterMain Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius
-    nihil, iure velit, tenetur aperiam voluptate hic harum dolor maxime, optio
+    Home Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius nihil,
+    iure velit, tenetur aperiam voluptate hic harum dolor maxime, optio
     accusantium tempora. Tempora error molestias ratione iure ea. Eos, quas.
   </div>
 </template>

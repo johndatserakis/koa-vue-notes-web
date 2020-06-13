@@ -24,8 +24,9 @@
 # Vue 2 TypeScript Repos
 
 - https://github.com/Microsoft/TypeScript-Vue-Starter
-- https://github.com/victorgarciaesgi/Vue-Typescript-TodoMvc
+- uses typescript decorators - https://github.com/victorgarciaesgi/Vue-Typescript-TodoMvc
 - https://github.com/victorgarciaesgi/Moving-Mate
+- vue-router test file on the official repo - https://github.com/vuejs/vue-router/blob/dev/types/test/index.ts
 
 # ref vs reactive
 
