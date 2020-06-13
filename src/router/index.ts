@@ -50,25 +50,25 @@ const routes: Array<RouteConfig> = [
   //   path: "/user/login",
   //   component: Login,
   //   name: "login",
-  //   meta: { title: "Login" },
+  //   meta: { title: "Login", partialType: "full" },
   // },
   // {
   //   path: "/user/signup",
   //   component: Signup,
   //   name: "signup",
-  //   meta: { title: "Signup" },
+  //   meta: { title: "Signup", partialType: "full" },
   // },
   // {
   //   path: "/user/forgot",
   //   component: Forgot,
   //   name: "forgot",
-  //   meta: { title: "Forgot" },
+  //   meta: { title: "Forgot", partialType: "full" },
   // },
   // {
   //   path: "/user/reset",
   //   component: Reset,
   //   name: "reset",
-  //   meta: { title: "Reset" },
+  //   meta: { title: "Reset", partialType: "full" },
   // },
 
   // Program
