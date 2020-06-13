@@ -51,8 +51,15 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { BContainer, BRow, BCol } from "bootstrap-vue";
 
-export default Vue.extend({});
+export default Vue.extend({
+  components: {
+    BContainer,
+    BRow,
+    BCol,
+  },
+});
 </script>
 
 <style lang="scss"></style>

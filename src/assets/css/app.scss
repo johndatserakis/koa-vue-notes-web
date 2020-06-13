@@ -9,8 +9,11 @@
 // Variables - Has to be early
 @import "components/variables";
 
-// Bootstrap
+// bootstrap
 @import "~bootstrap/scss/bootstrap";
+
+// bootstrap-vue
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
 
 // vue-navigation-bar
 @import "~vue-navigation-bar/dist/vue-navigation-bar.css";

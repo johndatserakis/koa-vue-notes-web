@@ -6,14 +6,12 @@
           <strong>Home</strong>
         </h1>
 
-        <!-- {isLoggedIn && (
-        <div>
+        <!-- <div v-if="isLoggedIn">
           <p>Here's your user...</p>
           <p>
             <strong>{JSON.stringify(user)}</strong>
           </p>
-        </div>
-        )} -->
+        </div> -->
 
         <p>
           <i class="fa fa-info-circle fa-fw" /> This is a simple SPA built using
@@ -210,8 +208,15 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { BContainer, BRow, BCol } from "bootstrap-vue";
 
-export default Vue.extend({});
+export default Vue.extend({
+  components: {
+    BContainer,
+    BRow,
+    BCol,
+  },
+});
 </script>
 
 <style lang="scss"></style>
