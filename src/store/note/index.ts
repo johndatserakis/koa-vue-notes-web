@@ -13,7 +13,7 @@ import {
 } from "@/store/note/mutations";
 import { RootState } from "@/store/state";
 import { Note, NotesQuery, NoteState } from "@/store/note/types";
-import { NoteCreatePost, NotePutRequest } from "./api-types";
+import { NoteCreatePost, NoteEditPut } from "./api-types";
 import {
   all as noteAll,
   find as noteFind,

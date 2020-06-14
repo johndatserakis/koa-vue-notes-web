@@ -87,10 +87,11 @@ const routes: Array<RouteConfig> = [
     meta: { title: "Create Note", requiresAuth: true, partialType: "account" },
   },
   {
-    path: "/edit-note",
+    path: "/edit-note/:id",
     component: EditNote,
     name: "edit-note",
     meta: { title: "Edit Note", requiresAuth: true, partialType: "account" },
+    props: true,
   },
 ];
 
@@ -124,7 +125,7 @@ router.beforeEach((to, from, next) => {
   }
 
   // If the user's not logged in do not allow into protected pages.
-  if (to.meta.requiresAuth && !store.getters["user/user"]) {
+  if (to.meta.requiresAuth && !store.getters["user/user"].id) {
     next({ name: "home" });
   }
 

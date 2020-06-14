@@ -12,32 +12,15 @@
 
 <script lang="ts">
 import Vue from "vue";
-// import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import VueNavigationBar from "vue-navigation-bar";
 
 export default Vue.extend({
   name: "navbar",
   data() {
-    return {
-      // Decide to show based on the window's initial width
-      showUndernav: window.innerWidth > 992,
-
-      user: {},
-    };
+    return {};
   },
   methods: {
-    // async logout() {
-    //   // As you can see, with Vuex we we need to fire logout methods
-    //   // for each of our modules.
-    //   await this.$store.dispatch("user/userLogout");
-    //   this.$router.push({ name: "home" });
-    //   // After logging the user out we need to refresh the page
-    //   // this is because some of our components initialize on their
-    //   // created methods - and when a user logs out they need to be
-    //   // fully cleared.
-    //   // location.reload()
-    //   document.location.href = "/";
-    // },
     vnbItemClicked(text: string) {
       if (text === "View on GitHub") {
         window.open(
@@ -48,13 +31,12 @@ export default Vue.extend({
     },
   },
   computed: {
-    // ...mapGetters({
-    //   user: "user/user",
-    // }),
+    ...mapGetters({
+      user: "user/user",
+    }),
     routePartialType(): string {
       return this.$route.meta.partialType;
     },
-
     navbarOptions() {
       const navbarOptions = {
         elementId: "navbar-main",
@@ -91,7 +73,7 @@ export default Vue.extend({
         ],
       };
 
-      if (!this.user) {
+      if (this.user.id) {
         navbarOptions.menuOptionsRight = [
           {
             type: "link",

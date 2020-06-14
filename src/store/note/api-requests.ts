@@ -1,7 +1,7 @@
 import { Note, NotesQuery } from "@/store/note/types";
 import axios, { setAuthorizationHeader } from "@/common/axios";
 import { AxiosResponse } from "axios";
-import { NoteCreatePost, NotePutRequest } from "./api-types";
+import { NoteCreatePost, NoteEditPut } from "./api-types";
 
 const routeMain = "notes";
 
@@ -33,7 +33,7 @@ export const create = async (data: NoteCreatePost): Promise<Note> => {
 };
 
 export const update = async (data: Note): Promise<Note> => {
-  const putRequest: NotePutRequest = {
+  const putRequest: NoteEditPut = {
     title: data.title,
     content: data.content,
   };

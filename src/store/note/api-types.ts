@@ -3,7 +3,7 @@ export type NoteCreatePost = {
   content: string;
 };
 
-export type NotePutRequest = {
+export type NoteEditPut = {
   title: string;
   content: string;
 };

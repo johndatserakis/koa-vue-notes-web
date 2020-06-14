@@ -35,6 +35,10 @@ Vue.use(VueProgressBar, {
   inverse: false,
 });
 
+// Attach our axios interceptor
+import { runAxiosAuthInterceptor } from "@/common/axios-auth-interceptor";
+runAxiosAuthInterceptor();
+
 import "@/assets/css/app.scss"; // app styles
 
 Vue.config.productionTip = true;
