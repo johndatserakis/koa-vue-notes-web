@@ -15,14 +15,14 @@
     "sanitize.css": "^11.0.1",
     "uuid": "^8.1.0",
     "vue": "^2.6.11",
+    "vue-analytics": "^5.22.1",
     "vue-navigation-bar": "^2.0.0",
     "vue-progressbar": "^0.7.5",
     "vue-router": "^3.2.0",
     "vue-screen-size": "^1.0.1",
     "vue-toasted": "^1.1.28",
     "vuelidate": "^0.7.5",
-    "vuex": "^3.4.0",
-    "yup": "^0.29.1"
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",

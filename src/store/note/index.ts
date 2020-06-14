@@ -53,7 +53,6 @@ const mutations: MutationTree<NoteState> = {
     state.notes = notes;
   },
   [ADD_NOTES](state: NoteState, notes: Note[]) {
-    console.log("here in ADD_NOTES", state, state.notes, notes);
     state.notes = [...state.notes, ...notes];
   },
   [ADD_NOTE_TO_STACK](state: NoteState, note: Note) {

@@ -11,6 +11,8 @@ import "intersection-observer";
 // Date.toISOString() polyfill
 import "@/common/toISOStringPolyfill.ts";
 
+import { isProd } from "@/common/get-env";
+
 import Vue from "vue";
 import App from "@/App.vue";
 
@@ -33,6 +35,13 @@ Vue.use(VueProgressBar, {
   autoRevert: true,
   location: "top",
   inverse: false,
+});
+
+import VueAnalytics from "vue-analytics";
+Vue.use(VueAnalytics, {
+  id: process.env.VUE_APP_GA_TRACKING_ID,
+  enabled: !isProd,
+  router,
 });
 
 // Attach our axios interceptor

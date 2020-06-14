@@ -182,6 +182,8 @@ export default Vue.extend({
           passwordConfirm: "demopassword",
         };
 
+        this.$ga.event("User Signup", "Submit", "Success");
+
         this.$router.push({ name: "home" });
 
         // Note, we use $root here because we're changing screens...
