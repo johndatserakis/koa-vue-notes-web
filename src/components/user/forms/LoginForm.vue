@@ -30,7 +30,7 @@
               error-message="Please enter a password."
               label="Password"
               name="password"
-              type="text"
+              type="password"
               v-model="userLoginPost.password"
             />
           </b-col>
@@ -42,7 +42,7 @@
               name="login-submit-button"
               text="Login"
               :isLoading="isLoading"
-              loadingText="Logging in ..."
+              loadingText="Logging in..."
               @submit-clicked="handleSubmit"
             />
           </b-col>
@@ -109,8 +109,12 @@ export default Vue.extend({
         await this.$store.dispatch("user/login", this.userLoginPost);
 
         // Get user's notes
-        // await dispatch(all({ sort: "", order: "desc", page: 0, limit: 1000 }));
-        // await this.$store.dispatch("note/all", { sort: "", order: "desc", page: 0, limit: 1000 })
+        await this.$store.dispatch("note/all", {
+          sort: "",
+          order: "desc",
+          page: 0,
+          limit: 1000,
+        });
 
         // Clear inputs
         this.userLoginPost = {
@@ -128,7 +132,7 @@ export default Vue.extend({
 
         this.$bvToast.toast(
           "Hmm, those details don't seem right. Please try again.",
-          { title: "Input Error", variant: "danger" },
+          { title: "Server Error", variant: "danger" },
         );
       } finally {
         this.isLoading = false;

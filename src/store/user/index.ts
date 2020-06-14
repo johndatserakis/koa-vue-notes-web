@@ -9,8 +9,18 @@ import {
   UserTokens,
   JwtDecodeData,
 } from "@/store/user/types";
-import { UserLoginPost } from "./api-types";
-import { login as userLogin } from "@/store/user/api-requests";
+import {
+  UserLoginPost,
+  UserSignupPost,
+  UserForgotPost,
+  UserResetPost,
+} from "./api-types";
+import {
+  login as userLogin,
+  signup as userSignup,
+  forgot as userForgot,
+  reset as userReset,
+} from "@/store/user/api-requests";
 import { parseAxiosError } from "@/common/api";
 import jwtDecode from "jwt-decode";
 
@@ -62,11 +72,54 @@ const actions: ActionTree<UserState, RootState> = {
       return Promise.reject(parseAxiosError(error));
     }
   },
+  async signup(
+    { commit, dispatch, state }: UserContext,
+    data: UserSignupPost,
+  ): Promise<number> {
+    try {
+      const result = await userSignup(data);
+      return result;
+    } catch (error) {
+      return Promise.reject(parseAxiosError(error));
+    }
+  },
+  async forgot(
+    { commit, dispatch, state }: UserContext,
+    data: UserForgotPost,
+  ): Promise<string> {
+    try {
+      const result = await userForgot(data);
+      return result;
+    } catch (error) {
+      return Promise.reject(parseAxiosError(error));
+    }
+  },
+  async reset(
+    { commit, dispatch, state }: UserContext,
+    data: UserResetPost,
+  ): Promise<void> {
+    try {
+      const result = await userReset(data);
+      return result;
+    } catch (error) {
+      return Promise.reject(parseAxiosError(error));
+    }
+  },
+  async logout({ commit, dispatch, state }: UserContext): Promise<void> {
+    try {
+      commit(CLEAR_USER);
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      return Promise.resolve();
+    } catch (error) {
+      return Promise.reject(parseAxiosError(error));
+    }
+  },
 };
 
 export const user = {
   namespaced: true,
-  initialState,
+  state: initialState,
   getters,
   mutations,
   actions,

@@ -6,6 +6,7 @@
     <input
       :id="`${name}-${id}`"
       :name="`${name}-${id}`"
+      :placeholder="placeholder"
       :type="type"
       :value="value"
       @input="update"
@@ -46,6 +47,10 @@ export default Vue.extend({
     },
     name: {
       required: true,
+      type: String,
+    },
+    placeholder: {
+      required: false,
       type: String,
     },
     type: {
