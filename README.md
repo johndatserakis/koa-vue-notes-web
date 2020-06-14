@@ -8,6 +8,8 @@
 
 # Koa-Vue-Notes-Web
 
+## Please note, this is undergoing a revamp right now and the content of this README may be incorrect - John 06-14-20
+
 This is a simple SPA built using [Koa](http://koajs.com/) as the backend, [Vue](https://vuejs.org/) as the first frontend, and [React](https://reactjs.org) as the second frontend.
 
 - [Frontend Vue GitHub](https://github.com/johndatserakis/koa-vue-notes-web)
