@@ -3,7 +3,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString#Polyfill
 if (!Date.prototype.toISOString) {
   (function() {
-    function pad(number) {
+    function pad(number: number) {
       if (number < 10) {
         return "0" + number;
       }

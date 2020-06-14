@@ -53,3 +53,5 @@
 - Vuex with TS - https://stackoverflow.com/a/59041769/8014660
 - Vuex TS discussion on official repo - https://github.com/vuejs/vuex/issues/564
 - Seems to be the best Vuex answer for TS - https://github.com/ktsn/vuex-smart-module - https://www.reddit.com/r/vuejs/comments/fx6kqc/is_vuex_really_usefull_for_a_typescript/fmse9ns?utm_source=share&utm_medium=web2x
+- Props using TS - New way - https://github.com/vuejs/vue/pull/6856#issuecomment-493771684 - Old way - https://frontendsociety.com/using-a-typescript-interfaces-and-types-as-a-prop-type-in-vuejs-508ab3f83480
+- Computed using TS - https://stackoverflow.com/a/51984573/8014660

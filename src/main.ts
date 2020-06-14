@@ -9,13 +9,16 @@ import "es6-promise/auto";
 import "intersection-observer";
 
 // Date.toISOString() polyfill
-import "@/common/toISOStringPolyfill";
+import "@/common/toISOStringPolyfill.ts";
 
 import Vue from "vue";
 import App from "./App.vue";
 
 import router from "./router";
 // import store from "./store";
+
+import { ToastPlugin } from "bootstrap-vue";
+Vue.use(ToastPlugin);
 
 import VueProgressBar from "vue-progressbar";
 Vue.use(VueProgressBar, {

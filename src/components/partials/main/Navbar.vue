@@ -73,6 +73,7 @@ export default Vue.extend({
             isLinkAction: true,
             type: "link",
             text: "View on GitHub",
+            path: "",
           },
         ],
         menuOptionsRight: [

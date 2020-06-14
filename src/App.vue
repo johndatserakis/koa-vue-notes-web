@@ -49,7 +49,6 @@ export default Vue.extend({
   name: "app",
   computed: {
     routePartialType(): string {
-      console.log(this.$route);
       return this.$route.meta.partialType;
     },
   },

@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 import Home from "@/components/layouts/pages/Home.vue";
 
 // User Routes
-// import Login from "@/components/user/components/Login.vue";
+import Login from "@/components/user/components/Login.vue";
 // import Signup from "@/components/user/components/Signup.vue";
 // import Forgot from "@/components/user/components/Forgot.vue";
 // import Reset from "@/components/user/components/Reset.vue";
@@ -46,12 +46,12 @@ const routes: Array<RouteConfig> = [
   },
 
   // User
-  // {
-  //   path: "/user/login",
-  //   component: Login,
-  //   name: "login",
-  //   meta: { title: "Login", partialType: "full" },
-  // },
+  {
+    path: "/user/login",
+    component: Login,
+    name: "login",
+    meta: { title: "Login", partialType: "full" },
+  },
   // {
   //   path: "/user/signup",
   //   component: Signup,
@@ -110,7 +110,6 @@ router.beforeEach((to, from, next) => {
   // Vue.$Progress.start();
 
   // Start our vue-progressbar
-  console.log(router.app.$Progress);
   router.app.$Progress.start();
 
   // To set the title of each route
