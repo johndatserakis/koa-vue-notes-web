@@ -40,7 +40,7 @@ Vue.use(VueProgressBar, {
 import VueAnalytics from "vue-analytics";
 Vue.use(VueAnalytics, {
   id: process.env.VUE_APP_GA_TRACKING_ID,
-  enabled: !isProd,
+  enabled: isProd,
   router,
 });
 
