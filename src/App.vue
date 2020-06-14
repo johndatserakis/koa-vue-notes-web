@@ -1,5 +1,7 @@
 <template>
   <div>
+    <vue-progress-bar></vue-progress-bar>
+
     <div v-if="routePartialType === 'full'">
       <div class="page-wrapper">
         <navbar></navbar>

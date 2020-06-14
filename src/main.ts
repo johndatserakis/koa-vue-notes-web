@@ -12,10 +12,10 @@ import "intersection-observer";
 import "@/common/toISOStringPolyfill.ts";
 
 import Vue from "vue";
-import App from "./App.vue";
+import App from "@/App.vue";
 
-import router from "./router";
-import store from "./store";
+import router from "@/router";
+import store from "@/store";
 
 import { ToastPlugin } from "bootstrap-vue";
 Vue.use(ToastPlugin);
@@ -35,7 +35,7 @@ Vue.use(VueProgressBar, {
   inverse: false,
 });
 
-import "./assets/css/app.scss"; // app styles
+import "@/assets/css/app.scss"; // app styles
 
 Vue.config.productionTip = true;
 

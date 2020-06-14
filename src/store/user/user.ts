@@ -25,7 +25,7 @@ const initialState: UserState = {
 };
 
 const getters: GetterTree<UserState, RootState> = {
-  user(state: UserState) {
+  user(state: UserState): UserShort {
     return state.user;
   },
 };
