@@ -90,53 +90,36 @@ export default Vue.extend({
   data(): BaseData {
     return {
       userLoginPost: {
-        username: "",
-        password: "",
+        username: "demousername",
+        password: "demopassword",
       },
       isLoading: false,
     };
   },
   methods: {
     async handleSubmit() {
-      console.log("123");
-      console.log(this.$v);
       if (this.$v.$invalid) {
         this.$v.$touch();
-        // this.$bvToast.toast("Please complete all fields.", {
-        //   title: "Input Error",
-        //   variant: "danger",
-        // });
         return;
       }
 
       this.isLoading = true;
 
       try {
-        // const result = await this.$store.dispatch(
-        //   "event/create",
-        //   this.createEventFormData,
-        // );
-        // this.$v.$reset();
-        // this.createEventFormData = {
-        //   title: null,
-        //   allowGuestSearching: false,
-        //   slug: null,
-        //   isPasswordProtected: false,
-        //   password: null,
-        //   dateStart: null,
-        //   dateEnd: null,
-        //   timezoneName: null,
-        //   timezoneOffset: null,
-        //   location: null,
-        //   information: null,
-        // };
-        // // Because we added a new one, refresh all events
-        // await this.$store.dispatch("event/all");
-        // this.$router.push({
-        //   name: "event-dashboard-summary",
-        //   params: { id: result.data.data.event.id },
-        // });
-        // this.$gtm.event("Create Event", "Submit", "Success");
+        await this.$store.dispatch("user/login", this.userLoginPost);
+
+        // Get user's notes
+        // await dispatch(all({ sort: "", order: "desc", page: 0, limit: 1000 }));
+        // await this.$store.dispatch("note/all", { sort: "", order: "desc", page: 0, limit: 1000 })
+
+        // Clear inputs
+        this.userLoginPost = {
+          username: "demousername",
+          password: "demopassword",
+        };
+
+        // Push to dashboard
+        this.$router.push({ name: "dashboard" });
       } catch (error) {
         const e = error as ServerError;
         if (e && (e.error || e.errors)) {

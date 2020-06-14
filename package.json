@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
+    "@types/jwt-decode": "^2.2.1",
     "@types/yup": "^0.29.3",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",

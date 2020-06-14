@@ -10,9 +10,9 @@ const getToken = (type: "accessToken" | "refreshToken") =>
 const refreshAuthLogic = async (failedRequest: any) => {
   try {
     const tokens: AxiosResponse<{
-      readonly data: {
-        readonly accessToken: UserTokens["accessToken"];
-        readonly refreshToken: UserTokens["refreshToken"];
+      data: {
+        accessToken: UserTokens["accessToken"];
+        refreshToken: UserTokens["refreshToken"];
       };
     }> = await axios.post("user/refreshAccessToken", {
       username: "demousername",
