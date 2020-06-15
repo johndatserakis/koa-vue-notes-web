@@ -10,7 +10,7 @@
     "test:build": "npm run test:unit && npm run test:e2e:headless",
     "lint": "vue-cli-service lint",
     "storybook:build": "vue-cli-service storybook:build -c config/storybook",
-    "storybook:test": "vue-cli-service storybook:build -c config/storybook -- --smoke-test",
+    "storybook:test": "npm run storybook:build -- --smoke-test",
     "storybook:watch": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
     "watch": "vue-cli-service serve"
   },
