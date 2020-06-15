@@ -1,24 +1,24 @@
 module.exports = {
-  stories: ['../../src/**/*.stories.(js|jsx|ts|tsx|mdx)'],
+  stories: ["../../src/**/*.stories.(js|jsx|ts|tsx|mdx)"],
   addons: [
-    '@storybook/addon-actions',
+    "@storybook/addon-actions",
     {
-      name: '@storybook/addon-docs',
+      name: "@storybook/addon-docs",
       options: {
         babelOptions: {
           presets: [
             [
-              '@vue/cli-plugin-babel/preset',
+              "@vue/cli-plugin-babel/preset",
               {
-                jsx: false
-              }
-            ]
-          ]
-        }
-      }
+                jsx: false,
+              },
+            ],
+          ],
+        },
+      },
     },
-    '@storybook/addon-knobs',
-    '@storybook/addon-links',
-    '@storybook/addon-notes'
-  ]
-}
+    "@storybook/addon-knobs",
+    "@storybook/addon-links",
+    "@storybook/addon-notes",
+  ],
+};
