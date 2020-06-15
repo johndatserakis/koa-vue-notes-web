@@ -3,11 +3,14 @@
   "version": "4.0.0",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build",
+    "build": "npm run test:build && vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
+    "test:e2e:headless": "vue-cli-service test:e2e --headless",
+    "test:build": "npm run test:unit && npm run test:e2e:headless",
     "lint": "vue-cli-service lint",
     "storybook:build": "vue-cli-service storybook:build -c config/storybook",
+    "storybook:test": "vue-cli-service storybook:build -c config/storybook -- --smoke-test",
     "storybook:watch": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
     "watch": "vue-cli-service serve"
   },

@@ -8,8 +8,6 @@
 
 # Koa-Vue-Notes-Web
 
-## Please note, this is undergoing a revamp right now and the content of this README may be incorrect - John 06-14-20
-
 This is a simple SPA built using [Koa](http://koajs.com/) as the backend, [Vue](https://vuejs.org/) as the first frontend, and [React](https://reactjs.org) as the second frontend.
 
 - [Frontend Vue GitHub](https://github.com/johndatserakis/koa-vue-notes-web)
@@ -19,17 +17,17 @@ This is a simple SPA built using [Koa](http://koajs.com/) as the backend, [Vue](
 - [Backend Koa GitHub](https://github.com/johndatserakis/koa-vue-notes-api)
 
 # Features
-- Vue 2.6.10 (Initialized by Vue-CLI 3k)
+- Vue 2.6.11 (Initialized by Vue-CLI 3)
+- TypeScript in as much as the app as possible... ha. Will update further when Vue3 is out.
+- Storybook support
 - Vue-Router
 - Vuex
 - Fully written using async/await
-- Bootstrap 4
-- SASS
+- Bootstrap 4 with Bootstrap-Vue
+- SCSS
 - Vuelidate validation library
-- Vue-Toasted toast messages
 - JWT for authentication
 - Axios
-- Font-Awesome
 - Vue-Progressbar
 - Jest for testing
 - And more...
@@ -45,6 +43,16 @@ npm run watch
 
 # Build for production
 npm run build
+
+# Lint using eslint
+npm run lint
+
+# Run Storybook
+npm run storybook:watch
+
+# Run tests
+npm run test:unit
+npm run test:e2e
 ```
 
 # General Information
@@ -53,37 +61,43 @@ This frontend is part of a pair of projects that serve a simple notes app. I cho
 
 For the base of the project make sure to check out the [Vue-CLI](https://github.com/vuejs/vue-cli) docs if you haven't already. The base of this project is laid out in the *Vue-CLI* way. I chose this path because Evan did a really great job thinking through the different aspects of laying out an application.
 
-`VUE_APP_DEBUG`, `VUE_APP_URL`, and `VUE_APP_API_URL` are the `.env` variables I set for use in the project. As Vue-CLI 3 mentions, you can separate the values between development and production by putting `.env.development` and `.env.production` for the `.env` file names. (In addition to have a shared `.env` file if you like.) The big point here is `VUE_APP_API_URL` is what `axios` is going to use for its base URL - so keep that in mind.
+`VUE_APP_URL`, and `VUE_APP_API_URL` are the `.env` variables I set for use in the project. As Vue-CLI 3 mentions, you can separate the values between development and production by putting `.env.development` and `.env.production` for the `.env` file names. (In addition to having just a shared `.env` file if you like.) The big point here is `VUE_APP_API_URL` is what `axios` is going to use for its base URL - so keep that in mind.
 
 I've liberally commented the code and tried to balance the project in a way that it's complex enough to learn from but not so complex that it's impossible to follow. It can be tough to learn from a boilerplate that has too much or too little.
 
 Having used mainly PHP for the backend in the past - I am very glad I checked out Koa as I think it is absolutely awesome in the way it handles the server code. Same thing with Vue - I've used mainly jQuery in the past - albeit with the really structured Revealing-Module-Pattern - and using Vue was such a pleasure. You can really tell right away what kind of power a well-structured library can give you.
 
+# TypeScript
+
+This frontend is fully built in `TypeScript` which hopefully helps others who are looking for a working example of some different components. Even though I've been using `JavaScript` for about 10 years now, I only recently started using `TypeScript` over the past year or so. In the most recent revamp of this project I decided to rewrite it completely in `TypeScript` due to how much safety it brings - it really make me feel better about the foundation of the app. I really like `TypeScript` and will definitely be using it in all my `JavaScript` projects going forward - the only tough part is integrating third-party libraries (event those written in `TypeScript`), although after a few you get used to it.
+
+Vue2 doesn't play perfectly with `TypeScript` though, so there are definitely some holes in the type-checking, especially when it comes to `Vuex`. But that should be cleared up in Vue3, and I'll make sure to keep this project up to date when that happends. This is one nice thing about React - because it's just raw TypeScript when using a `.tsx` file, it just works better with TypeScript out of the box.
+
 The `src` folder is laid out in the following fashion:
 
-## Assets
+# Assets
 
-Here you'll find the program's SASS files. There's a bunch of component files as you drill down. I do use some of the .vue style concepts on certain components - but there is most definitely a case to be made for having all your base style code in one place. We're also importing Font-Awesome 4.7 icons in `src/App.js`.
+Here you'll find the program's `SCSS` files. There's a bunch of component files as you drill down.
 
-Honestly, I really like Bootstrap, and v4 is very nice - but I'm not a huge fan of using its components because they still use jQuery. Also, I really wish it was written using the BEM syntax - something I use for my own components. With that being said - this project only makes use of Bootstrap's grid, buttons, form-groups, and navbar - although you may want to go in a different direction with that.
+Honestly, I really like `Bootstrap`, and v4 is very nice - but I'm not a huge fan of using its components because they still use jQuery. Also, I really wish it was written using the BEM syntax - something I use for my own components. `Bootstrap-Vue` is also killer and honestly one of the best component libraries I've used across Vue/React/Whatever.
 
-## Common
+# Common
 
 For utlity functions. The `axios` export is here. If you've noticed - I actually import `axios` from here - not from the `npm_modules` folder. That's because I want to add the `baseURL` property in a single place.
 
-## Components
+# Components
 
-Here are the .vue components that make up the app. This folder is further broken down into a few subfolders to keep the views organized. Pretty straight-forward. Because this app used Vuex the components only have local data when needed - like form elements. Otherwise I'm mapping out Vuex store variables in the `computed` section of each component.
+Here are the `.vue` components that make up the app. This folder is further broken down into a few subfolders to keep the views organized. Pretty straight-forward. Because this app used Vuex the components only have local data when needed - like form elements. Otherwise I'm mapping out Vuex store variables in the `computed` section of each component using `mapGetters`.
 
-## Router
+# Router
 
 This is the vue-router code. Here you'll find the creation and connection of each view in the app. One thing you're going to want to take a look at is the `beforeEach` method where we deal with the user authentication taking place in the app.
 
 On each router action we grab the `accessToken` and `refreshToken` from our `localStorage`. If the `accessToken` is present we set the user in our Vuex store and continue on our way.
 
-## User Authentication Process
+# User Authentication Process
 
-As mentioned in the backend code, the user authentication process is this:
+As mentioned in the vue/koa code, the user authentication process is this:
 
 - User create an account
 - User logs in
@@ -94,17 +108,15 @@ As mentioned in the backend code, the user authentication process is this:
 - Once you do that, you'll received a brand new `accessToken` and `refreshToken`
 - Repeat the process as needed
 
-I've utilized the great Axios `axios.interceptors.response` utility to capture the case of an expired `accessToken` and refresh it - all without the user being made aware of the process. The key is to keep the promise-chain alive - this is so the component caller can update it's local state - things like page count, sort - stuff that's important but really doesn't belong in our Vuex store because it's only relevant to the calling component. Take a look at the user.js store - that's where the interceptor is set up. If it recognizes this is a refresh situation it calls two Vuex actions and then resolves with the resent request.
-
-## Store
+# Store
 
 The store folder is where all the Vuex files are. We are using the modules feature of Vuex which allows us to have different stores for each module. In this app there are two modules - `user` and `note`. Vuex turned out to be really cool. One of the main things I'll point out is that each action should return a promise. If you follow this methodology you'll find it makes it really easy to keep in sync with a API call a component might make. (`axios` requests already are promises - so do the normal `return new Promise((resolve, reject) => { resolve('wow!') })` in other types of `action` cases.)
 
-## App.vue file
+# App.vue file
 
-This is our main app component. Things like the `navbar`, `footer`, and `vue-progress-bar` are placed here.
+This is our main app component. Things like the `navbar`, `footer-main`, and `vue-progress-bar` are placed here.
 
-## main.js file
+# main.js file
 
 Our main entrance to our JavaScript code - all the main modules like our Vuex store and router are loaded here. This is also where our main Vue instance is implemented.
 
