@@ -90,8 +90,8 @@ export default Vue.extend({
   data(): BaseData {
     return {
       userLoginPost: {
-        username: "demousername",
-        password: "demopassword",
+        username: "",
+        password: "",
       },
       isLoading: false,
     };
@@ -118,8 +118,8 @@ export default Vue.extend({
 
         // Clear inputs
         this.userLoginPost = {
-          username: "demousername",
-          password: "demopassword",
+          username: "",
+          password: "",
         };
 
         // Push to dashboard

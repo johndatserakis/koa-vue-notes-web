@@ -145,12 +145,12 @@ export default Vue.extend({
   data(): BaseData {
     return {
       userSignupPost: {
-        firstName: "John",
-        lastName: "Dats",
-        username: "demousername",
-        email: "johndatserakis@gmail.com",
-        password: "demopassword",
-        passwordConfirm: "demopassword",
+        firstName: "",
+        lastName: "",
+        username: "",
+        email: "",
+        password: "",
+        passwordConfirm: "",
       },
       isLoading: false,
     };
@@ -174,12 +174,12 @@ export default Vue.extend({
         await this.$store.dispatch("user/signup", convertedValues);
 
         this.userSignupPost = {
-          firstName: "John",
-          lastName: "Dats",
-          username: "demousername",
-          email: "johndatserakis@gmail.com",
-          password: "demopassword",
-          passwordConfirm: "demopassword",
+          firstName: "",
+          lastName: "",
+          username: "",
+          email: "",
+          password: "",
+          passwordConfirm: "",
         };
 
         this.$ga.event("User Signup", "Submit", "Success");

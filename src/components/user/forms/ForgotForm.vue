@@ -77,7 +77,7 @@ export default Vue.extend({
   data(): BaseData {
     return {
       userForgotPost: {
-        email: "johndatserakis@gmail.com",
+        email: "",
         url: `${process.env.VUE_APP_URL}/user/reset`,
         type: "web",
       },
@@ -97,7 +97,7 @@ export default Vue.extend({
         await this.$store.dispatch("user/forgot", this.userForgotPost);
 
         this.userForgotPost = {
-          email: "johndatserakis@gmail.com",
+          email: "",
           url: `${process.env.VUE_APP_URL}/user/reset`,
           type: "web",
         };
