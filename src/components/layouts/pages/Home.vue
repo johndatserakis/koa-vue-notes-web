@@ -6,12 +6,12 @@
           <strong>Home</strong>
         </h1>
 
-        <!-- <div v-if="isLoggedIn">
+        <div v-if="user.id">
           <p>Here's your user...</p>
           <p>
-            <strong>{JSON.stringify(user)}</strong>
+            <strong>{{ JSON.stringify(user) }}</strong>
           </p>
-        </div> -->
+        </div>
 
         <p>
           <i class="fa fa-info-circle fa-fw" /> This is a simple SPA built using
@@ -209,12 +209,18 @@
 <script lang="ts">
 import Vue from "vue";
 import { BContainer, BRow, BCol } from "bootstrap-vue";
+import { mapGetters } from "vuex";
 
 export default Vue.extend({
   components: {
     BContainer,
     BRow,
     BCol,
+  },
+  computed: {
+    ...mapGetters({
+      user: "user/user",
+    }),
   },
 });
 </script>
