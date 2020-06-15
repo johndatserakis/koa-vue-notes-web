@@ -2,7 +2,7 @@
 [build]
    base    = "."
    publish = "dist"
-   command = "sed -i s/API_URL_PLACEHOLDER/$VUE_APP_API_URL/g netlify.toml && npm run build"
+   command = "sed -i s/API_URL_PLACEHOLDER/$API_URL/g netlify.toml && npm run build"
 
 # Redirects
 [[redirects]]
