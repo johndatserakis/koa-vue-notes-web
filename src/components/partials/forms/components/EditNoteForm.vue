@@ -36,7 +36,7 @@
           <b-col lg="6">
             <text-area
               :has-error="$v.noteEditPut.content.$error"
-              error-message="Please some content."
+              error-message="Please enter some content."
               label="Content"
               name="content"
               type="text"

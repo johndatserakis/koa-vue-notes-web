@@ -86,7 +86,9 @@ export default Vue.extend({
     },
   },
   created() {
-    this.loadProgramData();
+    if (this.notes.length === 0) {
+      this.loadProgramData();
+    }
   },
 });
 </script>
