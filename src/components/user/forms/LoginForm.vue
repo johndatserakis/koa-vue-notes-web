@@ -71,6 +71,7 @@ import { ServerError } from "@/common/api";
 import FormContainer from "@/components/partials/forms/inputs/FormContainer.vue";
 import TextInput from "@/components/partials/forms/inputs/TextInput.vue";
 import SubmitButton from "@/components/partials/forms/inputs/SubmitButton.vue";
+import { mapActions } from "vuex";
 
 type BaseData = {
   userLoginPost: UserLoginPost;
@@ -97,6 +98,8 @@ export default Vue.extend({
     };
   },
   methods: {
+    ...mapActions("user", { userLogin: "login" }),
+    ...mapActions("note", { noteAll: "all" }),
     async handleSubmit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
@@ -106,10 +109,10 @@ export default Vue.extend({
       this.isLoading = true;
 
       try {
-        await this.$store.dispatch("user/login", this.userLoginPost);
+        await this.userLogin(this.userLoginPost);
 
         // Get user's notes
-        await this.$store.dispatch("note/all", {
+        await this.noteAll({
           sort: "",
           order: "desc",
           page: 0,

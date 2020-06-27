@@ -58,6 +58,7 @@ import { ServerError } from "@/common/api";
 import FormContainer from "@/components/partials/forms/inputs/FormContainer.vue";
 import TextInput from "@/components/partials/forms/inputs/TextInput.vue";
 import SubmitButton from "@/components/partials/forms/inputs/SubmitButton.vue";
+import { mapActions } from "vuex";
 
 type BaseData = {
   userForgotPost: UserForgotPost;
@@ -85,6 +86,7 @@ export default Vue.extend({
     };
   },
   methods: {
+    ...mapActions("user", { userForgot: "forgot" }),
     async handleSubmit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
@@ -94,7 +96,7 @@ export default Vue.extend({
       this.isLoading = true;
 
       try {
-        await this.$store.dispatch("user/forgot", this.userForgotPost);
+        await this.userForgot(this.userForgotPost);
 
         this.userForgotPost = {
           email: "",

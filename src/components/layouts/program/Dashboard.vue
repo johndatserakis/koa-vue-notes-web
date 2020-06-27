@@ -38,7 +38,7 @@ import {
   BListGroupItem,
   BButton,
 } from "bootstrap-vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { truncate } from "@/common/truncate";
 
 export default Vue.extend({
@@ -59,10 +59,11 @@ export default Vue.extend({
     }),
   },
   methods: {
+    ...mapActions("note", { noteAll: "all" }),
     truncate,
     async loadProgramData() {
       try {
-        const result = await this.$store.dispatch("note/all", this.query);
+        const result = await this.noteAll(this.query);
 
         // Sort out the new query data now...
         if (result.length === this.query.limit) {

@@ -81,6 +81,7 @@ import TextArea from "@/components/partials/forms/inputs/TextArea.vue";
 import SubmitButton from "@/components/partials/forms/inputs/SubmitButton.vue";
 import { Note } from "@/store/note/types";
 import { NoteEditPut } from "@/store/note/api-types";
+import { mapActions } from "vuex";
 
 type BaseData = {
   noteEditPut: NoteEditPut;
@@ -109,6 +110,7 @@ export default Vue.extend({
     };
   },
   methods: {
+    ...mapActions("note", { noteUpdate: "update", noteDel: "del" }),
     async handleSubmit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
@@ -124,7 +126,7 @@ export default Vue.extend({
           content: this.noteEditPut.content,
         };
 
-        await this.$store.dispatch("note/update", editedNote);
+        await this.noteUpdate(editedNote);
 
         this.$router.push({ name: "dashboard" });
       } catch (error) {
@@ -150,7 +152,7 @@ export default Vue.extend({
       }
 
       try {
-        await this.$store.dispatch("note/del", this.note);
+        await this.noteDel(this.note);
         this.$router.push({ name: "dashboard" });
       } catch (error) {
         //

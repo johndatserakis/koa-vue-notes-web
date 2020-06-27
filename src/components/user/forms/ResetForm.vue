@@ -75,6 +75,7 @@ import { ServerError } from "@/common/api";
 import FormContainer from "@/components/partials/forms/inputs/FormContainer.vue";
 import TextInput from "@/components/partials/forms/inputs/TextInput.vue";
 import SubmitButton from "@/components/partials/forms/inputs/SubmitButton.vue";
+import { mapActions } from "vuex";
 
 type BaseData = {
   userResetPost: UserResetPostWithPasswordConfirm;
@@ -103,6 +104,7 @@ export default Vue.extend({
     };
   },
   methods: {
+    ...mapActions("user", { userReset: "reset" }),
     async handleSubmit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
@@ -118,7 +120,7 @@ export default Vue.extend({
           ...valuesNoPasswordConfirm
         } = this.userResetPost;
         const convertedValues: UserResetPost = { ...valuesNoPasswordConfirm };
-        await this.$store.dispatch("user/reset", convertedValues);
+        await this.userReset(convertedValues);
 
         this.userResetPost = {
           passwordResetToken: "",

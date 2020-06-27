@@ -72,6 +72,7 @@ import TextInput from "@/components/partials/forms/inputs/TextInput.vue";
 import TextArea from "@/components/partials/forms/inputs/TextArea.vue";
 import SubmitButton from "@/components/partials/forms/inputs/SubmitButton.vue";
 import { NoteCreatePost } from "@/store/note/api-types";
+import { mapActions } from "vuex";
 
 type BaseData = {
   noteCreatePost: NoteCreatePost;
@@ -100,6 +101,7 @@ export default Vue.extend({
     };
   },
   methods: {
+    ...mapActions("note", { noteCreate: "create" }),
     async handleSubmit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
@@ -109,7 +111,7 @@ export default Vue.extend({
       this.isLoading = true;
 
       try {
-        await this.$store.dispatch("note/create", this.noteCreatePost);
+        await this.noteCreate(this.noteCreatePost);
 
         this.noteCreatePost = {
           title: "",

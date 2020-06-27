@@ -126,6 +126,7 @@ import { ServerError } from "@/common/api";
 import FormContainer from "@/components/partials/forms/inputs/FormContainer.vue";
 import TextInput from "@/components/partials/forms/inputs/TextInput.vue";
 import SubmitButton from "@/components/partials/forms/inputs/SubmitButton.vue";
+import { mapActions } from "vuex";
 
 type BaseData = {
   userSignupPost: UserSignupPostWithPasswordConfirm;
@@ -156,6 +157,7 @@ export default Vue.extend({
     };
   },
   methods: {
+    ...mapActions("user", { userSignup: "signup" }),
     async handleSubmit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
@@ -171,7 +173,7 @@ export default Vue.extend({
           ...valuesNoPasswordConfirm
         } = this.userSignupPost;
         const convertedValues: UserSignupPost = { ...valuesNoPasswordConfirm };
-        await this.$store.dispatch("user/signup", convertedValues);
+        await this.userSignup(convertedValues);
 
         this.userSignupPost = {
           firstName: "",

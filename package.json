@@ -1,19 +1,4 @@
 {
-  "name": "koa-vue-notes-web",
-  "version": "4.0.0",
-  "private": true,
-  "scripts": {
-    "build": "npm run test:build && vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
-    "test:e2e:headless": "vue-cli-service test:e2e --headless",
-    "test:build": "npm run test:unit",
-    "lint": "vue-cli-service lint",
-    "storybook:build": "vue-cli-service storybook:build -c config/storybook",
-    "storybook:test": "npm run storybook:build -- --smoke-test",
-    "storybook:watch": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
-    "watch": "vue-cli-service serve"
-  },
   "dependencies": {
     "@types/uuid": "^8.0.0",
     "@types/vuelidate": "^0.7.13",
@@ -71,5 +56,20 @@
     "typescript": "~3.9.3",
     "vue-cli-plugin-storybook": "~1.2.2",
     "vue-template-compiler": "^2.6.11"
-  }
+  },
+  "name": "koa-vue-notes-web",
+  "private": true,
+  "scripts": {
+    "build": "npm run test:build && vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "storybook:build": "vue-cli-service storybook:build -c config/storybook",
+    "storybook:test": "npm run storybook:build -- --smoke-test",
+    "storybook:watch": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
+    "test:build": "npm run test:unit",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:e2e:headless": "vue-cli-service test:e2e --headless",
+    "test:unit": "vue-cli-service test:unit",
+    "watch": "vue-cli-service serve"
+  },
+  "version": "4.0.0"
 }

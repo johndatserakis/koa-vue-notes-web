@@ -59,7 +59,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { BDropdown, BDropdownItem, BDropdownDivider } from "bootstrap-vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import VueScreenSize from "vue-screen-size";
 
 export default Vue.extend({
@@ -73,10 +73,11 @@ export default Vue.extend({
     return {};
   },
   methods: {
+    ...mapActions("user", { userLogout: "logout" }),
     async logout() {
       // As you can see, with Vuex we we need to fire logout methods
       // for each of our modules.
-      await this.$store.dispatch("user/logout");
+      await this.userLogout();
       this.$router.push({ name: "home" });
 
       // After logging the user out we can optionally reload the page, to make
