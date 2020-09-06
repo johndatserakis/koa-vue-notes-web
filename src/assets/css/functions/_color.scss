@@ -1,3 +1,13 @@
 @function colors($color-name) {
   @return var(--#{$color-name});
 }
+
+$theme-color-interval: 8%;
+
+@function tint-color($color, $level) {
+  @return mix(white, $color, $level * $theme-color-interval);
+}
+
+@function shade-color($color, $level) {
+  @return mix(black, $color, $level * $theme-color-interval);
+}

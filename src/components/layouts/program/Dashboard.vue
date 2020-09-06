@@ -16,6 +16,9 @@
             <small>{{ truncate(note.content, 20) }}</small>
           </b-list-group-item>
         </b-list-group>
+        <div v-else class="mt-2 text-center">
+          <b-spinner label="Spinning" />
+        </div>
       </b-col>
     </b-row>
     <b-row v-if="okToLoadMore" class="justify-content-center">
@@ -37,6 +40,7 @@ import {
   BListGroup,
   BListGroupItem,
   BButton,
+  BSpinner,
 } from "bootstrap-vue";
 import { mapGetters, mapActions } from "vuex";
 import { truncate } from "@/common/truncate";
@@ -49,6 +53,7 @@ export default Vue.extend({
     BListGroup,
     BListGroupItem,
     BButton,
+    BSpinner,
   },
   computed: {
     ...mapGetters({
@@ -61,8 +66,16 @@ export default Vue.extend({
   methods: {
     ...mapActions("note", { noteAll: "all" }),
     truncate,
-    async loadProgramData() {
+    async loadProgramData(incrementPage: boolean) {
       try {
+        if (!incrementPage) {
+          this.$store.commit("note/CLEAR_NOTES");
+          this.$store.commit("note/SET_QUERY", {
+            ...this.query,
+            page: 0,
+          });
+        }
+
         const result = await this.noteAll(this.query);
 
         // Sort out the new query data now...
@@ -83,13 +96,12 @@ export default Vue.extend({
       }
     },
     loadMore() {
-      this.loadProgramData();
+      // Increment request paging only if load more button was clicked
+      this.loadProgramData(true);
     },
   },
-  created() {
-    if (this.notes.length === 0) {
-      this.loadProgramData();
-    }
+  mounted() {
+    this.loadProgramData(false);
   },
 });
 </script>

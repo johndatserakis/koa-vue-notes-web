@@ -2,6 +2,7 @@ import axios from "@/common/axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
 import { UserTokens } from "@/store/user/types";
 import { AxiosResponse } from "axios";
+import store from "@/store";
 
 const getToken = (type: "accessToken" | "refreshToken") =>
   localStorage.getItem(type);
@@ -15,7 +16,9 @@ const refreshAuthLogic = async (failedRequest: any) => {
         refreshToken: UserTokens["refreshToken"];
       };
     }> = await axios.post("user/refreshAccessToken", {
-      username: "demousername",
+      username: store.getters["user/user"].username
+        ? store.getters["user/user"].username
+        : "",
       refreshToken: getToken("refreshToken"),
     });
 
