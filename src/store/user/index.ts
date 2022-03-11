@@ -3,6 +3,7 @@
 import { ActionContext, ActionTree, GetterTree, MutationTree } from "vuex";
 import { SET_USER, CLEAR_USER } from "@/store/user/mutations";
 import { RootState } from "@/store/state";
+import router from "@/router";
 import {
   UserState,
   UserShort,
@@ -107,9 +108,16 @@ const actions: ActionTree<UserState, RootState> = {
   },
   async logout({ commit, dispatch, state }: UserContext): Promise<void> {
     try {
-      commit(CLEAR_USER);
+      await commit(CLEAR_USER);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
+
+      await router.push({ name: "home" });
+
+      // After logging the user out we can optionally reload the page, to make
+      // sure everything is reset nicely.
+      document.location.href = "/";
+
       return Promise.resolve();
     } catch (error) {
       return Promise.reject(parseAxiosError(error));
