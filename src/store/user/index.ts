@@ -108,7 +108,7 @@ const actions: ActionTree<UserState, RootState> = {
   },
   async logout({ commit, dispatch, state }: UserContext): Promise<void> {
     try {
-      await commit(CLEAR_USER);
+      commit(CLEAR_USER);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
 
