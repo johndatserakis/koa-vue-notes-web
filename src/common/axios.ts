@@ -9,11 +9,6 @@ const defaultOptions = {
   baseURL: `${process.env.VUE_APP_API_URL}/api/v1`,
 };
 
-// Create instance
-const instance = axios.create(defaultOptions);
-
-export default instance;
-
 // Here's our authorization header helper. It'll read the localStorage and
 // use a potentially available accessToken to refresh our user
 export const setAuthorizationHeader = (a: AxiosInstance) => {
@@ -23,3 +18,6 @@ export const setAuthorizationHeader = (a: AxiosInstance) => {
     localStorage.getItem("accessToken") || ""
   }`;
 };
+
+export default axios.create(defaultOptions);
+export const refreshTokenInstance = axios.create(defaultOptions);

@@ -78,11 +78,6 @@ export default Vue.extend({
       // As you can see, with Vuex we we need to fire logout methods
       // for each of our modules.
       await this.userLogout();
-      this.$router.push({ name: "home" });
-
-      // After logging the user out we can optionally reload the page, to make
-      // sure everything is reset nicely.
-      document.location.href = "/";
     },
   },
   computed: {

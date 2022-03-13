@@ -1,4 +1,4 @@
-import axios from "@/common/axios";
+import axios, { refreshTokenInstance } from "@/common/axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
 import { UserTokens } from "@/store/user/types";
 import { AxiosResponse } from "axios";
@@ -10,15 +10,14 @@ const getToken = (type: "accessToken" | "refreshToken") =>
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const refreshAuthLogic = async (failedRequest: any) => {
   try {
+    const username = store.getters["user/user"].username || "";
     const tokens: AxiosResponse<{
       data: {
         accessToken: UserTokens["accessToken"];
         refreshToken: UserTokens["refreshToken"];
       };
-    }> = await axios.post("user/refreshAccessToken", {
-      username: store.getters["user/user"].username
-        ? store.getters["user/user"].username
-        : "",
+    }> = await refreshTokenInstance.post("user/refreshAccessToken", {
+      username,
       refreshToken: getToken("refreshToken"),
     });
 
@@ -31,7 +30,8 @@ const refreshAuthLogic = async (failedRequest: any) => {
     )}`;
     return Promise.resolve();
   } catch (error) {
-    Promise.reject();
+    await store.dispatch("user/logout");
+    return Promise.reject(error);
   }
 };
 
